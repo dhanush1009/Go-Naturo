@@ -11,6 +11,8 @@ import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/cart_page.dart';
 import 'pages/wishlist_page.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage>
   int _currentPageIndex = 0;
   final CartManager _cartManager = CartManager();
   final WishlistManager _wishlistManager = WishlistManager();
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
 
   final List<String> categories = [
     'All Products',
@@ -78,10 +82,28 @@ class _MyHomePageState extends State<MyHomePage>
   List<Product> allProducts = [];
 
   List<Product> get filteredProducts {
-    if (selectedCategory == 'All Products') {
-      return allProducts;
+    List<Product> products = allProducts;
+
+    // Filter by category
+    if (selectedCategory != 'All Products') {
+      products = products.where((p) => p.category == selectedCategory).toList();
     }
-    return allProducts.where((p) => p.category == selectedCategory).toList();
+
+    // Filter by search query
+    if (_searchQuery.isNotEmpty) {
+      products = products.where((p) {
+        final nameLower = p.name.toLowerCase();
+        final categoryLower = p.category.toLowerCase();
+        final descriptionLower = p.description.toLowerCase();
+        final searchLower = _searchQuery.toLowerCase();
+
+        return nameLower.contains(searchLower) ||
+            categoryLower.contains(searchLower) ||
+            descriptionLower.contains(searchLower);
+      }).toList();
+    }
+
+    return products;
   }
 
   @override
@@ -105,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage>
     _animationController.dispose();
     _cartManager.removeListener(_updateCartState);
     _wishlistManager.removeListener(_updateCartState);
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -314,9 +337,31 @@ class _MyHomePageState extends State<MyHomePage>
               children: [
                 Expanded(
                   child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
+                    onSubmitted: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       hintText: 'Search for Product',
                       prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.clear();
+                                  _searchQuery = '';
+                                });
+                              },
+                            )
+                          : null,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -327,20 +372,29 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 ),
                 const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFF1744),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text(
-                    'Search',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _searchQuery = _searchController.text;
+                    });
+                    // Hide keyboard
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFF1744),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text(
+                      'Search',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -348,65 +402,8 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
 
-          // Hero Section
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(24),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF1A237E), Color(0xFF311B92)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Why you Purchase',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    height: 1.2,
-                  ),
-                ),
-                const Text(
-                  'in GoNaturo Foods?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    height: 1.2,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Natural • Organic • Traditional',
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4CAF50),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  child: const Text(
-                    'SHOP NOW',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Hero Slideshow Section
+          const HeroSlideshow(),
 
           // Categories Section
           Padding(
@@ -480,6 +477,38 @@ class _MyHomePageState extends State<MyHomePage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Search Results Header
+                if (_searchQuery.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Search results for "$_searchQuery"',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                        TextButton.icon(
+                          onPressed: () {
+                            setState(() {
+                              _searchController.clear();
+                              _searchQuery = '';
+                            });
+                          },
+                          icon: const Icon(Icons.close, size: 18),
+                          label: const Text('Clear'),
+                          style: TextButton.styleFrom(
+                            foregroundColor: const Color(0xFFFF1744),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -509,11 +538,61 @@ class _MyHomePageState extends State<MyHomePage>
                       child: CircularProgressIndicator(),
                     ),
                   )
+                else if (filteredProducts.isEmpty)
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(48.0),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.search_off,
+                            size: 64,
+                            color: Colors.grey.shade400,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No products found',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            _searchQuery.isNotEmpty
+                                ? 'Try different keywords'
+                                : 'No products in this category',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade500,
+                            ),
+                          ),
+                          if (_searchQuery.isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _searchController.clear();
+                                    _searchQuery = '';
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF4CAF50),
+                                ),
+                                child: const Text('Clear Search'),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  )
                 else
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: GridView.builder(
-                      key: ValueKey(selectedCategory),
+                      key: ValueKey(selectedCategory + _searchQuery),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
@@ -835,6 +914,337 @@ class _MyHomePageState extends State<MyHomePage>
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Hero Slideshow Widget
+class HeroSlideshow extends StatefulWidget {
+  const HeroSlideshow({super.key});
+
+  @override
+  State<HeroSlideshow> createState() => _HeroSlideshowState();
+}
+
+class _HeroSlideshowState extends State<HeroSlideshow> {
+  int _currentIndex = 0;
+  final CarouselSliderController _carouselController =
+      CarouselSliderController();
+
+  // List of slide items with images and videos
+  final List<SlideItem> slideItems = [
+    SlideItem(
+      type: SlideType.image,
+      url:
+          'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+      title: 'Why you Purchase',
+      subtitle: 'in GoNaturo Foods?',
+      description: 'Natural • Organic • Traditional',
+    ),
+    SlideItem(
+      type: SlideType.image,
+      url:
+          'https://images.unsplash.com/photo-1498579809087-ef1e558fd1da?w=800&q=80',
+      title: '100% Organic',
+      subtitle: 'Farm Fresh Products',
+      description: 'Direct from Farm to Your Home',
+    ),
+    SlideItem(
+      type: SlideType.image,
+      url:
+          'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80',
+      title: 'Traditional Foods',
+      subtitle: 'Authentic Taste',
+      description: 'Preserving Heritage Recipes',
+    ),
+    SlideItem(
+      type: SlideType.video,
+      url:
+          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      title: 'Our Story',
+      subtitle: 'Discover GoNaturo',
+      description: 'Quality You Can Trust',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CarouselSlider.builder(
+          carouselController: _carouselController,
+          itemCount: slideItems.length,
+          options: CarouselOptions(
+            height: 300,
+            viewportFraction: 1.0,
+            autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 5),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            enlargeCenterPage: false,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+          itemBuilder: (context, index, realIndex) {
+            final item = slideItems[index];
+            return SlideItemWidget(item: item);
+          },
+        ),
+        const SizedBox(height: 12),
+        // Slide indicators
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: slideItems.asMap().entries.map((entry) {
+            return GestureDetector(
+              onTap: () => _carouselController.animateToPage(entry.key),
+              child: Container(
+                width: _currentIndex == entry.key ? 24 : 8,
+                height: 8,
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: _currentIndex == entry.key
+                      ? const Color(0xFF4CAF50)
+                      : Colors.grey.shade300,
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+// Slide Item Model
+enum SlideType { image, video }
+
+class SlideItem {
+  final SlideType type;
+  final String url;
+  final String title;
+  final String subtitle;
+  final String description;
+
+  SlideItem({
+    required this.type,
+    required this.url,
+    required this.title,
+    required this.subtitle,
+    required this.description,
+  });
+}
+
+// Slide Item Widget
+class SlideItemWidget extends StatefulWidget {
+  final SlideItem item;
+
+  const SlideItemWidget({super.key, required this.item});
+
+  @override
+  State<SlideItemWidget> createState() => _SlideItemWidgetState();
+}
+
+class _SlideItemWidgetState extends State<SlideItemWidget> {
+  VideoPlayerController? _videoController;
+  bool _isVideoInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.item.type == SlideType.video) {
+      _initializeVideo();
+    }
+  }
+
+  void _initializeVideo() async {
+    _videoController = VideoPlayerController.networkUrl(
+      Uri.parse(widget.item.url),
+    );
+    await _videoController!.initialize();
+    await _videoController!.setLooping(true);
+    await _videoController!.play();
+    if (mounted) {
+      setState(() {
+        _isVideoInitialized = true;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _videoController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF1A237E), Color(0xFF311B92)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background Image or Video
+          if (widget.item.type == SlideType.image)
+            Image.network(
+              widget.item.url,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(color: const Color(0xFF1A237E));
+              },
+            )
+          else if (_isVideoInitialized && _videoController != null)
+            FittedBox(
+              fit: BoxFit.cover,
+              child: SizedBox(
+                width: _videoController!.value.size.width,
+                height: _videoController!.value.size.height,
+                child: VideoPlayer(_videoController!),
+              ),
+            )
+          else
+            Container(
+              color: const Color(0xFF1A237E),
+              child: const Center(
+                child: CircularProgressIndicator(color: Colors.white),
+              ),
+            ),
+
+          // Dark overlay for better text visibility
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.black.withOpacity(0.6),
+                  Colors.black.withOpacity(0.3),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+            ),
+          ),
+
+          // Text Content
+          Positioned(
+            left: 24,
+            bottom: 24,
+            right: 24,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.item.title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    height: 1.2,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(0, 2),
+                        blurRadius: 4,
+                        color: Colors.black45,
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  widget.item.subtitle,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    height: 1.2,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(0, 2),
+                        blurRadius: 4,
+                        color: Colors.black45,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  widget.item.description,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(0, 1),
+                        blurRadius: 3,
+                        color: Colors.black45,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4CAF50),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 16,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: const Text(
+                    'SHOP NOW',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Video play/pause button
+          if (widget.item.type == SlideType.video && _isVideoInitialized)
+            Positioned(
+              top: 16,
+              right: 16,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (_videoController!.value.isPlaying) {
+                      _videoController!.pause();
+                    } else {
+                      _videoController!.play();
+                    }
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    _videoController!.value.isPlaying
+                        ? Icons.pause
+                        : Icons.play_arrow,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
