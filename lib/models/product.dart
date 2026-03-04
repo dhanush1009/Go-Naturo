@@ -9,6 +9,12 @@ class Product {
   final String description;
   final String weight;
   final bool inStock;
+  final String howToUse;
+  final String ingredients;
+  final String expiryDate;
+  final String manufactureDate;
+  final List<Map<String, dynamic>> sizeOptions;
+  final String suitableFor;
 
   Product({
     required this.id,
@@ -21,6 +27,12 @@ class Product {
     this.description = '',
     this.weight = '',
     this.inStock = true,
+    this.howToUse = '',
+    this.ingredients = '',
+    this.expiryDate = '12 months from manufacture',
+    this.manufactureDate = '',
+    this.sizeOptions = const [],
+    this.suitableFor = 'All',
   });
 
   // Getter for backward compatibility
@@ -46,6 +58,17 @@ class Product {
       description: json['description'] as String? ?? '',
       weight: json['weight'] as String? ?? '',
       inStock: json['in_stock'] as bool? ?? true,
+      howToUse: json['how_to_use'] as String? ?? '',
+      ingredients: json['ingredients'] as String? ?? '',
+      expiryDate:
+          json['expiry_date'] as String? ?? '12 months from manufacture',
+      manufactureDate: json['manufacture_date'] as String? ?? '',
+      sizeOptions:
+          (json['size_options'] as List<dynamic>?)
+              ?.map((item) => item as Map<String, dynamic>)
+              .toList() ??
+          [],
+      suitableFor: json['suitable_for'] as String? ?? 'All',
     );
   }
 
@@ -62,6 +85,12 @@ class Product {
       'description': description,
       'weight': weight,
       'in_stock': inStock,
+      'how_to_use': howToUse,
+      'ingredients': ingredients,
+      'expiry_date': expiryDate,
+      'manufacture_date': manufactureDate,
+      'size_options': sizeOptions,
+      'suitable_for': suitableFor,
     };
   }
 }
