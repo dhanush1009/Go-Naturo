@@ -11,9 +11,25 @@ class ProductData {
       price: 220.00,
       image: 'assets/images/oils/coconut_oil.jpg',
       description:
-          'Pure cold-pressed coconut oil extracted from fresh coconuts',
-      benefits: ['100% Natural', 'Cold Pressed', 'No Preservatives'],
+          'Pure cold-pressed coconut oil extracted from fresh, mature coconuts using traditional methods. Rich in MCT (Medium Chain Triglycerides) and lauric acid, this versatile oil is perfect for cooking, hair care, and skin nourishment. No chemicals, no preservatives, just pure natural goodness.',
+      benefits: [
+        '100% Natural',
+        'Cold Pressed',
+        'No Preservatives',
+        'MCT Rich',
+        'Multipurpose',
+      ],
       weight: '1000ml',
+      howToUse:
+          'For Cooking: Use as a healthy cooking oil for frying, sautéing, or baking. For Hair: Apply warm oil to scalp and hair, massage gently, leave for 30 minutes before washing. For Skin: Apply a small amount to damp skin after bathing for deep moisturization.',
+      ingredients: '100% Pure Cold-Pressed Coconut Oil from fresh coconuts',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Hair Care, Skin Care',
+      sizeOptions: [
+        {'size': '500ml', 'price': 115.00, 'mrp': 150.00},
+        {'size': '1000ml', 'price': 220.00, 'mrp': 280.00},
+        {'size': '2x1000ml', 'price': 420.00, 'mrp': 560.00},
+      ],
     ),
     Product(
       id: 2,
@@ -25,6 +41,16 @@ class ProductData {
       description: 'Traditional cold-pressed sesame oil (Gingelly oil)',
       benefits: ['Rich in antioxidants', 'Ayurvedic benefits', 'Cold pressed'],
       weight: '1000ml',
+      howToUse:
+          'For Cooking: Use for tempering, sautéing, or as finishing oil. For Massage: Warm the oil and massage on body for Ayurvedic benefits. For Oil Pulling: Swish 1 tablespoon in mouth for 10-15 minutes on empty stomach.',
+      ingredients: '100% Pure Cold-Pressed Sesame Seeds Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Body Massage, Oil Pulling',
+      sizeOptions: [
+        {'size': '500ml', 'price': 190.00, 'mrp': 250.00},
+        {'size': '1000ml', 'price': 360.00, 'mrp': 480.00},
+        {'size': '2x1000ml', 'price': 690.00, 'mrp': 960.00},
+      ],
     ),
     Product(
       id: 3,
@@ -33,9 +59,26 @@ class ProductData {
       category: 'Oils',
       price: 1100.00,
       image: 'assets/images/oils/groundnut_oil.jpg',
-      description: 'Pure groundnut oil for healthy cooking',
-      benefits: ['Heart healthy', 'High smoke point', 'Natural'],
+      description:
+          'Premium quality cold-pressed groundnut (peanut) oil extracted from finest quality groundnuts. With its high smoke point and neutral flavor, it is perfect for deep frying and everyday cooking. Rich in monounsaturated fats and vitamin E, supporting heart health and overall wellness.',
+      benefits: [
+        'Heart healthy',
+        'High smoke point',
+        'Natural',
+        'Vitamin E Rich',
+        'Light Flavor',
+      ],
       weight: '5000ml',
+      howToUse:
+          'For Cooking: Perfect for deep frying, sautéing, and stir-frying due to high smoke point (450°F). Use in daily cooking for healthy meals. Store in a cool, dark place to maintain freshness.',
+      ingredients: '100% Pure Cold-Pressed Groundnut Oil (Peanut Oil)',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Deep Frying, Daily Cooking, Baking',
+      sizeOptions: [
+        {'size': '1000ml', 'price': 240.00, 'mrp': 320.00},
+        {'size': '3000ml', 'price': 680.00, 'mrp': 900.00},
+        {'size': '5000ml', 'price': 1100.00, 'mrp': 1500.00},
+      ],
     ),
     Product(
       id: 4,
@@ -44,9 +87,26 @@ class ProductData {
       category: 'Oils',
       price: 180.00,
       image: 'assets/images/oils/mustard_oil.jpg',
-      description: 'Pure cold-pressed mustard oil',
-      benefits: ['Antibacterial', 'Rich in omega-3', 'Traditional'],
+      description:
+          'Pure cold-pressed mustard oil with natural pungent aroma and rich golden color. Widely used in traditional Indian cooking and therapeutic applications. Contains natural antibacterial properties and is rich in omega-3 fatty acids, monounsaturated fats, and vitamin E.',
+      benefits: [
+        'Antibacterial',
+        'Rich in omega-3',
+        'Traditional',
+        'Immune Boost',
+        'Warming',
+      ],
       weight: '500ml',
+      howToUse:
+          'For Cooking: Heat until it smokes once, then use for tempering, pickles, and North Indian cooking. For Massage: Warm oil and massage on joints and muscles for pain relief. For Hair: Apply to scalp for healthy hair growth.',
+      ingredients: '100% Pure Cold-Pressed Mustard Seeds Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Body Massage, Hair Care',
+      sizeOptions: [
+        {'size': '250ml', 'price': 95.00, 'mrp': 130.00},
+        {'size': '500ml', 'price': 180.00, 'mrp': 240.00},
+        {'size': '1000ml', 'price': 350.00, 'mrp': 480.00},
+      ],
     ),
     Product(
       id: 5,
@@ -55,9 +115,26 @@ class ProductData {
       category: 'Oils',
       price: 140.00,
       image: 'assets/images/oils/castor_oil.jpg',
-      description: 'Premium quality castor oil for hair and skin',
-      benefits: ['Hair growth', 'Skin nourishing', 'Pure'],
+      description:
+          'Premium quality cold-pressed castor oil extracted from finest castor seeds. Rich in ricinoleic acid, this thick, viscous oil is highly valued for promoting hair growth, strengthening hair roots, and nourishing dry skin. A traditional remedy used for centuries in Ayurvedic and natural beauty care.',
+      benefits: [
+        'Hair growth',
+        'Skin nourishing',
+        'Pure',
+        'Eyebrow/Eyelash Growth',
+        'Anti-inflammatory',
+      ],
       weight: '200ml',
+      howToUse:
+          'For Hair: Mix with coconut oil (1:2 ratio), massage into scalp and hair, leave overnight or for 2 hours, then wash. For Eyebrows/Lashes: Apply with clean brush before bed. For Skin: Mix few drops with lighter oil and apply to dry patches.',
+      ingredients: '100% Pure Cold-Pressed Castor Seeds Oil',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Growth, Eyebrow/Lash Growth, Skin Care',
+      sizeOptions: [
+        {'size': '100ml', 'price': 75.00, 'mrp': 100.00},
+        {'size': '200ml', 'price': 140.00, 'mrp': 190.00},
+        {'size': '500ml', 'price': 330.00, 'mrp': 450.00},
+      ],
     ),
     Product(
       id: 6,
@@ -65,11 +142,27 @@ class ProductData {
       tamilName: 'பாதாம் எண்ணெய்',
       category: 'Oils',
       price: 450.00,
-      image:
-          'https://images.unsplash.com/photo-1566394072647-abec60f3f48b?w=400&q=80',
-      description: 'Sweet almond oil for beauty and health',
-      benefits: ['Vitamin E rich', 'Skin softening', 'Natural'],
+      image: 'assets/images/oils/avocado_oil.jpg',
+      description:
+          'Premium sweet almond oil extracted from finest quality almonds. Rich in vitamin E, omega-9 fatty acids, and vital nutrients. Perfect for skin care, hair nourishment, and gentle massage. Its light texture absorbs easily, making it ideal for all skin types including sensitive skin.',
+      benefits: [
+        'Vitamin E rich',
+        'Skin softening',
+        'Natural',
+        'Anti-aging',
+        'Hypoallergenic',
+      ],
       weight: '100ml',
+      howToUse:
+          'For Skin: Apply 2-3 drops to cleansed face and neck, massage gently. For Hair: Mix with other oils, apply to hair and scalp, leave for 1 hour. For Massage: Warm slightly and use for body massage. For Baby: Safe for baby massage when used pure.',
+      ingredients: '100% Pure Cold-Pressed Sweet Almond Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Face Care, Hair Care, Baby Massage',
+      sizeOptions: [
+        {'size': '50ml', 'price': 240.00, 'mrp': 320.00},
+        {'size': '100ml', 'price': 450.00, 'mrp': 600.00},
+        {'size': '200ml', 'price': 850.00, 'mrp': 1150.00},
+      ],
     ),
     Product(
       id: 7,
@@ -77,11 +170,21 @@ class ProductData {
       tamilName: 'சூரியகாந்தி எண்ணெய்',
       category: 'Oils',
       price: 180.00,
-      image:
-          'https://images.unsplash.com/photo-1625869016774-83c1b4e10e25?w=400&q=80',
-      description: 'Light and healthy sunflower oil',
-      benefits: ['Low cholesterol', 'Heart healthy', 'Light'],
+      image: 'assets/images/oils/safflower_oil.jpg',
+      description:
+          'Light and healthy sunflower oil - cold pressed for maximum nutrition',
+      benefits: ['Low cholesterol', 'Heart healthy', 'Light', 'Vitamin E'],
       weight: '1000ml',
+      howToUse:
+          'Use for everyday cooking, frying, and salad dressings. Ideal for high-heat cooking.',
+      ingredients: '100% Pure Sunflower Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Daily Cooking, Frying, Salad Dressings',
+      sizeOptions: [
+        {'size': '500ml', 'price': 95.00, 'mrp': 130.00},
+        {'size': '1000ml', 'price': 180.00, 'mrp': 250.00},
+        {'size': '2x1000ml', 'price': 340.00, 'mrp': 500.00},
+      ],
     ),
     Product(
       id: 8,
@@ -93,6 +196,16 @@ class ProductData {
       description: 'Extra virgin olive oil',
       benefits: ['Mediterranean', 'Antioxidant', 'Premium'],
       weight: '500ml',
+      howToUse:
+          'Use for salad dressings, low-heat cooking, bread dipping, or drizzle over finished dishes.',
+      ingredients: '100% Extra Virgin Olive Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Salads, Low-heat Cooking, Bread Dipping',
+      sizeOptions: [
+        {'size': '250ml', 'price': 340.00, 'mrp': 450.00},
+        {'size': '500ml', 'price': 650.00, 'mrp': 850.00},
+        {'size': '1000ml', 'price': 1250.00, 'mrp': 1650.00},
+      ],
     ),
     Product(
       id: 9,
@@ -104,6 +217,16 @@ class ProductData {
       description: 'Medicinal neem oil for skin care',
       benefits: ['Antibacterial', 'Skin healing', 'Natural'],
       weight: '100ml',
+      howToUse:
+          'For Skin: Dilute with carrier oil (1:10 ratio) and apply to affected areas. For Hair: Mix with coconut oil for scalp health. For Plants: Dilute and use as natural pesticide.',
+      ingredients: '100% Pure Cold-Pressed Neem Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Skin Care, Hair Care, Natural Pesticide',
+      sizeOptions: [
+        {'size': '50ml', 'price': 65.00, 'mrp': 90.00},
+        {'size': '100ml', 'price': 120.00, 'mrp': 160.00},
+        {'size': '200ml', 'price': 225.00, 'mrp': 310.00},
+      ],
     ),
     Product(
       id: 10,
@@ -111,11 +234,26 @@ class ProductData {
       tamilName: 'ஆளி விதை எண்ணெய்',
       category: 'Oils',
       price: 380.00,
-      image:
-          'https://images.unsplash.com/photo-1585515320310-d745e47d1ce0?w=400&q=80',
-      description: 'Omega-3 rich flaxseed oil',
-      benefits: ['Omega-3', 'Heart health', 'Cold pressed'],
+      image: 'assets/images/oils/sesame_oil.jpg',
+      description:
+          'Omega-3 rich flaxseed oil - nature\'s best source of plant-based omega-3',
+      benefits: [
+        'Omega-3',
+        'Heart health',
+        'Cold pressed',
+        'Anti-inflammatory',
+      ],
       weight: '250ml',
+      howToUse:
+          'Do not heat. Use cold in smoothies, salads, yogurt, or take 1-2 tablespoons daily. Store refrigerated.',
+      ingredients: '100% Cold-Pressed Flaxseeds (Linseed)',
+      expiryDate: '6 months from manufacture (refrigerated)',
+      suitableFor: 'Smoothies, Salads, Daily Supplement',
+      sizeOptions: [
+        {'size': '100ml', 'price': 165.00, 'mrp': 220.00},
+        {'size': '250ml', 'price': 380.00, 'mrp': 510.00},
+        {'size': '500ml', 'price': 730.00, 'mrp': 980.00},
+      ],
     ),
     Product(
       id: 11,
@@ -127,6 +265,16 @@ class ProductData {
       description: 'Healthy rice bran cooking oil',
       benefits: ['High smoke point', 'Vitamin E', 'Light'],
       weight: '1000ml',
+      howToUse:
+          'Ideal for high-heat cooking including deep frying and stir-frying. Light flavor works well for all cuisines.',
+      ingredients: '100% Pure Rice Bran Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Deep Frying, Stir-frying, Daily Cooking',
+      sizeOptions: [
+        {'size': '500ml', 'price': 115.00, 'mrp': 155.00},
+        {'size': '1000ml', 'price': 220.00, 'mrp': 300.00},
+        {'size': '2x1000ml', 'price': 420.00, 'mrp': 600.00},
+      ],
     ),
     Product(
       id: 12,
@@ -138,6 +286,16 @@ class ProductData {
       description: 'Natural palm oil for cooking',
       benefits: ['Traditional', 'Natural', 'Pure'],
       weight: '500ml',
+      howToUse:
+          'Use for traditional South Indian cooking, deep frying, and making sweets. Store at room temperature.',
+      ingredients: '100% Natural Palm Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Traditional Cooking, Frying, Sweet Making',
+      sizeOptions: [
+        {'size': '250ml', 'price': 80.00, 'mrp': 110.00},
+        {'size': '500ml', 'price': 150.00, 'mrp': 205.00},
+        {'size': '1000ml', 'price': 285.00, 'mrp': 395.00},
+      ],
     ),
     Product(
       id: 13,
@@ -145,11 +303,21 @@ class ProductData {
       tamilName: 'அக்ரூட் எண்ணெய்',
       category: 'Oils',
       price: 550.00,
-      image:
-          'https://images.unsplash.com/photo-1599003302607-421ecf611769?w=400&q=80',
-      description: 'Premium walnut oil for health',
-      benefits: ['Brain health', 'Omega-3', 'Antioxidant'],
+      image: 'assets/images/oils/grape_seed_oil.jpg',
+      description:
+          'Premium walnut oil for health and wellness - supports brain and heart health',
+      benefits: ['Brain health', 'Omega-3', 'Antioxidant', 'Heart healthy'],
       weight: '200ml',
+      howToUse:
+          'Use cold in salad dressings, drizzle over cooked dishes, or take 1 tablespoon daily for health benefits.',
+      ingredients: '100% Cold-Pressed Walnut Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Salad Dressings, Health Supplement, Brain Health',
+      sizeOptions: [
+        {'size': '100ml', 'price': 290.00, 'mrp': 390.00},
+        {'size': '200ml', 'price': 550.00, 'mrp': 740.00},
+        {'size': '500ml', 'price': 1300.00, 'mrp': 1750.00},
+      ],
     ),
     Product(
       id: 14,
@@ -161,6 +329,16 @@ class ProductData {
       description: 'Nutritious avocado oil',
       benefits: ['Nutrient rich', 'Healthy fats', 'Premium'],
       weight: '250ml',
+      howToUse:
+          'Use for sautéing, grilling, or drizzle over salads. Great for high-heat cooking and skin application.',
+      ingredients: '100% Pure Avocado Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'High-heat Cooking, Salads, Skin Care',
+      sizeOptions: [
+        {'size': '100ml', 'price': 310.00, 'mrp': 410.00},
+        {'size': '250ml', 'price': 720.00, 'mrp': 960.00},
+        {'size': '500ml', 'price': 1380.00, 'mrp': 1850.00},
+      ],
     ),
     Product(
       id: 15,
@@ -168,11 +346,21 @@ class ProductData {
       tamilName: 'பூசணி விதை எண்ணெய்',
       category: 'Oils',
       price: 480.00,
-      image:
-          'https://images.unsplash.com/photo-1570493821432-1cc49bba96f0?w=400&q=80',
-      description: 'Nutrient-dense pumpkin seed oil',
-      benefits: ['Zinc rich', 'Hair health', 'Antioxidant'],
+      image: 'assets/images/oils/corn_oil.jpg',
+      description:
+          'Nutrient-dense pumpkin seed oil - rich in zinc and essential fatty acids',
+      benefits: ['Zinc rich', 'Hair health', 'Antioxidant', 'Prostate health'],
       weight: '200ml',
+      howToUse:
+          'Use cold in salads and smoothies, or take 1 tablespoon daily for nutritional benefits.',
+      ingredients: '100% Cold-Pressed Pumpkin Seeds Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Salads, Smoothies, Prostate Health',
+      sizeOptions: [
+        {'size': '100ml', 'price': 255.00, 'mrp': 340.00},
+        {'size': '200ml', 'price': 480.00, 'mrp': 640.00},
+        {'size': '500ml', 'price': 1150.00, 'mrp': 1550.00},
+      ],
     ),
     Product(
       id: 16,
@@ -184,6 +372,16 @@ class ProductData {
       description: 'Light and healthy safflower oil',
       benefits: ['Heart healthy', 'Low saturated fat', 'Light'],
       weight: '500ml',
+      howToUse:
+          'Perfect for daily cooking, sautéing, and baking. Light flavor doesn\'t overpower dishes.',
+      ingredients: '100% Pure Safflower Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Daily Cooking, Baking, Heart Health',
+      sizeOptions: [
+        {'size': '250ml', 'price': 150.00, 'mrp': 200.00},
+        {'size': '500ml', 'price': 280.00, 'mrp': 375.00},
+        {'size': '1000ml', 'price': 530.00, 'mrp': 715.00},
+      ],
     ),
     Product(
       id: 17,
@@ -191,11 +389,20 @@ class ProductData {
       tamilName: 'வேர்கடலை எண்ணெய்',
       category: 'Oils',
       price: 200.00,
-      image:
-          'https://images.unsplash.com/photo-1608058403116-271e03a0fb78?w=400&q=80',
-      description: 'Pure peanut oil for cooking',
-      benefits: ['High smoke point', 'Flavorful', 'Natural'],
+      image: 'assets/images/oils/groundnut_oil.jpg',
+      description: 'Pure peanut oil for everyday cooking with natural flavor',
+      benefits: ['High smoke point', 'Flavorful', 'Natural', 'Versatile'],
       weight: '1000ml',
+      howToUse:
+          'Perfect for deep frying, stir-frying, and roasting. Adds subtle nutty flavor to dishes.',
+      ingredients: '100% Pure Peanut Oil (Groundnut Oil)',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Deep Frying, Stir-frying, Roasting',
+      sizeOptions: [
+        {'size': '500ml', 'price': 105.00, 'mrp': 145.00},
+        {'size': '1000ml', 'price': 200.00, 'mrp': 275.00},
+        {'size': '2x1000ml', 'price': 380.00, 'mrp': 550.00},
+      ],
     ),
     Product(
       id: 18,
@@ -207,6 +414,16 @@ class ProductData {
       description: 'Refined soybean cooking oil',
       benefits: ['Omega-3', 'Vitamin E', 'Light'],
       weight: '1000ml',
+      howToUse:
+          'Use for all-purpose cooking including frying, baking, and sautéing. Light and neutral flavor.',
+      ingredients: '100% Soybean Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'All-purpose Cooking, Baking, Frying',
+      sizeOptions: [
+        {'size': '500ml', 'price': 85.00, 'mrp': 120.00},
+        {'size': '1000ml', 'price': 160.00, 'mrp': 220.00},
+        {'size': '2x1000ml', 'price': 305.00, 'mrp': 440.00},
+      ],
     ),
     Product(
       id: 19,
@@ -218,6 +435,16 @@ class ProductData {
       description: 'Light corn oil for cooking',
       benefits: ['Light', 'Neutral flavor', 'Versatile'],
       weight: '1000ml',
+      howToUse:
+          'Ideal for frying, grilling, and baking. Neutral taste makes it suitable for all dishes.',
+      ingredients: '100% Pure Corn Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Frying, Grilling, Baking',
+      sizeOptions: [
+        {'size': '500ml', 'price': 90.00, 'mrp': 125.00},
+        {'size': '1000ml', 'price': 170.00, 'mrp': 235.00},
+        {'size': '2x1000ml', 'price': 325.00, 'mrp': 470.00},
+      ],
     ),
     Product(
       id: 20,
@@ -229,6 +456,16 @@ class ProductData {
       description: 'Premium grape seed oil',
       benefits: ['Light', 'High smoke point', 'Antioxidant'],
       weight: '250ml',
+      howToUse:
+          'Excellent for high-heat cooking, sautéing, and grilling. Also great for salad dressings and marinades.',
+      ingredients: '100% Pure Grape Seed Oil',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'High-heat Cooking, Salads, Marinades',
+      sizeOptions: [
+        {'size': '100ml', 'price': 210.00, 'mrp': 280.00},
+        {'size': '250ml', 'price': 490.00, 'mrp': 655.00},
+        {'size': '500ml', 'price': 940.00, 'mrp': 1260.00},
+      ],
     ),
     Product(
       id: 21,
@@ -240,6 +477,16 @@ class ProductData {
       description: 'Small pack cold-pressed sesame oil',
       benefits: ['Ayurvedic', 'Traditional', 'Cold pressed'],
       weight: '500ml',
+      howToUse:
+          'Use for tempering, cooking, massage, and oil pulling. Traditional Ayurvedic oil with multiple benefits.',
+      ingredients: '100% Pure Cold-Pressed Sesame Seeds Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Massage, Oil Pulling',
+      sizeOptions: [
+        {'size': '250ml', 'price': 100.00, 'mrp': 135.00},
+        {'size': '500ml', 'price': 190.00, 'mrp': 255.00},
+        {'size': '1000ml', 'price': 360.00, 'mrp': 490.00},
+      ],
     ),
     Product(
       id: 22,
@@ -247,11 +494,20 @@ class ProductData {
       tamilName: 'தேங்காய் எண்ணெய்',
       category: 'Oils',
       price: 115.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-coconut-oil.jpg',
-      description: 'Small pack pure coconut oil',
-      benefits: ['Natural', 'Cold pressed', 'Multipurpose'],
+      image: 'assets/images/oils/coconut_oil.jpg',
+      description: 'Small pack pure cold-pressed coconut oil for daily use',
+      benefits: ['Natural', 'Cold pressed', 'Multipurpose', '100% Pure'],
       weight: '500ml',
+      howToUse:
+          'Use for cooking, hair care, skin moisturizing, and oil pulling. Multipurpose natural oil.',
+      ingredients: '100% Pure Cold-Pressed Coconut Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Hair Care, Skin Care',
+      sizeOptions: [
+        {'size': '250ml', 'price': 60.00, 'mrp': 85.00},
+        {'size': '500ml', 'price': 115.00, 'mrp': 160.00},
+        {'size': '1000ml', 'price': 220.00, 'mrp': 300.00},
+      ],
     ),
     Product(
       id: 23,
@@ -259,11 +515,20 @@ class ProductData {
       tamilName: 'கடலை எண்ணெய்',
       category: 'Oils',
       price: 230.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-groundnut-oil.jpg',
-      description: 'Small pack groundnut oil',
-      benefits: ['Heart healthy', 'Natural', 'Pure'],
+      image: 'assets/images/oils/groundnut_oil.jpg',
+      description: 'Small pack groundnut oil - perfect size for daily cooking',
+      benefits: ['Heart healthy', 'Natural', 'Pure', 'High smoke point'],
       weight: '1000ml',
+      howToUse:
+          'Ideal for all types of cooking - frying, sautéing, and baking. Neutral flavor complements all dishes.',
+      ingredients: '100% Pure Cold-Pressed Groundnut Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'All types of Cooking, Frying, Baking',
+      sizeOptions: [
+        {'size': '500ml', 'price': 120.00, 'mrp': 165.00},
+        {'size': '1000ml', 'price': 230.00, 'mrp': 315.00},
+        {'size': '2x1000ml', 'price': 440.00, 'mrp': 630.00},
+      ],
     ),
     Product(
       id: 24,
@@ -271,11 +536,20 @@ class ProductData {
       tamilName: 'எள் எண்ணெய்',
       category: 'Oils',
       price: 340.00,
-      image:
-          'https://images.unsplash.com/photo-1594486047460-a89c7e93ee08?w=400&q=80',
-      description: 'Pure til (sesame) oil',
-      benefits: ['Traditional', 'Aromatic', 'Natural'],
+      image: 'assets/images/oils/sesame_oil.jpg',
+      description: 'Pure til (sesame) oil - traditional cold-pressed goodness',
+      benefits: ['Traditional', 'Aromatic', 'Natural', 'Ayurvedic'],
       weight: '1000ml',
+      howToUse:
+          'Use for tempering, cooking, and traditional recipes. Also excellent for massage and hair care.',
+      ingredients: '100% Pure Cold-Pressed Til Seeds (Sesame)',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Massage, Hair Care',
+      sizeOptions: [
+        {'size': '500ml', 'price': 180.00, 'mrp': 240.00},
+        {'size': '1000ml', 'price': 340.00, 'mrp': 460.00},
+        {'size': '2x1000ml', 'price': 650.00, 'mrp': 920.00},
+      ],
     ),
     Product(
       id: 25,
@@ -287,6 +561,17 @@ class ProductData {
       description: 'Herbal hair oil for strong hair',
       benefits: ['Hair growth', 'Herbal', 'Nourishing'],
       weight: '100ml',
+      howToUse:
+          'Apply to scalp and hair, massage gently for 5-10 minutes. Leave for 1-2 hours or overnight, then wash. Use 2-3 times per week.',
+      ingredients:
+          'Herbal blend with Coconut Oil, Amla, Hibiscus, and other herbs',
+      expiryDate: '18 months from manufacture',
+      suitableFor: 'Hair Growth, Scalp Health, Hair Nourishment',
+      sizeOptions: [
+        {'size': '50ml', 'price': 50.00, 'mrp': 70.00},
+        {'size': '100ml', 'price': 95.00, 'mrp': 130.00},
+        {'size': '200ml', 'price': 180.00, 'mrp': 250.00},
+      ],
     ),
 
     // FLOURS (22 products)
@@ -296,11 +581,21 @@ class ProductData {
       tamilName: 'கோதுமை மாவு',
       category: 'Flours',
       price: 63.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-wheat-flour.jpg',
-      description: 'Fresh stone-ground wheat flour',
-      benefits: ['Fiber rich', 'No additives', 'Fresh ground'],
+      image: 'assets/images/flours/quinoa_flour.jpg',
+      description:
+          'Fresh stone-ground wheat flour - perfect for chapatis and traditional breads',
+      benefits: ['Fiber rich', 'No additives', 'Fresh ground', 'Whole grain'],
       weight: '1000g',
+      howToUse:
+          'Ideal for making chapatis, parathas, and traditional Indian breads. Store in airtight container.',
+      ingredients: '100% Whole Wheat Kernels, Stone Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Chapati, Roti, Paratha',
+      sizeOptions: [
+        {'size': '500g', 'price': 33.00, 'mrp': 45.00},
+        {'size': '1000g', 'price': 63.00, 'mrp': 85.00},
+        {'size': '2000g', 'price': 120.00, 'mrp': 165.00},
+      ],
     ),
     Product(
       id: 27,
@@ -308,11 +603,21 @@ class ProductData {
       tamilName: 'அரிசி மாவு',
       category: 'Flours',
       price: 49.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-rice-flour.jpg',
-      description: 'Fine quality rice flour',
-      benefits: ['Gluten-free', 'Pure', 'Fine texture'],
+      image: 'assets/images/flours/ragi_flour.jpg',
+      description:
+          'Fine quality rice flour for dosas, idlis, and traditional recipes',
+      benefits: ['Gluten-free', 'Pure', 'Fine texture', 'Easily digestible'],
       weight: '500g',
+      howToUse:
+          'Perfect for making dosas, idlis, appams, and rice-based sweets. Also used as thickening agent.',
+      ingredients: '100% Pure Rice, Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Dosa, Idli, Appam, Sweets',
+      sizeOptions: [
+        {'size': '250g', 'price': 26.00, 'mrp': 35.00},
+        {'size': '500g', 'price': 49.00, 'mrp': 66.00},
+        {'size': '1000g', 'price': 93.00, 'mrp': 127.00},
+      ],
     ),
     Product(
       id: 28,
@@ -320,11 +625,21 @@ class ProductData {
       tamilName: 'தினை மாவு',
       category: 'Flours',
       price: 30.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-foxtail-millet-flour.jpg',
-      description: 'Nutritious foxtail millet flour',
-      benefits: ['Diabetic friendly', 'High fiber', 'Minerals'],
+      image: 'assets/images/flours/little_millet_flour.jpg',
+      description:
+          'Nutritious foxtail millet flour - diabetic friendly and high in fiber',
+      benefits: ['Diabetic friendly', 'High fiber', 'Minerals', 'Gluten-free'],
       weight: '250g',
+      howToUse:
+          'Use for making rotis, dosas, porridge, or mix with other flours for healthier breads.',
+      ingredients: '100% Foxtail Millet (Thinai)',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Dosa, Porridge, Diabetic Diet',
+      sizeOptions: [
+        {'size': '250g', 'price': 30.00, 'mrp': 40.00},
+        {'size': '500g', 'price': 57.00, 'mrp': 77.00},
+        {'size': '1000g', 'price': 108.00, 'mrp': 148.00},
+      ],
     ),
     Product(
       id: 29,
@@ -332,11 +647,21 @@ class ProductData {
       tamilName: 'பாசிப்பயிறு மாவு',
       category: 'Flours',
       price: 46.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-greengram-flour.jpg',
-      description: 'Premium greengram flour',
-      benefits: ['Protein rich', 'Digestible', 'Fresh'],
+      image: 'assets/images/flours/bajra_flour.jpg',
+      description:
+          'Premium greengram (moong dal) flour - protein rich and easily digestible',
+      benefits: ['Protein rich', 'Digestible', 'Fresh', 'Low GI'],
       weight: '500g',
+      howToUse:
+          'Perfect for making dosas, pancakes, face packs, and traditional sweets like payasam.',
+      ingredients: '100% Greengram (Moong Dal), Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Dosa, Pancakes, Face Pack, Sweets',
+      sizeOptions: [
+        {'size': '250g', 'price': 25.00, 'mrp': 34.00},
+        {'size': '500g', 'price': 46.00, 'mrp': 62.00},
+        {'size': '1000g', 'price': 87.00, 'mrp': 119.00},
+      ],
     ),
     Product(
       id: 30,
@@ -344,11 +669,21 @@ class ProductData {
       tamilName: 'சோள மாவு',
       category: 'Flours',
       price: 40.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-corn-flour.jpg',
-      description: 'Fine corn flour',
-      benefits: ['Gluten-free', 'Versatile', 'Natural'],
+      image: 'assets/images/flours/kodo_millet_flour.jpg',
+      description:
+          'Fine corn flour - gluten-free and versatile for cooking and baking',
+      benefits: ['Gluten-free', 'Versatile', 'Natural', 'Light texture'],
       weight: '250g',
+      howToUse:
+          'Use as thickening agent in soups, sauces, or for making corn-based dishes and baked goods.',
+      ingredients: '100% Corn Kernels, Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Thickening, Baking, Corn Dishes',
+      sizeOptions: [
+        {'size': '250g', 'price': 40.00, 'mrp': 54.00},
+        {'size': '500g', 'price': 76.00, 'mrp': 103.00},
+        {'size': '1000g', 'price': 144.00, 'mrp': 198.00},
+      ],
     ),
     Product(
       id: 31,
@@ -356,11 +691,21 @@ class ProductData {
       tamilName: 'கடலை மாவு',
       category: 'Flours',
       price: 76.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-peanut-flour.jpg',
-      description: 'Roasted peanut flour',
-      benefits: ['Protein rich', 'Flavorful', 'Pure'],
+      image: 'assets/images/flours/quinoa_flour.jpg',
+      description:
+          'Roasted peanut flour - protein-packed with rich, nutty flavor',
+      benefits: ['Protein rich', 'Flavorful', 'Pure', 'Energy boost'],
       weight: '500g',
+      howToUse:
+          'Add to smoothies, baked goods, or use for making traditional peanut-based sweets and savories.',
+      ingredients: '100% Roasted Peanuts, Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Baking, Sweets, Smoothies',
+      sizeOptions: [
+        {'size': '250g', 'price': 40.00, 'mrp': 54.00},
+        {'size': '500g', 'price': 76.00, 'mrp': 103.00},
+        {'size': '1000g', 'price': 145.00, 'mrp': 198.00},
+      ],
     ),
     Product(
       id: 32,
@@ -368,11 +713,21 @@ class ProductData {
       tamilName: 'ஆட்டா',
       category: 'Flours',
       price: 390.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/patanjali-atta.jpg',
-      description: 'Premium wheat atta',
-      benefits: ['Whole wheat', 'Fiber rich', 'Fresh'],
+      image: 'assets/images/flours/bajra_flour.jpg',
+      description:
+          'Premium whole wheat atta flour - fresh milled for maximum nutrition',
+      benefits: ['Whole wheat', 'Fiber rich', 'Fresh', 'No additives'],
       weight: '5000g',
+      howToUse:
+          'Perfect for making soft chapatis, parathas, puris, and all Indian breads. Store in cool, dry place.',
+      ingredients: '100% Whole Wheat, Freshly Milled',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Chapati, Paratha, Puri, Indian Breads',
+      sizeOptions: [
+        {'size': '1000g', 'price': 85.00, 'mrp': 115.00},
+        {'size': '2000g', 'price': 165.00, 'mrp': 225.00},
+        {'size': '5000g', 'price': 390.00, 'mrp': 530.00},
+      ],
     ),
     Product(
       id: 33,
@@ -384,6 +739,16 @@ class ProductData {
       description: 'Nutritious finger millet flour',
       benefits: ['Calcium rich', 'Iron', 'Healthy'],
       weight: '500g',
+      howToUse:
+          'Make ragi roti, mudde, porridge, or dosas. Great for babies and growing children. High in calcium.',
+      ingredients: '100% Finger Millet (Ragi), Stone Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Mudde, Porridge, Baby Food',
+      sizeOptions: [
+        {'size': '250g', 'price': 29.00, 'mrp': 40.00},
+        {'size': '500g', 'price': 55.00, 'mrp': 75.00},
+        {'size': '1000g', 'price': 105.00, 'mrp': 143.00},
+      ],
     ),
     Product(
       id: 34,
@@ -395,6 +760,16 @@ class ProductData {
       description: 'Pearl millet flour',
       benefits: ['High protein', 'Gluten-free', 'Energy'],
       weight: '500g',
+      howToUse:
+          'Make bajra rotis, bhakris, or porridge. Excellent winter food, keeps body warm. Mix with wheat for softer rotis.',
+      ingredients: '100% Pearl Millet (Bajra), Stone Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Bhakri, Porridge',
+      sizeOptions: [
+        {'size': '250g', 'price': 26.00, 'mrp': 35.00},
+        {'size': '500g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '1000g', 'price': 91.00, 'mrp': 125.00},
+      ],
     ),
     Product(
       id: 35,
@@ -402,11 +777,21 @@ class ProductData {
       tamilName: 'சோளம் மாவு',
       category: 'Flours',
       price: 52.00,
-      image:
-          'https://images.unsplash.com/photo-1612838320302-4b3b3b6b1b1e?w=400&q=80',
-      description: 'Sorghum flour for healthy living',
-      benefits: ['Gluten-free', 'Fiber', 'Protein'],
+      image: 'assets/images/flours/bajra_flour.jpg',
+      description:
+          'Sorghum (jowar) flour for healthy living - gluten-free ancient grain',
+      benefits: ['Gluten-free', 'Fiber', 'Protein', 'Diabetic friendly'],
       weight: '500g',
+      howToUse:
+          'Make rotis, bhakris, or mix with wheat flour. Also great for making porridge and baked goods.',
+      ingredients: '100% Jowar (Sorghum), Stone Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Bhakri, Porridge, Diabetic Diet',
+      sizeOptions: [
+        {'size': '250g', 'price': 28.00, 'mrp': 38.00},
+        {'size': '500g', 'price': 52.00, 'mrp': 71.00},
+        {'size': '1000g', 'price': 99.00, 'mrp': 135.00},
+      ],
     ),
     Product(
       id: 36,
@@ -414,11 +799,21 @@ class ProductData {
       tamilName: 'வாற்கோதுமை மாவு',
       category: 'Flours',
       price: 68.00,
-      image:
-          'https://images.unsplash.com/photo-1574663876115-5cb5b97f36b4?w=400&q=80',
-      description: 'Healthy barley flour',
-      benefits: ['Cholesterol', 'Fiber rich', 'Healthy'],
+      image: 'assets/images/flours/kodo_millet_flour.jpg',
+      description:
+          'Healthy barley flour - excellent for cholesterol management',
+      benefits: ['Cholesterol', 'Fiber rich', 'Healthy', 'Heart friendly'],
       weight: '500g',
+      howToUse:
+          'Use for making rotis, add to soups as thickener, or use in baking for nutty flavor.',
+      ingredients: '100% Barley (Jau), Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Soups, Baking, Cholesterol Management',
+      sizeOptions: [
+        {'size': '250g', 'price': 36.00, 'mrp': 49.00},
+        {'size': '500g', 'price': 68.00, 'mrp': 92.00},
+        {'size': '1000g', 'price': 130.00, 'mrp': 177.00},
+      ],
     ),
     Product(
       id: 37,
@@ -426,11 +821,21 @@ class ProductData {
       tamilName: 'கடலை மாவு',
       category: 'Flours',
       price: 58.00,
-      image:
-          'https://images.unsplash.com/photo-1599003300222-f45df9e2e2b0?w=400&q=80',
-      description: 'Besan gram flour',
-      benefits: ['Protein', 'Gluten-free', 'Versatile'],
+      image: 'assets/images/flours/quinoa_flour.jpg',
+      description:
+          'Besan gram flour (chana dal flour) - protein-rich and versatile',
+      benefits: ['Protein', 'Gluten-free', 'Versatile', 'Skin care'],
       weight: '500g',
+      howToUse:
+          'Use for making pakoras, dhokla, chillas, or as face pack. Essential for Indian snacks.',
+      ingredients: '100% Chickpeas (Chana Dal), Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Pakora, Dhokla, Chilla, Snacks',
+      sizeOptions: [
+        {'size': '250g', 'price': 31.00, 'mrp': 42.00},
+        {'size': '500g', 'price': 58.00, 'mrp': 79.00},
+        {'size': '1000g', 'price': 110.00, 'mrp': 151.00},
+      ],
     ),
     Product(
       id: 38,
@@ -438,11 +843,20 @@ class ProductData {
       tamilName: 'மைதா மாவு',
       category: 'Flours',
       price: 42.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Refined wheat flour',
-      benefits: ['Fine', 'Baking', 'Smooth'],
+      image: 'assets/images/flours/ragi_flour.jpg',
+      description: 'Refined wheat flour - fine texture, perfect for baking',
+      benefits: ['Fine', 'Baking', 'Smooth', 'White bread'],
       weight: '500g',
+      howToUse:
+          'Ideal for making cakes, pastries, naan, kulcha, and other baked goods requiring fine texture.',
+      ingredients: 'Refined Wheat Flour (Maida)',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Baking, Cakes, Naan, Pastries',
+      sizeOptions: [
+        {'size': '250g', 'price': 23.00, 'mrp': 31.00},
+        {'size': '500g', 'price': 42.00, 'mrp': 57.00},
+        {'size': '1000g', 'price': 80.00, 'mrp': 109.00},
+      ],
     ),
     Product(
       id: 39,
@@ -450,11 +864,21 @@ class ProductData {
       tamilName: 'ஓட்ஸ் மாவு',
       category: 'Flours',
       price: 85.00,
-      image:
-          'https://images.unsplash.com/photo-1574663876115-5cb5b97f36b4?w=400&q=80',
-      description: 'Healthy oats flour',
-      benefits: ['Heart health', 'Fiber', 'Protein'],
+      image: 'assets/images/flours/little_millet_flour.jpg',
+      description:
+          'Healthy oats flour - heart-healthy and fiber-rich superfood',
+      benefits: ['Heart health', 'Fiber', 'Protein', 'Weight management'],
       weight: '500g',
+      howToUse:
+          'Use in smoothies, baking, pancakes, or as porridge. Mix with other flours for healthy rotis.',
+      ingredients: '100% Rolled Oats, Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Baking, Porridge, Smoothies, Weight Loss',
+      sizeOptions: [
+        {'size': '250g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '500g', 'price': 85.00, 'mrp': 115.00},
+        {'size': '1000g', 'price': 162.00, 'mrp': 221.00},
+      ],
     ),
     Product(
       id: 40,
@@ -462,11 +886,20 @@ class ProductData {
       tamilName: 'அரக்கீரை மாவு',
       category: 'Flours',
       price: 72.00,
-      image:
-          'https://images.unsplash.com/photo-1553787762-3d2b5d2f4023?w=400&q=80',
-      description: 'Nutritious amaranth flour',
-      benefits: ['Protein', 'Gluten-free', 'Ancient grain'],
+      image: 'assets/images/flours/bajra_flour.jpg',
+      description: 'Nutritious amaranth flour - ancient grain superfood',
+      benefits: ['Protein', 'Gluten-free', 'Ancient grain', 'Calcium rich'],
       weight: '250g',
+      howToUse:
+          'Use for making rotis, pancakes, or mix with other flours. Excellent for fasting recipes.',
+      ingredients: '100% Amaranth Seeds (Rajgira), Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Pancakes, Fasting Recipes',
+      sizeOptions: [
+        {'size': '250g', 'price': 72.00, 'mrp': 98.00},
+        {'size': '500g', 'price': 137.00, 'mrp': 187.00},
+        {'size': '1000g', 'price': 260.00, 'mrp': 356.00},
+      ],
     ),
     Product(
       id: 41,
@@ -478,6 +911,16 @@ class ProductData {
       description: 'Premium quinoa flour',
       benefits: ['Complete protein', 'Gluten-free', 'Superfood'],
       weight: '250g',
+      howToUse:
+          'Use in baking, pancakes, smoothies, or mix with other flours. Rich in complete protein and essential amino acids.',
+      ingredients: '100% Quinoa Seeds, Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Baking, Pancakes, Smoothies',
+      sizeOptions: [
+        {'size': '250g', 'price': 180.00, 'mrp': 245.00},
+        {'size': '500g', 'price': 342.00, 'mrp': 467.00},
+        {'size': '1000g', 'price': 650.00, 'mrp': 890.00},
+      ],
     ),
     Product(
       id: 42,
@@ -485,11 +928,21 @@ class ProductData {
       tamilName: 'பீட்ரூட் மாவு',
       category: 'Flours',
       price: 95.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Healthy buckwheat flour',
-      benefits: ['Gluten-free', 'Protein', 'Fiber'],
+      image: 'assets/images/flours/kodo_millet_flour.jpg',
+      description:
+          'Healthy buckwheat flour - rich in nutrients and gluten-free',
+      benefits: ['Gluten-free', 'Protein', 'Fiber', 'Minerals'],
       weight: '500g',
+      howToUse:
+          'Perfect for making pancakes, noodles, or use during fasting. Mix with wheat flour for rotis.',
+      ingredients: '100% Buckwheat (Kuttu), Finely Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Pancakes, Noodles, Fasting Recipes',
+      sizeOptions: [
+        {'size': '250g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '500g', 'price': 95.00, 'mrp': 129.00},
+        {'size': '1000g', 'price': 181.00, 'mrp': 247.00},
+      ],
     ),
     Product(
       id: 43,
@@ -497,11 +950,20 @@ class ProductData {
       tamilName: 'சோயா மாவு',
       category: 'Flours',
       price: 65.00,
-      image:
-          'https://images.unsplash.com/photo-1612838320302-4b3b3b6b1b1e?w=400&q=80',
-      description: 'Protein-rich soya flour',
-      benefits: ['High protein', 'Gluten-free', 'Healthy'],
+      image: 'assets/images/flours/quinoa_flour.jpg',
+      description: 'Protein-rich soya flour - complete plant protein source',
+      benefits: ['High protein', 'Gluten-free', 'Healthy', 'Vegan protein'],
       weight: '500g',
+      howToUse:
+          'Mix with wheat flour for protein-rich rotis, or add to baked goods. Great for protein boost in smoothies.',
+      ingredients: '100% Soybeans, Roasted and Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Baking, Smoothies, Protein Boost',
+      sizeOptions: [
+        {'size': '250g', 'price': 34.00, 'mrp': 47.00},
+        {'size': '500g', 'price': 65.00, 'mrp': 89.00},
+        {'size': '1000g', 'price': 124.00, 'mrp': 169.00},
+      ],
     ),
     Product(
       id: 44,
@@ -513,6 +975,16 @@ class ProductData {
       description: 'Little millet flour',
       benefits: ['Gluten-free', 'Fiber', 'Minerals'],
       weight: '250g',
+      howToUse:
+          'Use for making rotis, dosas, porridge. Good for diabetics. Can be mixed with other millets.',
+      ingredients: '100% Little Millet (Samai), Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Dosa, Porridge, Diabetic Diet',
+      sizeOptions: [
+        {'size': '250g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '500g', 'price': 86.00, 'mrp': 117.00},
+        {'size': '1000g', 'price': 163.00, 'mrp': 223.00},
+      ],
     ),
     Product(
       id: 45,
@@ -524,6 +996,16 @@ class ProductData {
       description: 'Kodo millet flour',
       benefits: ['Diabetic friendly', 'Fiber', 'Healthy'],
       weight: '250g',
+      howToUse:
+          'Make rotis, dosas, or porridge. Excellent for diabetic diet. Rich in fiber and minerals.',
+      ingredients: '100% Kodo Millet (Varagu), Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Dosa, Porridge, Diabetic Diet',
+      sizeOptions: [
+        {'size': '250g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '500g', 'price': 91.00, 'mrp': 124.00},
+        {'size': '1000g', 'price': 173.00, 'mrp': 237.00},
+      ],
     ),
     Product(
       id: 46,
@@ -531,11 +1013,21 @@ class ProductData {
       tamilName: 'குதிரைவாலி மாவு',
       category: 'Flours',
       price: 50.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Barnyard millet flour',
-      benefits: ['Low GI', 'Fiber', 'Minerals'],
+      image: 'assets/images/flours/little_millet_flour.jpg',
+      description:
+          'Barnyard millet flour - lowest glycemic index among all grains',
+      benefits: ['Low GI', 'Fiber', 'Minerals', 'Weight management'],
       weight: '250g',
+      howToUse:
+          'Ideal for diabetics. Use for making rotis, dosas, porridge. Can be mixed with other flours.',
+      ingredients: '100% Barnyard Millet (Kuthiraivali), Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Dosa, Porridge, Diabetic Diet',
+      sizeOptions: [
+        {'size': '250g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '500g', 'price': 95.00, 'mrp': 130.00},
+        {'size': '1000g', 'price': 181.00, 'mrp': 248.00},
+      ],
     ),
     Product(
       id: 47,
@@ -543,11 +1035,20 @@ class ProductData {
       tamilName: 'பல தானிய மாவு',
       category: 'Flours',
       price: 88.00,
-      image:
-          'https://images.unsplash.com/photo-1553787762-3d2b5d2f4023?w=400&q=80',
-      description: 'Healthy multi grain flour mix',
-      benefits: ['Nutrient rich', 'Fiber', 'Balanced'],
+      image: 'assets/images/flours/bajra_flour.jpg',
+      description: 'Healthy multi grain flour mix - perfect blend of nutrition',
+      benefits: ['Nutrient rich', 'Fiber', 'Balanced', 'Complete nutrition'],
       weight: '1000g',
+      howToUse:
+          'Use for making nutritious rotis, parathas, or add to porridge for balanced breakfast.',
+      ingredients: 'Blend of Wheat, Jowar, Bajra, Ragi, Oats and other grains',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Roti, Paratha, Porridge, Balanced Diet',
+      sizeOptions: [
+        {'size': '500g', 'price': 47.00, 'mrp': 64.00},
+        {'size': '1000g', 'price': 88.00, 'mrp': 120.00},
+        {'size': '2000g', 'price': 168.00, 'mrp': 230.00},
+      ],
     ),
 
     // BEAUTY PRODUCTS (23 products)
@@ -557,11 +1058,21 @@ class ProductData {
       tamilName: 'கற்றாழை ஜெல்',
       category: 'Beauty Products',
       price: 70.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/marutham-herbal-aloe-vera-gel.jpg',
-      description: 'Pure aloe vera gel',
-      benefits: ['Moisturizing', 'Soothing', 'Natural'],
+      image: 'assets/images/beauty/cucumber_powder.jpg',
+      description:
+          'Pure aloe vera gel for skin and hair care - natural moisturizer',
+      benefits: ['Moisturizing', 'Soothing', 'Natural', 'Healing'],
       weight: '100g',
+      howToUse:
+          'Apply directly on face and skin for moisturizing. Use on scalp for hair health. Can be used on sunburns and minor cuts.',
+      ingredients: '100% Pure Aloe Vera Gel',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Moisturizing, Hair Care, Sunburn Relief',
+      sizeOptions: [
+        {'size': '50g', 'price': 38.00, 'mrp': 52.00},
+        {'size': '100g', 'price': 70.00, 'mrp': 95.00},
+        {'size': '200g', 'price': 133.00, 'mrp': 182.00},
+      ],
     ),
     Product(
       id: 49,
@@ -569,11 +1080,26 @@ class ProductData {
       tamilName: 'அரப்பு பவுடர்',
       category: 'Beauty Products',
       price: 50.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/haiocare-arappu-Albizia-amara-powder.jpg',
-      description: 'Natural hair wash powder',
-      benefits: ['Chemical-free', 'Hair fall', 'Traditional'],
+      image: 'assets/images/beauty/shikakai_powder.jpg',
+      description:
+          'Natural hair wash powder - chemical-free alternative to shampoo',
+      benefits: [
+        'Chemical-free',
+        'Hair fall control',
+        'Traditional',
+        'Conditioning',
+      ],
       weight: '250g',
+      howToUse:
+          'Mix 2-3 tbsp with water to form paste. Apply on wet hair, massage, leave for 5-10 mins, rinse thoroughly. Use 2-3 times per week.',
+      ingredients: '100% Arappu Leaves (Albizia Amara) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Wash, Hair Fall Control, Natural Shampoo',
+      sizeOptions: [
+        {'size': '100g', 'price': 22.00, 'mrp': 30.00},
+        {'size': '250g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '500g', 'price': 95.00, 'mrp': 130.00},
+      ],
     ),
     Product(
       id: 50,
@@ -585,6 +1111,16 @@ class ProductData {
       description: 'Wild turmeric powder',
       benefits: ['Brightening', 'Anti-bacterial', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with milk, yogurt, or gram flour to make face pack. Apply on face, leave for 15-20 mins, rinse. Use 2-3 times weekly for bridal glow.',
+      ingredients: '100% Wild Turmeric (Kasturi Manjal) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Skin Brightening, Bridal Glow',
+      sizeOptions: [
+        {'size': '50g', 'price': 27.00, 'mrp': 37.00},
+        {'size': '100g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '200g', 'price': 95.00, 'mrp': 130.00},
+      ],
     ),
     Product(
       id: 51,
@@ -592,11 +1128,21 @@ class ProductData {
       tamilName: 'முல்தானி மிட்டி',
       category: 'Beauty Products',
       price: 30.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/marutham-multani-mitti-powder.jpg',
-      description: 'Multani mitti powder',
-      benefits: ['Oil control', 'Cooling', 'Cleansing'],
+      image: 'assets/images/beauty/sandalwood_powder.jpg',
+      description:
+          'Multani mitti powder - natural clay for oil control and skin cooling',
+      benefits: ['Oil control', 'Cooling', 'Cleansing', 'Skin brightening'],
       weight: '100g',
+      howToUse:
+          'Mix with water or rose water to make paste. Apply on face, let dry, rinse with water. Use 2-3 times weekly for oily skin.',
+      ingredients: '100% Pure Fullers Earth Clay (Multani Mitti)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Oily Skin, Oil Control, Face Pack',
+      sizeOptions: [
+        {'size': '100g', 'price': 30.00, 'mrp': 40.00},
+        {'size': '200g', 'price': 57.00, 'mrp': 77.00},
+        {'size': '500g', 'price': 135.00, 'mrp': 185.00},
+      ],
     ),
     Product(
       id: 52,
@@ -604,11 +1150,20 @@ class ProductData {
       tamilName: 'முக அழகு பவுடர்',
       category: 'Beauty Products',
       price: 50.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/magil-herbal-facebeauty-powder.jpg',
-      description: 'Herbal face powder',
-      benefits: ['Glow', 'Herbal', 'Safe'],
+      image: 'assets/images/beauty/papaya_powder.jpg',
+      description: 'Herbal face powder blend - natural glow enhancer',
+      benefits: ['Glow', 'Herbal', 'Safe', 'Brightening'],
       weight: '100g',
+      howToUse:
+          'Mix with milk, honey, or yogurt. Apply on face, leave for 15-20 mins, rinse. Use 2-3 times weekly for radiant skin.',
+      ingredients: 'Blend of Herbal Powders (Turmeric, Sandalwood, Neem, etc.)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Skin Glow, Radiant Skin',
+      sizeOptions: [
+        {'size': '50g', 'price': 27.00, 'mrp': 37.00},
+        {'size': '100g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '200g', 'price': 95.00, 'mrp': 130.00},
+      ],
     ),
     Product(
       id: 53,
@@ -616,11 +1171,21 @@ class ProductData {
       tamilName: 'குளியல் பொடி',
       category: 'Beauty Products',
       price: 70.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/marutham-herbal-bathing-powder.jpg',
-      description: 'Traditional bathing powder',
-      benefits: ['Fragrance', 'Softening', 'Chemical-free'],
+      image: 'assets/images/beauty/amla_powder.jpg',
+      description: 'Traditional bathing powder - herbal body cleanser',
+      benefits: ['Fragrance', 'Softening', 'Chemical-free', 'Skin nourishing'],
       weight: '250g',
+      howToUse:
+          'Mix with water to form paste. Use as body scrub while bathing. Gently massage and rinse. Leaves skin soft and fragrant.',
+      ingredients:
+          'Blend of Herbal Powders (Chickpea, Turmeric, Sandalwood, etc.)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Bathing, Skin Glow, Body Cleansing',
+      sizeOptions: [
+        {'size': '100g', 'price': 32.00, 'mrp': 43.00},
+        {'size': '250g', 'price': 70.00, 'mrp': 95.00},
+        {'size': '500g', 'price': 133.00, 'mrp': 182.00},
+      ],
     ),
     Product(
       id: 54,
@@ -628,11 +1193,20 @@ class ProductData {
       tamilName: 'குங்குமாதி தைலம்',
       category: 'Beauty Products',
       price: 115.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/kumkumadi-thailam.jpg',
-      description: 'Ayurvedic facial oil',
-      benefits: ['Anti-aging', 'Brightening', 'Ayurvedic'],
+      image: 'assets/images/beauty/lemon_peel_powder.jpg',
+      description: 'Ayurvedic facial oil - saffron-based luxury face oil',
+      benefits: ['Anti-aging', 'Brightening', 'Ayurvedic', 'Radiant skin'],
       weight: '8ml',
+      howToUse:
+          'Apply 2-3 drops on cleansed face at night. Gently massage in upward circular motions. Leave overnight. Use daily for best results.',
+      ingredients: 'Saffron, Sandalwood, Almond Oil, and 14+ Ayurvedic Herbs',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Care, Anti-aging, Skin Brightening',
+      sizeOptions: [
+        {'size': '8ml', 'price': 115.00, 'mrp': 155.00},
+        {'size': '15ml', 'price': 210.00, 'mrp': 285.00},
+        {'size': '30ml', 'price': 400.00, 'mrp': 545.00},
+      ],
     ),
     Product(
       id: 55,
@@ -640,11 +1214,20 @@ class ProductData {
       tamilName: 'முக கழுவி',
       category: 'Beauty Products',
       price: 90.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/patanjali-saundarya-aloe-vera-face-wash-gel.jpg',
-      description: 'Aloe vera face wash',
-      benefits: ['Gentle', 'Moisturizing', 'Natural'],
+      image: 'assets/images/beauty/cucumber_powder.jpg',
+      description: 'Aloe vera face wash - gentle cleanser for all skin types',
+      benefits: ['Gentle', 'Moisturizing', 'Natural', 'pH balanced'],
       weight: '200ml',
+      howToUse:
+          'Wet face, apply small amount, massage gently in circular motions, rinse with water. Use morning and evening.',
+      ingredients: 'Aloe Vera Extract, Natural Cleansers, Essential Oils',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Daily Face Cleansing, All Skin Types',
+      sizeOptions: [
+        {'size': '100ml', 'price': 48.00, 'mrp': 66.00},
+        {'size': '200ml', 'price': 90.00, 'mrp': 123.00},
+        {'size': '500ml', 'price': 215.00, 'mrp': 295.00},
+      ],
     ),
     Product(
       id: 56,
@@ -656,6 +1239,16 @@ class ProductData {
       description: 'Neem face pack powder',
       benefits: ['Acne control', 'Purifying', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with water or rose water. Apply on face, leave for 15-20 mins, rinse. Use 2-3 times weekly for acne-prone skin.',
+      ingredients: '100% Neem Leaves Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Acne Control, Oily Skin, Face Pack',
+      sizeOptions: [
+        {'size': '50g', 'price': 25.00, 'mrp': 34.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '200g', 'price': 86.00, 'mrp': 117.00},
+      ],
     ),
     Product(
       id: 57,
@@ -667,6 +1260,16 @@ class ProductData {
       description: 'Pure sandalwood powder',
       benefits: ['Cooling', 'Brightening', 'Fragrant'],
       weight: '50g',
+      howToUse:
+          'Mix with rose water or milk. Apply on face for cooling effect and skin brightening. Leave for 15-20 mins, rinse.',
+      ingredients: '100% Pure Sandalwood Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Cooling, Skin Brightening',
+      sizeOptions: [
+        {'size': '50g', 'price': 120.00, 'mrp': 163.00},
+        {'size': '100g', 'price': 228.00, 'mrp': 311.00},
+        {'size': '200g', 'price': 433.00, 'mrp': 592.00},
+      ],
     ),
     Product(
       id: 58,
@@ -674,11 +1277,20 @@ class ProductData {
       tamilName: 'பன்னீர்',
       category: 'Beauty Products',
       price: 55.00,
-      image:
-          'https://images.unsplash.com/photo-1587556930724-83844dabb752?w=400&q=80',
-      description: 'Pure rose water',
-      benefits: ['Toner', 'Refreshing', 'Natural'],
+      image: 'assets/images/beauty/orange_peel_powder.jpg',
+      description: 'Pure rose water - natural toner and refresher',
+      benefits: ['Toner', 'Refreshing', 'Natural', 'Soothing'],
       weight: '200ml',
+      howToUse:
+          'Use as face toner after cleansing. Spray on face for instant refresh. Add to face packs. Store refrigerated for best results.',
+      ingredients: '100% Pure Rose Water (Rosa Damascena)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Toner, Refreshing, All Skin Types',
+      sizeOptions: [
+        {'size': '100ml', 'price': 30.00, 'mrp': 41.00},
+        {'size': '200ml', 'price': 55.00, 'mrp': 75.00},
+        {'size': '500ml', 'price': 131.00, 'mrp': 179.00},
+      ],
     ),
     Product(
       id: 59,
@@ -686,11 +1298,21 @@ class ProductData {
       tamilName: 'செம்பருத்தி பவுடர்',
       category: 'Beauty Products',
       price: 48.00,
-      image:
-          'https://images.unsplash.com/photo-1562620669-59f4e22e9e98?w=400&q=80',
-      description: 'Hibiscus powder for hair',
-      benefits: ['Hair growth', 'Conditioning', 'Natural'],
+      image: 'assets/images/beauty/fenugreek_powder.jpg',
+      description:
+          'Hibiscus powder for hair - promotes growth and natural conditioning',
+      benefits: ['Hair growth', 'Conditioning', 'Natural', 'Prevents graying'],
       weight: '100g',
+      howToUse:
+          'Mix with water/yogurt to make paste. Apply on hair and scalp, leave for 30-45 mins, wash. Use twice weekly for best results.',
+      ingredients: '100% Dried Hibiscus Flowers and Leaves',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Growth, Hair Conditioning, Hair Mask',
+      sizeOptions: [
+        {'size': '50g', 'price': 26.00, 'mrp': 35.00},
+        {'size': '100g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '200g', 'price': 91.00, 'mrp': 125.00},
+      ],
     ),
     Product(
       id: 60,
@@ -702,6 +1324,16 @@ class ProductData {
       description: 'Natural hair cleanser',
       benefits: ['Gentle', 'Shine', 'Traditional'],
       weight: '200g',
+      howToUse:
+          'Mix with water to form paste. Apply on wet hair, massage scalp, leave 10 mins, rinse. Use 2-3 times weekly as natural shampoo.',
+      ingredients: '100% Shikakai Pods (Acacia Concinna) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Wash, Hair Shine, Natural Shampoo',
+      sizeOptions: [
+        {'size': '100g', 'price': 28.00, 'mrp': 38.00},
+        {'size': '200g', 'price': 52.00, 'mrp': 71.00},
+        {'size': '500g', 'price': 124.00, 'mrp': 170.00},
+      ],
     ),
     Product(
       id: 61,
@@ -713,6 +1345,16 @@ class ProductData {
       description: 'Amla powder for hair',
       benefits: ['Vitamin C', 'Hair health', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with water or oil. Apply on hair and scalp, leave for 30 mins, wash. Strengthens hair roots and prevents premature graying.',
+      ingredients: '100% Indian Gooseberry (Amla) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Health, Prevents Graying, Hair Mask',
+      sizeOptions: [
+        {'size': '50g', 'price': 24.00, 'mrp': 33.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '200g', 'price': 86.00, 'mrp': 117.00},
+      ],
     ),
     Product(
       id: 62,
@@ -724,6 +1366,16 @@ class ProductData {
       description: 'Soapnut powder',
       benefits: ['Natural cleanser', 'Shine', 'Gentle'],
       weight: '200g',
+      howToUse:
+          'Mix with water and soak overnight. Use liquid for hair wash. Natural lather cleanses hair gently. Use 1-2 times weekly.',
+      ingredients: '100% Soapnut (Reetha) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Wash, Natural Cleanser, Hair Shine',
+      sizeOptions: [
+        {'size': '100g', 'price': 26.00, 'mrp': 35.00},
+        {'size': '200g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '500g', 'price': 115.00, 'mrp': 157.00},
+      ],
     ),
     Product(
       id: 63,
@@ -735,6 +1387,16 @@ class ProductData {
       description: 'Natural henna powder',
       benefits: ['Hair color', 'Conditioning', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with water, tea, or lemon juice. Let sit 2-3 hours. Apply on hair, leave 1-3 hours, wash. Natural hair color and conditioner.',
+      ingredients: '100% Pure Henna (Lawsonia Inermis) Leaves Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Coloring, Hair Conditioning, Natural Dye',
+      sizeOptions: [
+        {'size': '100g', 'price': 38.00, 'mrp': 52.00},
+        {'size': '200g', 'price': 72.00, 'mrp': 99.00},
+        {'size': '500g', 'price': 172.00, 'mrp': 236.00},
+      ],
     ),
     Product(
       id: 64,
@@ -746,6 +1408,16 @@ class ProductData {
       description: 'Fenugreek for hair',
       benefits: ['Hair growth', 'Dandruff', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with yogurt or water. Apply on scalp and hair, leave 30 mins, wash. Helps control dandruff and promotes hair growth.',
+      ingredients: '100% Fenugreek Seeds (Methi) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Growth, Dandruff Control, Hair Mask',
+      sizeOptions: [
+        {'size': '50g', 'price': 23.00, 'mrp': 31.00},
+        {'size': '100g', 'price': 42.00, 'mrp': 57.00},
+        {'size': '200g', 'price': 80.00, 'mrp': 109.00},
+      ],
     ),
     Product(
       id: 65,
@@ -757,6 +1429,16 @@ class ProductData {
       description: 'Orange peel face pack',
       benefits: ['Brightening', 'Vitamin C', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with yogurt or honey. Apply on face, leave 15 mins, rinse. Brightens skin and provides vitamin C.',
+      ingredients: '100% Dried Orange Peel Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Skin Brightening, Vitamin C Boost',
+      sizeOptions: [
+        {'size': '50g', 'price': 22.00, 'mrp': 30.00},
+        {'size': '100g', 'price': 40.00, 'mrp': 54.00},
+        {'size': '200g', 'price': 76.00, 'mrp': 104.00},
+      ],
     ),
     Product(
       id: 66,
@@ -768,6 +1450,16 @@ class ProductData {
       description: 'Lemon peel powder',
       benefits: ['Brightening', 'Oil control', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix with honey or yogurt. Apply on face, leave 10-15 mins, rinse. Helps control oil and brightens skin.',
+      ingredients: '100% Dried Lemon Peel Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Oil Control, Skin Brightening',
+      sizeOptions: [
+        {'size': '50g', 'price': 21.00, 'mrp': 29.00},
+        {'size': '100g', 'price': 38.00, 'mrp': 52.00},
+        {'size': '200g', 'price': 72.00, 'mrp': 99.00},
+      ],
     ),
     Product(
       id: 67,
@@ -779,6 +1471,16 @@ class ProductData {
       description: 'Cucumber face pack',
       benefits: ['Cooling', 'Hydrating', 'Soothing'],
       weight: '100g',
+      howToUse:
+          'Mix with rose water or aloe vera gel. Apply on face for cooling effect. Leave 20 mins, rinse. Great for summer.',
+      ingredients: '100% Dried Cucumber Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Face Pack, Cooling, Hydration',
+      sizeOptions: [
+        {'size': '50g', 'price': 25.00, 'mrp': 34.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '200g', 'price': 86.00, 'mrp': 117.00},
+      ],
     ),
     Product(
       id: 68,
@@ -786,11 +1488,20 @@ class ProductData {
       tamilName: 'தக்காளி பவுடர்',
       category: 'Beauty Products',
       price: 42.00,
-      image:
-          'https://images.unsplash.com/photo-1546470427-227a13f3e820?w=400&q=80',
-      description: 'Tomato face pack',
-      benefits: ['Tan removal', 'Brightening', 'Natural'],
+      image: 'assets/images/beauty/papaya_powder.jpg',
+      description: 'Tomato face pack powder - tan removal and skin brightening',
+      benefits: ['Tan removal', 'Brightening', 'Natural', 'Oil control'],
       weight: '100g',
+      howToUse:
+          'Mix with yogurt or honey. Apply on face, leave for 15 mins, rinse. Use weekly for tan removal and fresh skin.',
+      ingredients: '100% Pure Dried Tomato Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Tan Removal, Face Pack, Oil Control',
+      sizeOptions: [
+        {'size': '50g', 'price': 23.00, 'mrp': 31.00},
+        {'size': '100g', 'price': 42.00, 'mrp': 57.00},
+        {'size': '200g', 'price': 80.00, 'mrp': 109.00},
+      ],
     ),
     Product(
       id: 69,
@@ -802,6 +1513,16 @@ class ProductData {
       description: 'Papaya face pack',
       benefits: ['Exfoliation', 'Brightening', 'Enzyme'],
       weight: '100g',
+      howToUse:
+          'Mix with honey or milk. Apply on face, gentle massage, leave 15 mins, rinse. Natural enzymatic exfoliation.',
+      ingredients: '100% Dried Papaya Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Exfoliation, Face Pack, Skin Brightening',
+      sizeOptions: [
+        {'size': '50g', 'price': 30.00, 'mrp': 41.00},
+        {'size': '100g', 'price': 55.00, 'mrp': 75.00},
+        {'size': '200g', 'price': 105.00, 'mrp': 143.00},
+      ],
     ),
     Product(
       id: 70,
@@ -809,11 +1530,21 @@ class ProductData {
       tamilName: 'பீட்ரூட் பவுடர்',
       category: 'Beauty Products',
       price: 48.00,
-      image:
-          'https://images.unsplash.com/photo-1590671619502-3d4c6e4c5e8b?w=400&q=80',
-      description: 'Beetroot lip balm powder',
-      benefits: ['Natural color', 'Nourishing', 'Healthy'],
+      image: 'assets/images/beauty/henna_powder.jpg',
+      description:
+          'Beetroot lip balm powder - natural lip color and nourishment',
+      benefits: ['Natural color', 'Nourishing', 'Healthy', 'Lip tint'],
       weight: '50g',
+      howToUse:
+          'Mix with ghee/coconut oil to make natural lip balm. Apply on lips for natural pink tint. Safe and edible.',
+      ingredients: '100% Pure Dried Beetroot Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Lip Color, Lip Balm, Natural Tint',
+      sizeOptions: [
+        {'size': '50g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '100g', 'price': 91.00, 'mrp': 124.00},
+        {'size': '200g', 'price': 173.00, 'mrp': 237.00},
+      ],
     ),
 
     // HEALTH PRODUCTS (20 products)
@@ -823,11 +1554,20 @@ class ProductData {
       tamilName: 'விபூதி',
       category: 'Health Products',
       price: 10.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/vibhooothi-thiruneeru.jpg',
-      description: 'Sacred ash',
-      benefits: ['Pure', 'Traditional', 'Sacred'],
+      image: 'assets/images/health/turmeric_powder.jpg',
+      description: 'Sacred ash (vibhuti) - pure and traditional',
+      benefits: ['Pure', 'Traditional', 'Sacred', 'Spiritual'],
       weight: '100g',
+      howToUse:
+          'Apply on forehead and body as part of daily spiritual practice. Pure and sacred for religious purposes.',
+      ingredients: 'Pure Sacred Ash (Vibhuti)',
+      expiryDate: '36 months from manufacture',
+      suitableFor: 'Religious Use, Spiritual Practice, Daily Worship',
+      sizeOptions: [
+        {'size': '50g', 'price': 6.00, 'mrp': 9.00},
+        {'size': '100g', 'price': 10.00, 'mrp': 14.00},
+        {'size': '250g', 'price': 23.00, 'mrp': 32.00},
+      ],
     ),
     Product(
       id: 72,
@@ -835,11 +1575,21 @@ class ProductData {
       tamilName: 'நலங்கு மாவு',
       category: 'Health Products',
       price: 40.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/magil-herbal-nalangu-powder.jpg',
-      description: 'Traditional herbal bath',
-      benefits: ['Herbal', 'Nourishing', 'Traditional'],
+      image: 'assets/images/health/turmeric_powder.jpg',
+      description:
+          'Traditional herbal bath powder - wedding and ceremonial use',
+      benefits: ['Herbal', 'Nourishing', 'Traditional', 'Skin glow'],
       weight: '100g',
+      howToUse:
+          'Mix with water to form paste. Apply on body before bath during special occasions. Traditional ceremonial bath powder.',
+      ingredients: 'Blend of Turmeric, Chickpea Flour, and Traditional Herbs',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Wedding Bath, Ceremonies, Special Occasions',
+      sizeOptions: [
+        {'size': '100g', 'price': 40.00, 'mrp': 54.00},
+        {'size': '250g', 'price': 95.00, 'mrp': 130.00},
+        {'size': '500g', 'price': 180.00, 'mrp': 247.00},
+      ],
     ),
     Product(
       id: 73,
@@ -851,6 +1601,16 @@ class ProductData {
       description: 'Pure turmeric powder',
       benefits: ['Anti-inflammatory', 'Immunity', 'Antioxidant'],
       weight: '500g',
+      howToUse:
+          'Add to curries and cooking. Mix with milk for golden milk. Use 1/2 tsp daily for immunity boost.',
+      ingredients: '100% Pure Turmeric (Curcuma Longa) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Immunity, Digestion, Anti-inflammatory',
+      sizeOptions: [
+        {'size': '250g', 'price': 35.00, 'mrp': 48.00},
+        {'size': '500g', 'price': 65.00, 'mrp': 89.00},
+        {'size': '1000g', 'price': 124.00, 'mrp': 170.00},
+      ],
     ),
     Product(
       id: 74,
@@ -862,6 +1622,16 @@ class ProductData {
       description: 'Dried ginger powder',
       benefits: ['Digestion', 'Immunity', 'Natural'],
       weight: '250g',
+      howToUse:
+          'Add to tea, milk, or cooking. Mix with warm water for digestion. Take 1/4 tsp with honey for cold relief.',
+      ingredients: '100% Dried Ginger (Zingiber Officinale) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Digestion, Immunity, Cold Relief',
+      sizeOptions: [
+        {'size': '100g', 'price': 25.00, 'mrp': 34.00},
+        {'size': '250g', 'price': 58.00, 'mrp': 79.00},
+        {'size': '500g', 'price': 110.00, 'mrp': 150.00},
+      ],
     ),
     Product(
       id: 75,
@@ -873,6 +1643,16 @@ class ProductData {
       description: 'Ayurvedic ashwagandha',
       benefits: ['Stress relief', 'Energy', 'Adaptogen'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm milk before bed. Can add honey. Take daily for stress relief and energy boost.',
+      ingredients: '100% Ashwagandha Root (Withania Somnifera) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Stress Relief, Energy, Sleep Quality',
+      sizeOptions: [
+        {'size': '100g', 'price': 180.00, 'mrp': 245.00},
+        {'size': '250g', 'price': 428.00, 'mrp': 585.00},
+        {'size': '500g', 'price': 810.00, 'mrp': 1110.00},
+      ],
     ),
     Product(
       id: 76,
@@ -884,6 +1664,16 @@ class ProductData {
       description: 'Nutrient-rich moringa',
       benefits: ['Vitamins', 'Minerals', 'Superfood'],
       weight: '100g',
+      howToUse:
+          'Mix 1 tsp in smoothies, juices, or warm water. Take on empty stomach for maximum benefits. Rich in nutrients.',
+      ingredients: '100% Moringa Leaves (Drumstick Leaves) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Nutrition, Energy, Immunity',
+      sizeOptions: [
+        {'size': '100g', 'price': 95.00, 'mrp': 130.00},
+        {'size': '250g', 'price': 226.00, 'mrp': 310.00},
+        {'size': '500g', 'price': 428.00, 'mrp': 585.00},
+      ],
     ),
     Product(
       id: 77,
@@ -895,6 +1685,16 @@ class ProductData {
       description: 'Premium spirulina',
       benefits: ['Protein', 'Antioxidant', 'Energy'],
       weight: '100g',
+      howToUse:
+          'Mix 1 tsp in smoothies, juices, or water. Take in morning for energy. Complete protein source.',
+      ingredients: '100% Pure Spirulina (Blue-green Algae) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Protein Supplement, Energy, Detox',
+      sizeOptions: [
+        {'size': '100g', 'price': 320.00, 'mrp': 437.00},
+        {'size': '250g', 'price': 760.00, 'mrp': 1040.00},
+        {'size': '500g', 'price': 1440.00, 'mrp': 1970.00},
+      ],
     ),
     Product(
       id: 78,
@@ -906,6 +1706,16 @@ class ProductData {
       description: 'Organic wheatgrass',
       benefits: ['Detox', 'Chlorophyll', 'Alkaline'],
       weight: '100g',
+      howToUse:
+          'Mix 1 tsp with water or juice. Drink on empty stomach for detox. Highly alkaline and rich in chlorophyll.',
+      ingredients: '100% Organic Wheatgrass Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Detox, Alkaline Diet, Chlorophyll',
+      sizeOptions: [
+        {'size': '100g', 'price': 150.00, 'mrp': 205.00},
+        {'size': '250g', 'price': 357.00, 'mrp': 488.00},
+        {'size': '500g', 'price': 675.00, 'mrp': 925.00},
+      ],
     ),
     Product(
       id: 79,
@@ -917,6 +1727,16 @@ class ProductData {
       description: 'Immunity booster giloy',
       benefits: ['Immunity', 'Fever', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water. Take twice daily for immunity. Excellent for fever and infections.',
+      ingredients: '100% Giloy Stem (Tinospora Cordifolia) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Immunity, Fever, Infection Prevention',
+      sizeOptions: [
+        {'size': '100g', 'price': 140.00, 'mrp': 191.00},
+        {'size': '250g', 'price': 333.00, 'mrp': 455.00},
+        {'size': '500g', 'price': 630.00, 'mrp': 862.00},
+      ],
     ),
     Product(
       id: 80,
@@ -924,11 +1744,21 @@ class ProductData {
       tamilName: 'துளசி பவுடர்',
       category: 'Health Products',
       price: 68.00,
-      image:
-          'https://images.unsplash.com/photo-1618556662906-fa2d89550168?w=400&q=80',
-      description: 'Holy basil powder',
-      benefits: ['Immunity', 'Respiratory', 'Sacred'],
+      image: 'assets/images/health/moringa_powder.jpg',
+      description:
+          'Holy basil powder - immunity booster and respiratory support',
+      benefits: ['Immunity', 'Respiratory', 'Sacred', 'Adaptogen'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp in warm water or tea, take daily. Can be added to honey. Take on empty stomach for immunity boost.',
+      ingredients: '100% Pure Dried Tulsi Leaves (Holy Basil)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Immunity, Respiratory Health, Cough & Cold',
+      sizeOptions: [
+        {'size': '100g', 'price': 68.00, 'mrp': 93.00},
+        {'size': '250g', 'price': 162.00, 'mrp': 221.00},
+        {'size': '500g', 'price': 306.00, 'mrp': 419.00},
+      ],
     ),
     Product(
       id: 81,
@@ -940,6 +1770,16 @@ class ProductData {
       description: 'Three fruit powder',
       benefits: ['Digestion', 'Detox', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water before bed. Take on empty stomach for best results. Supports digestion and detox.',
+      ingredients: 'Blend of Haritaki, Bibhitaki, Amla (Three Fruits)',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Digestion, Detox, Cleansing',
+      sizeOptions: [
+        {'size': '100g', 'price': 95.00, 'mrp': 130.00},
+        {'size': '250g', 'price': 226.00, 'mrp': 310.00},
+        {'size': '500g', 'price': 428.00, 'mrp': 585.00},
+      ],
     ),
     Product(
       id: 82,
@@ -951,6 +1791,16 @@ class ProductData {
       description: 'Neem leaf powder',
       benefits: ['Blood purifier', 'Immunity', 'Natural'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water. Take on empty stomach. Purifies blood and boosts immunity.',
+      ingredients: '100% Neem Leaves (Azadirachta Indica) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Blood Purification, Immunity, Skin Health',
+      sizeOptions: [
+        {'size': '100g', 'price': 72.00, 'mrp': 98.00},
+        {'size': '250g', 'price': 171.00, 'mrp': 234.00},
+        {'size': '500g', 'price': 324.00, 'mrp': 443.00},
+      ],
     ),
     Product(
       id: 83,
@@ -962,6 +1812,16 @@ class ProductData {
       description: 'Memory enhancer brahmi',
       benefits: ['Memory', 'Brain health', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with milk or honey. Take daily for memory and concentration. Excellent for students.',
+      ingredients: '100% Brahmi (Bacopa Monnieri) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Memory, Concentration, Brain Health',
+      sizeOptions: [
+        {'size': '100g', 'price': 110.00, 'mrp': 150.00},
+        {'size': '250g', 'price': 262.00, 'mrp': 358.00},
+        {'size': '500g', 'price': 495.00, 'mrp': 678.00},
+      ],
     ),
     Product(
       id: 84,
@@ -973,6 +1833,16 @@ class ProductData {
       description: 'Women wellness herb',
       benefits: ['Hormonal', 'Energy', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm milk. Take daily for women\'s health, hormonal balance, and lactation support.',
+      ingredients: '100% Shatavari Root (Asparagus Racemosus) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Women Health, Hormonal Balance, Lactation',
+      sizeOptions: [
+        {'size': '100g', 'price': 165.00, 'mrp': 225.00},
+        {'size': '250g', 'price': 393.00, 'mrp': 537.00},
+        {'size': '500g', 'price': 743.00, 'mrp': 1017.00},
+      ],
     ),
     Product(
       id: 85,
@@ -984,6 +1854,16 @@ class ProductData {
       description: 'Cholesterol management',
       benefits: ['Cholesterol', 'Joints', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water. Take twice daily for cholesterol and joint health. Consult doctor if on medication.',
+      ingredients: '100% Guggul Resin (Commiphora Mukul) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Cholesterol Management, Joint Health, Weight Management',
+      sizeOptions: [
+        {'size': '100g', 'price': 145.00, 'mrp': 198.00},
+        {'size': '250g', 'price': 345.00, 'mrp': 472.00},
+        {'size': '500g', 'price': 653.00, 'mrp': 894.00},
+      ],
     ),
     Product(
       id: 86,
@@ -995,6 +1875,16 @@ class ProductData {
       description: 'Heart health herb',
       benefits: ['Heart', 'BP', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water or milk. Take twice daily for heart health and blood pressure management.',
+      ingredients: '100% Arjuna Bark (Terminalia Arjuna) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Heart Health, Blood Pressure, Cardiovascular Support',
+      sizeOptions: [
+        {'size': '100g', 'price': 125.00, 'mrp': 171.00},
+        {'size': '250g', 'price': 298.00, 'mrp': 407.00},
+        {'size': '500g', 'price': 563.00, 'mrp': 770.00},
+      ],
     ),
     Product(
       id: 87,
@@ -1006,6 +1896,16 @@ class ProductData {
       description: 'Kidney health herb',
       benefits: ['Kidney', 'Diuretic', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with warm water. Take twice daily for kidney health and water retention. Natural diuretic.',
+      ingredients: '100% Punarnava (Boerhavia Diffusa) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Kidney Health, Water Retention, Urinary Health',
+      sizeOptions: [
+        {'size': '100g', 'price': 135.00, 'mrp': 184.00},
+        {'size': '250g', 'price': 321.00, 'mrp': 439.00},
+        {'size': '500g', 'price': 608.00, 'mrp': 831.00},
+      ],
     ),
     Product(
       id: 88,
@@ -1017,6 +1917,16 @@ class ProductData {
       description: 'Blood purifier',
       benefits: ['Skin', 'Blood', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/2 tsp with water or milk. Take daily for blood purification and glowing skin. Helps clear skin issues.',
+      ingredients: '100% Manjistha Root (Rubia Cordifolia) Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Blood Purification, Skin Glow, Acne',
+      sizeOptions: [
+        {'size': '100g', 'price': 155.00, 'mrp': 212.00},
+        {'size': '250g', 'price': 369.00, 'mrp': 504.00},
+        {'size': '500g', 'price': 698.00, 'mrp': 955.00},
+      ],
     ),
     Product(
       id: 89,
@@ -1028,6 +1938,16 @@ class ProductData {
       description: 'Hair wellness herb',
       benefits: ['Hair', 'Liver', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix with oil for hair application or take internally with water for liver health. Promotes hair growth and liver function.',
+      ingredients: '100% Bhringraj (Eclipta Alba) Leaves Powder',
+      expiryDate: '24 months from manufacture',
+      suitableFor: 'Hair Growth, Liver Health, Hair Blackening',
+      sizeOptions: [
+        {'size': '100g', 'price': 88.00, 'mrp': 120.00},
+        {'size': '250g', 'price': 210.00, 'mrp': 287.00},
+        {'size': '500g', 'price': 396.00, 'mrp': 542.00},
+      ],
     ),
     Product(
       id: 90,
@@ -1039,6 +1959,16 @@ class ProductData {
       description: 'Digestive herb',
       benefits: ['Digestion', 'Detox', 'Ayurvedic'],
       weight: '100g',
+      howToUse:
+          'Mix 1/4 tsp with warm water before bed. Promotes healthy digestion and natural detoxification. Part of Triphala.',
+      ingredients: '100% Haritaki Fruit (Terminalia Chebula) Powder',
+      expiryDate: '36 months from manufacture',
+      suitableFor: 'Digestion, Detox, Constipation Relief',
+      sizeOptions: [
+        {'size': '100g', 'price': 75.00, 'mrp': 103.00},
+        {'size': '250g', 'price': 179.00, 'mrp': 244.00},
+        {'size': '500g', 'price': 338.00, 'mrp': 462.00},
+      ],
     ),
 
     // SNACKS (20 products)
@@ -1048,11 +1978,20 @@ class ProductData {
       tamilName: 'நவதானிய தோசை மிக்ஸ்',
       category: 'Snacks',
       price: 85.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/gonaturo-navathaaniya-dosai-mix.jpg',
-      description: 'Nine millet dosai mix',
-      benefits: ['Healthy', 'Instant', 'Nutritious'],
+      image: 'assets/images/snacks/idli_dosa_batter.jpg',
+      description: 'Nine millet dosai mix - healthy and nutritious instant mix',
+      benefits: ['Healthy', 'Instant', 'Nutritious', 'Multi-grain'],
       weight: '500g',
+      howToUse:
+          'Mix with water to form batter. Let ferment 2-3 hours (optional). Make crispy dosas on hot tawa. Serve with chutney.',
+      ingredients: 'Blend of 9 Millets (Foxtail, Kodo, Little, Barnyard, etc.)',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Evening Snack, Healthy Eating',
+      sizeOptions: [
+        {'size': '250g', 'price': 45.00, 'mrp': 60.00},
+        {'size': '500g', 'price': 85.00, 'mrp': 115.00},
+        {'size': '1000g', 'price': 162.00, 'mrp': 220.00},
+      ],
     ),
     Product(
       id: 92,
@@ -1060,11 +1999,21 @@ class ProductData {
       tamilName: 'சிறுதானிய பஜ்ஜி மிக்ஸ்',
       category: 'Snacks',
       price: 60.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/sibre-rich-minor-millets-bajji-mix.jpg',
-      description: 'Millet bajji mix',
-      benefits: ['Healthy', 'Easy', 'Millet'],
+      image: 'assets/images/snacks/murukku_mix.jpg',
+      description:
+          'Millet bajji mix - healthy alternative to regular pakoda mix',
+      benefits: ['Healthy', 'Easy', 'Millet', 'Instant'],
       weight: '250g',
+      howToUse:
+          'Mix with water. Dip vegetables in batter. Deep fry until golden. Serve hot with chutney.',
+      ingredients: 'Millet Flour Blend, Chickpea Flour, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Evening Snack, Tea Time, Rainy Day Snack',
+      sizeOptions: [
+        {'size': '250g', 'price': 60.00, 'mrp': 80.00},
+        {'size': '500g', 'price': 114.00, 'mrp': 153.00},
+        {'size': '1000g', 'price': 216.00, 'mrp': 292.00},
+      ],
     ),
     Product(
       id: 93,
@@ -1072,11 +2021,20 @@ class ProductData {
       tamilName: 'உளுத்தங்கஞ்சி மிக்ஸ்',
       category: 'Snacks',
       price: 60.00,
-      image:
-          'https://gonaturo.in/wp-content/uploads/2020/10/ulutham-kanji-readymix-urad-mush-mix.jpg',
-      description: 'Urad kanji mix',
-      benefits: ['Nutritious', 'Traditional', 'Easy'],
+      image: 'assets/images/snacks/pongal_mix.jpg',
+      description: 'Urad kanji mix - traditional South Indian porridge',
+      benefits: ['Nutritious', 'Traditional', 'Easy', 'Protein rich'],
       weight: '200g',
+      howToUse:
+          'Boil with water. Add salt, pepper, cumin. Cook until thick porridge consistency. Serve hot for breakfast.',
+      ingredients: 'Urad Dal (Black Gram), Rice, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Light Dinner, Comfort Food',
+      sizeOptions: [
+        {'size': '200g', 'price': 60.00, 'mrp': 80.00},
+        {'size': '500g', 'price': 143.00, 'mrp': 192.00},
+        {'size': '1000g', 'price': 270.00, 'mrp': 365.00},
+      ],
     ),
     Product(
       id: 94,
@@ -1088,6 +2046,16 @@ class ProductData {
       description: 'Nutritious ragi malt',
       benefits: ['Calcium', 'Energy', 'Healthy'],
       weight: '500g',
+      howToUse:
+          'Mix 2-3 tbsp with milk or water. Add jaggery. Boil for 3-5 mins. Serve hot or cold. Great for all ages.',
+      ingredients: 'Ragi (Finger Millet), Roasted and Ground',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Energy Drink, Baby Food',
+      sizeOptions: [
+        {'size': '250g', 'price': 40.00, 'mrp': 54.00},
+        {'size': '500g', 'price': 75.00, 'mrp': 101.00},
+        {'size': '1000g', 'price': 143.00, 'mrp': 193.00},
+      ],
     ),
     Product(
       id: 95,
@@ -1095,11 +2063,20 @@ class ProductData {
       tamilName: 'ஹெல்த் மிக்ஸ்',
       category: 'Snacks',
       price: 95.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Multi grain health mix',
-      benefits: ['Nutritious', 'Balanced', 'Energy'],
+      image: 'assets/images/snacks/ragi_malt.jpg',
+      description: 'Multi grain health mix - complete nutrition in one mix',
+      benefits: ['Nutritious', 'Balanced', 'Energy', 'All ages'],
       weight: '500g',
+      howToUse:
+          'Mix 2-3 tbsp with milk or water. Add jaggery or sugar. Boil for 2-3 mins stirring. Serve hot or cold.',
+      ingredients: 'Multi-grains, Nuts, Seeds, Dry Fruits Blend',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Energy Drink, All Ages',
+      sizeOptions: [
+        {'size': '250g', 'price': 50.00, 'mrp': 68.00},
+        {'size': '500g', 'price': 95.00, 'mrp': 129.00},
+        {'size': '1000g', 'price': 181.00, 'mrp': 246.00},
+      ],
     ),
     Product(
       id: 96,
@@ -1107,11 +2084,20 @@ class ProductData {
       tamilName: 'சத்து மாவு',
       category: 'Snacks',
       price: 88.00,
-      image:
-          'https://images.unsplash.com/photo-1553787762-3d2b5d2f4023?w=400&q=80',
-      description: 'Traditional sathu maavu',
-      benefits: ['Protein', 'Energy', 'Traditional'],
+      image: 'assets/images/snacks/halwa_mix.jpg',
+      description: 'Traditional sathu maavu - energy-packed multi-grain mix',
+      benefits: ['Protein', 'Energy', 'Traditional', 'Baby food'],
       weight: '500g',
+      howToUse:
+          'Mix with milk/water, add sweetener, cook into porridge. Perfect for babies, pregnant women, and all ages.',
+      ingredients: 'Traditional Blend of Grains, Pulses, Nuts',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Baby Food, Pregnancy, Energy Boost',
+      sizeOptions: [
+        {'size': '250g', 'price': 47.00, 'mrp': 64.00},
+        {'size': '500g', 'price': 88.00, 'mrp': 120.00},
+        {'size': '1000g', 'price': 168.00, 'mrp': 229.00},
+      ],
     ),
     Product(
       id: 97,
@@ -1123,6 +2109,16 @@ class ProductData {
       description: 'Ready puttu powder',
       benefits: ['Instant', 'Traditional', 'Easy'],
       weight: '500g',
+      howToUse:
+          'Mix with water and little oil. Steam in puttu maker for 10 mins. Serve hot with kadala curry or banana.',
+      ingredients: 'Rice Flour, Salt',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Tea Time, Traditional Meal',
+      sizeOptions: [
+        {'size': '250g', 'price': 24.00, 'mrp': 33.00},
+        {'size': '500g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '1000g', 'price': 86.00, 'mrp': 117.00},
+      ],
     ),
     Product(
       id: 98,
@@ -1134,6 +2130,16 @@ class ProductData {
       description: 'Fresh idli dosa batter',
       benefits: ['Fresh', 'Traditional', 'Fermented'],
       weight: '1000g',
+      howToUse:
+          'Use directly for soft idlis or crispy dosas. Store refrigerated. Use within 3 days for best results.',
+      ingredients: 'Rice, Urad Dal, Fenugreek, Salt',
+      expiryDate: '3 months from manufacture',
+      suitableFor: 'Breakfast, Dinner, Traditional Meal',
+      sizeOptions: [
+        {'size': '500g', 'price': 22.00, 'mrp': 30.00},
+        {'size': '1000g', 'price': 42.00, 'mrp': 57.00},
+        {'size': '2000g', 'price': 80.00, 'mrp': 109.00},
+      ],
     ),
     Product(
       id: 99,
@@ -1141,11 +2147,20 @@ class ProductData {
       tamilName: 'அடை மிக்ஸ்',
       category: 'Snacks',
       price: 65.00,
-      image:
-          'https://images.unsplash.com/photo-1599003300222-f45df9e2e2b0?w=400&q=80',
-      description: 'Protein-rich adai mix',
-      benefits: ['Protein', 'Healthy', 'Traditional'],
+      image: 'assets/images/snacks/idli_dosa_batter.jpg',
+      description: 'Protein-rich adai mix - healthy lentil pancake',
+      benefits: ['Protein', 'Healthy', 'Traditional', 'Filling'],
       weight: '500g',
+      howToUse:
+          'Mix with water to form thick batter. Add onions, chilies. Make thick pancakes on hot tawa. Serve with jaggery or chutney.',
+      ingredients: 'Mixed Lentils (Toor, Chana, Moong), Rice, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Dinner, Protein-rich Meal',
+      sizeOptions: [
+        {'size': '250g', 'price': 35.00, 'mrp': 47.00},
+        {'size': '500g', 'price': 65.00, 'mrp': 88.00},
+        {'size': '1000g', 'price': 124.00, 'mrp': 168.00},
+      ],
     ),
     Product(
       id: 100,
@@ -1153,11 +2168,20 @@ class ProductData {
       tamilName: 'ரவா உப்புமா மிக்ஸ்',
       category: 'Snacks',
       price: 55.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Instant upma mix',
-      benefits: ['Quick', 'Easy', 'Tasty'],
+      image: 'assets/images/snacks/puttu_podi.jpg',
+      description: 'Instant upma mix - quick breakfast solution',
+      benefits: ['Quick', 'Easy', 'Tasty', 'Ready in minutes'],
       weight: '200g',
+      howToUse:
+          'Boil water with oil. Add mix, stir quickly. Cover and cook 2 mins. Garnish with coriander. Ready to serve.',
+      ingredients: 'Semolina (Rava), Vegetables, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Quick Breakfast, Evening Snack, Busy Mornings',
+      sizeOptions: [
+        {'size': '200g', 'price': 55.00, 'mrp': 74.00},
+        {'size': '500g', 'price': 131.00, 'mrp': 177.00},
+        {'size': '1000g', 'price': 248.00, 'mrp': 336.00},
+      ],
     ),
     Product(
       id: 101,
@@ -1169,6 +2193,16 @@ class ProductData {
       description: 'Instant pongal mix',
       benefits: ['Traditional', 'Easy', 'Nutritious'],
       weight: '250g',
+      howToUse:
+          'Pressure cook with water, ghee, pepper, cumin. Serve hot with chutney. Traditional comfort food made easy.',
+      ingredients: 'Rice, Moong Dal, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Comfort Food, Traditional Meal',
+      sizeOptions: [
+        {'size': '250g', 'price': 58.00, 'mrp': 78.00},
+        {'size': '500g', 'price': 110.00, 'mrp': 149.00},
+        {'size': '1000g', 'price': 209.00, 'mrp': 283.00},
+      ],
     ),
     Product(
       id: 102,
@@ -1176,11 +2210,20 @@ class ProductData {
       tamilName: 'பாயசம் மிக்ஸ்',
       category: 'Snacks',
       price: 68.00,
-      image:
-          'https://images.unsplash.com/photo-1589301760014-6e63e34ce6c6?w=400&q=80',
-      description: 'Sweet payasam mix',
-      benefits: ['Festive', 'Sweet', 'Traditional'],
+      image: 'assets/images/snacks/laddu_mix.jpg',
+      description: 'Sweet payasam mix - festive dessert made easy',
+      benefits: ['Festive', 'Sweet', 'Traditional', 'Easy'],
       weight: '200g',
+      howToUse:
+          'Boil milk, add mix and sugar. Cook till thick consistency. Add ghee and cardamom. Serve hot or cold.',
+      ingredients: 'Vermicelli/Semiya, Nuts, Dry Fruits',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Festivals, Dessert, Special Occasions',
+      sizeOptions: [
+        {'size': '200g', 'price': 68.00, 'mrp': 92.00},
+        {'size': '500g', 'price': 162.00, 'mrp': 220.00},
+        {'size': '1000g', 'price': 307.00, 'mrp': 417.00},
+      ],
     ),
     Product(
       id: 103,
@@ -1192,6 +2235,16 @@ class ProductData {
       description: 'Instant halwa mix',
       benefits: ['Sweet', 'Easy', 'Tasty'],
       weight: '250g',
+      howToUse:
+          'Mix with water and ghee. Cook on low heat stirring continuously till thick. Add cardamom. Serve warm.',
+      ingredients: 'Wheat/Corn Flour, Sugar, Ghee, Cardamom',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Dessert, Sweet Craving, Festive Offering',
+      sizeOptions: [
+        {'size': '250g', 'price': 72.00, 'mrp': 97.00},
+        {'size': '500g', 'price': 137.00, 'mrp': 185.00},
+        {'size': '1000g', 'price': 259.00, 'mrp': 351.00},
+      ],
     ),
     Product(
       id: 104,
@@ -1203,6 +2256,16 @@ class ProductData {
       description: 'Crispy murukku flour',
       benefits: ['Traditional', 'Festive', 'Crispy'],
       weight: '500g',
+      howToUse:
+          'Mix with butter and water. Make murukku shapes using press. Deep fry on medium heat. Cool and store airtight.',
+      ingredients: 'Rice Flour, Urad Dal Flour, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Festival Snack, Tea Time, Diwali Special',
+      sizeOptions: [
+        {'size': '250g', 'price': 26.00, 'mrp': 35.00},
+        {'size': '500g', 'price': 48.00, 'mrp': 65.00},
+        {'size': '1000g', 'price': 91.00, 'mrp': 124.00},
+      ],
     ),
     Product(
       id: 105,
@@ -1210,11 +2273,20 @@ class ProductData {
       tamilName: 'சீடை மாவு',
       category: 'Snacks',
       price: 52.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Traditional seedai flour',
-      benefits: ['Festive', 'Traditional', 'Crispy'],
+      image: 'assets/images/snacks/murukku_mix.jpg',
+      description: 'Traditional seedai flour - festive crunchy snack',
+      benefits: ['Festive', 'Traditional', 'Crispy', 'Diwali special'],
       weight: '500g',
+      howToUse:
+          'Mix with butter, shape into small balls. Deep fry on low heat until golden. Cool and store in airtight container.',
+      ingredients: 'Rice Flour, Urad Dal Flour, Sesame, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Festival Snack, Diwali Special, Tea Time',
+      sizeOptions: [
+        {'size': '250g', 'price': 28.00, 'mrp': 37.00},
+        {'size': '500g', 'price': 52.00, 'mrp': 70.00},
+        {'size': '1000g', 'price': 99.00, 'mrp': 134.00},
+      ],
     ),
     Product(
       id: 106,
@@ -1226,6 +2298,16 @@ class ProductData {
       description: 'Sweet laddu mix',
       benefits: ['Energy', 'Sweet', 'Festive'],
       weight: '250g',
+      howToUse:
+          'Mix with ghee and jaggery. Shape into small balls. Energy-rich festive sweet.',
+      ingredients: 'Gram Flour (Besan), Cardamom, Cashews',
+      expiryDate: '3 months from manufacture',
+      suitableFor: 'Festival Sweet, Energy Snack, Gifting',
+      sizeOptions: [
+        {'size': '250g', 'price': 78.00, 'mrp': 105.00},
+        {'size': '500g', 'price': 148.00, 'mrp': 200.00},
+        {'size': '1000g', 'price': 280.00, 'mrp': 380.00},
+      ],
     ),
     Product(
       id: 107,
@@ -1233,11 +2315,20 @@ class ProductData {
       tamilName: 'அப்பளம்',
       category: 'Snacks',
       price: 38.00,
-      image:
-          'https://images.unsplash.com/photo-1626074353765-517a65992e53?w=400&q=80',
-      description: 'Handmade pappad',
-      benefits: ['Traditional', 'Crispy', 'Handmade'],
+      image: 'assets/images/snacks/vadam.jpg',
+      description: 'Handmade pappad - traditional sun-dried crisp',
+      benefits: ['Traditional', 'Crispy', 'Handmade', 'Side dish'],
       weight: '200g',
+      howToUse:
+          'Deep fry in hot oil for few seconds OR roast directly on flame. Serve as side with rice meals.',
+      ingredients: 'Urad Dal, Rice Flour, Salt, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Meal Side Dish, Snacking, Traditional Meals',
+      sizeOptions: [
+        {'size': '100g', 'price': 20.00, 'mrp': 27.00},
+        {'size': '200g', 'price': 38.00, 'mrp': 51.00},
+        {'size': '500g', 'price': 90.00, 'mrp': 122.00},
+      ],
     ),
     Product(
       id: 108,
@@ -1249,6 +2340,16 @@ class ProductData {
       description: 'Sun-dried vadam',
       benefits: ['Traditional', 'Crunchy', 'Natural'],
       weight: '200g',
+      howToUse:
+          'Deep fry in hot oil until puffed up and crispy. Serve as crunchy snack or side with meals.',
+      ingredients: 'Rice, Salt, Sun-dried naturally',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacking, Meal Side, Traditional Food',
+      sizeOptions: [
+        {'size': '100g', 'price': 22.00, 'mrp': 30.00},
+        {'size': '200g', 'price': 42.00, 'mrp': 57.00},
+        {'size': '500g', 'price': 100.00, 'mrp': 135.00},
+      ],
     ),
     Product(
       id: 109,
@@ -1256,11 +2357,20 @@ class ProductData {
       tamilName: 'வத்தல்',
       category: 'Snacks',
       price: 45.00,
-      image:
-          'https://images.unsplash.com/photo-1628690881924-490a17c7f494?w=400&q=80',
-      description: 'Spiced vadagam',
-      benefits: ['Flavor', 'Traditional', 'Digestive'],
+      image: 'assets/images/snacks/vadam.jpg',
+      description: 'Spiced vadagam - traditional seasoning balls',
+      benefits: ['Flavor', 'Traditional', 'Digestive', 'Aromatic'],
       weight: '100g',
+      howToUse:
+          'Fry in little oil until crisp. Add to sambar, rasam, or kuzhambu for enhanced flavor and aroma.',
+      ingredients: 'Mixed Lentils, Spices, Asafoetida, Salt',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Seasoning, Sambar, Rasam Enhancement',
+      sizeOptions: [
+        {'size': '50g', 'price': 24.00, 'mrp': 32.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 61.00},
+        {'size': '250g', 'price': 107.00, 'mrp': 145.00},
+      ],
     ),
     Product(
       id: 110,
@@ -1272,6 +2382,16 @@ class ProductData {
       description: 'Spicy pickle powder',
       benefits: ['Spicy', 'Traditional', 'Flavorful'],
       weight: '200g',
+      howToUse:
+          'Mix with sesame oil and serve with idli, dosa, or rice. Add to curd rice for tangy flavor.',
+      ingredients: 'Chili Powder, Spices, Salt, Curry Leaves',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Idli, Dosa, Rice Side, Flavor Enhancer',
+      sizeOptions: [
+        {'size': '100g', 'price': 33.00, 'mrp': 44.00},
+        {'size': '200g', 'price': 62.00, 'mrp': 84.00},
+        {'size': '500g', 'price': 148.00, 'mrp': 200.00},
+      ],
     ),
   ];
 

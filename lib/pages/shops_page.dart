@@ -17,6 +17,14 @@ class _ShopsPageState extends State<ShopsPage> {
   final TextEditingController _searchController = TextEditingController();
   String searchQuery = '';
 
+  // Filter variables
+  String sortBy =
+      'Relevance'; // Relevance, Price: Low to High, Price: High to Low
+  double minPrice = 0;
+  double maxPrice = 5000;
+  bool showInStockOnly = false;
+  RangeValues priceRange = const RangeValues(0, 5000);
+
   final List<Map<String, dynamic>> categories = [
     {'name': 'All Products', 'icon': Icons.apps, 'color': Colors.purple},
     {'name': 'Oils', 'icon': Icons.water_drop, 'color': Colors.amber},
@@ -45,6 +53,23 @@ class _ShopsPageState extends State<ShopsPage> {
                 p.tamilName.toLowerCase().contains(searchQuery.toLowerCase()),
           )
           .toList();
+    }
+
+    // Apply price filter
+    products = products
+        .where((p) => p.price >= priceRange.start && p.price <= priceRange.end)
+        .toList();
+
+    // Apply stock filter
+    if (showInStockOnly) {
+      products = products.where((p) => p.inStock).toList();
+    }
+
+    // Apply sorting
+    if (sortBy == 'Price: Low to High') {
+      products.sort((a, b) => a.price.compareTo(b.price));
+    } else if (sortBy == 'Price: High to Low') {
+      products.sort((a, b) => b.price.compareTo(a.price));
     }
 
     return products;
@@ -88,6 +113,12 @@ class _ShopsPageState extends State<ShopsPage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            onPressed: () => _showFilterBottomSheet(context),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -171,31 +202,44 @@ class _ShopsPageState extends State<ShopsPage> {
             ),
           ),
 
-          // Products Count
-          Padding(
+          // Sort and Filter Bar
+          Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            color: Colors.grey[100],
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '${filteredProducts.length} Products',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    '${filteredProducts.length} Products',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[700],
+                    ),
                   ),
                 ),
-                if (searchQuery.isNotEmpty ||
-                    selectedCategory != 'All Products')
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedCategory = 'All Products';
-                        searchQuery = '';
-                        _searchController.clear();
-                      });
-                    },
-                    child: const Text('Clear Filters'),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
                   ),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey[300]!),
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.sort, size: 16, color: Colors.grey[700]),
+                      const SizedBox(width: 4),
+                      Text(
+                        sortBy,
+                        style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -358,6 +402,180 @@ class _ShopsPageState extends State<ShopsPage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  void _showFilterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) => Container(
+          padding: const EdgeInsets.all(20),
+          height: MediaQuery.of(context).size.height * 0.75,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Filters & Sort',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setModalState(() {
+                        sortBy = 'Relevance';
+                        priceRange = const RangeValues(0, 5000);
+                        showInStockOnly = false;
+                      });
+                    },
+                    child: const Text('Clear All'),
+                  ),
+                ],
+              ),
+              const Divider(),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Sort By Section
+                      const Text(
+                        'Sort By',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children:
+                            [
+                              'Relevance',
+                              'Price: Low to High',
+                              'Price: High to Low',
+                            ].map((sort) {
+                              return ChoiceChip(
+                                label: Text(sort),
+                                selected: sortBy == sort,
+                                onSelected: (selected) {
+                                  setModalState(() {
+                                    sortBy = sort;
+                                  });
+                                },
+                                selectedColor: const Color(0xFF4CAF50),
+                                labelStyle: TextStyle(
+                                  color: sortBy == sort
+                                      ? Colors.white
+                                      : Colors.black87,
+                                ),
+                              );
+                            }).toList(),
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Price Range Section
+                      const Text(
+                        'Price Range',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('₹${priceRange.start.toInt()}'),
+                          Text('₹${priceRange.end.toInt()}'),
+                        ],
+                      ),
+                      RangeSlider(
+                        values: priceRange,
+                        min: 0,
+                        max: 5000,
+                        divisions: 50,
+                        activeColor: const Color(0xFF4CAF50),
+                        labels: RangeLabels(
+                          '₹${priceRange.start.toInt()}',
+                          '₹${priceRange.end.toInt()}',
+                        ),
+                        onChanged: (values) {
+                          setModalState(() {
+                            priceRange = values;
+                          });
+                        },
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Availability Filter
+                      const Text(
+                        'Availability',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      CheckboxListTile(
+                        value: showInStockOnly,
+                        onChanged: (value) {
+                          setModalState(() {
+                            showInStockOnly = value ?? false;
+                          });
+                        },
+                        title: const Text('Show only in-stock items'),
+                        activeColor: const Color(0xFF4CAF50),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Apply Button
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      // Apply filters to main state
+                    });
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4CAF50),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'Apply Filters (${filteredProducts.length} Products)',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

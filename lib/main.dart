@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'product_details_page.dart';
 import 'models/product.dart';
 import 'services/api_service.dart';
+import 'services/cart_manager.dart';
+import 'services/wishlist_manager.dart';
 import 'data/product_data.dart';
 import 'pages/shops_page.dart';
 import 'pages/brands_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
+import 'pages/cart_page.dart';
+import 'pages/wishlist_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +40,10 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
+      routes: {
+        '/cart': (context) => const CartPage(),
+        '/wishlist': (context) => const WishlistPage(),
+      },
       home: const MyHomePage(),
     );
   }
@@ -51,11 +59,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   String selectedCategory = 'All Products';
-  int cartItems = 0;
-  double cartTotal = 0.00;
   bool isLoading = true;
   late AnimationController _animationController;
   int _currentPageIndex = 0;
+  final CartManager _cartManager = CartManager();
+  final WishlistManager _wishlistManager = WishlistManager();
 
   final List<String> categories = [
     'All Products',
@@ -83,7 +91,21 @@ class _MyHomePageState extends State<MyHomePage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
+    _cartManager.addListener(_updateCartState);
+    _wishlistManager.addListener(_updateCartState);
     _loadProducts();
+  }
+
+  void _updateCartState() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    _cartManager.removeListener(_updateCartState);
+    _wishlistManager.removeListener(_updateCartState);
+    super.dispose();
   }
 
   Future<void> _loadProducts() async {
@@ -108,12 +130,6 @@ class _MyHomePageState extends State<MyHomePage>
       // Silently fail - we're already showing offline products
       // No need to show error since offline data is already loaded
     }
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   void _onCategorySelected(String category) {
@@ -170,9 +186,16 @@ class _MyHomePageState extends State<MyHomePage>
                   children: [
                     IconButton(
                       icon: const Icon(Icons.shopping_cart),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartPage(),
+                          ),
+                        );
+                      },
                     ),
-                    if (cartItems > 0)
+                    if (_cartManager.itemCount > 0)
                       Positioned(
                         right: 8,
                         top: 8,
@@ -183,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage>
                             shape: BoxShape.circle,
                           ),
                           child: Text(
-                            '$cartItems',
+                            '${_cartManager.itemCount}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 10,
@@ -193,6 +216,17 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                       ),
                   ],
+                ),
+                IconButton(
+                  icon: const Icon(Icons.favorite_border),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const WishlistPage(),
+                      ),
+                    );
+                  },
                 ),
               ],
             )
@@ -767,9 +801,7 @@ class _MyHomePageState extends State<MyHomePage>
                           ),
                           InkWell(
                             onTap: () {
-                              setState(() {
-                                cartItems++;
-                              });
+                              // Add to cart functionality
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
