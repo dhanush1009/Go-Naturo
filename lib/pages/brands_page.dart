@@ -50,135 +50,127 @@ class BrandsPage extends StatelessWidget {
   ];
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Our Brands',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header Banner
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [const Color(0xFF4CAF50), Colors.green.shade700],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header Banner
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [const Color(0xFF4CAF50), Colors.green.shade700],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.verified, color: Colors.white, size: 48),
+                const SizedBox(height: 12),
+                const Text(
+                  'Trusted Brands',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.verified, color: Colors.white, size: 48),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Trusted Brands',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 8),
+                Text(
+                  'We partner with the best natural & organic brands',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.9),
+                    fontSize: 16,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'We partner with the best natural & organic brands',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.9),
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
 
-            // Stats Section
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _buildStatCard(
-                      icon: Icons.store,
-                      count: '${brands.length}',
-                      label: 'Brands',
-                      color: Colors.blue,
-                    ),
+          // Stats Section
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: _buildStatCard(
+                    icon: Icons.store,
+                    count: '${brands.length}',
+                    label: 'Brands',
+                    color: Colors.blue,
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _buildStatCard(
-                      icon: Icons.inventory,
-                      count: '75+',
-                      label: 'Products',
-                      color: Colors.orange,
-                    ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildStatCard(
+                    icon: Icons.inventory,
+                    count: '75+',
+                    label: 'Products',
+                    color: Colors.orange,
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _buildStatCard(
-                      icon: Icons.verified_user,
-                      count: '100%',
-                      label: 'Certified',
-                      color: Colors.green,
-                    ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildStatCard(
+                    icon: Icons.verified_user,
+                    count: '100%',
+                    label: 'Certified',
+                    color: Colors.green,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
 
-            // Brands List
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Featured Brands',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  ...brands.map((brand) => _buildBrandCard(context, brand)),
-                ],
-              ),
+          // Brands List
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Featured Brands',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                ...brands.map((brand) => _buildBrandCard(context, brand)),
+              ],
             ),
+          ),
 
-            // Why Choose These Brands Section
-            Container(
-              margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.green.shade50,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.green.shade200),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Why Choose Our Brands?',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  _buildFeature(Icons.eco, '100% Natural & Organic'),
-                  _buildFeature(Icons.verified, 'Quality Certified'),
-                  _buildFeature(
-                    Icons.local_shipping,
-                    'Direct from Manufacturers',
-                  ),
-                  _buildFeature(Icons.thumb_up, 'Customer Trusted'),
-                ],
-              ),
+          // Why Choose These Brands Section
+          Container(
+            margin: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.green.shade50,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.green.shade200),
             ),
-          ],
-        ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Why Choose Our Brands?',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                _buildFeature(Icons.eco, '100% Natural & Organic'),
+                _buildFeature(Icons.verified, 'Quality Certified'),
+                _buildFeature(
+                  Icons.local_shipping,
+                  'Direct from Manufacturers',
+                ),
+                _buildFeature(Icons.thumb_up, 'Customer Trusted'),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

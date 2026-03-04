@@ -158,102 +158,135 @@ class _MyHomePageState extends State<MyHomePage>
   void _onCategorySelected(String category) {
     setState(() {
       selectedCategory = category;
-      isLoading = true;
     });
-    Navigator.pop(context);
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (mounted) {
-        setState(() => isLoading = false);
+    // Close drawer if it's open
+    try {
+      if (Scaffold.of(context).isDrawerOpen) {
+        Navigator.pop(context);
       }
-    });
+    } catch (e) {
+      // Drawer not available in this context
+    }
+  }
+
+  AppBar? _buildAppBar() {
+    switch (_currentPageIndex) {
+      case 0: // Home
+        return AppBar(
+          title: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF00C853),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(Icons.eco, color: Colors.white, size: 24),
+              ),
+              const SizedBox(width: 8),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'GoNaturoFoods',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'பசுமை அங்காடி',
+                    style: TextStyle(fontSize: 10, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: [
+            Stack(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.shopping_cart),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CartPage()),
+                    );
+                  },
+                ),
+                if (_cartManager.itemCount > 0)
+                  Positioned(
+                    right: 8,
+                    top: 8,
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '${_cartManager.itemCount}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            IconButton(
+              icon: const Icon(Icons.favorite_border),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const WishlistPage()),
+                );
+              },
+            ),
+          ],
+        );
+      case 1: // Shop
+        return AppBar(
+          title: const Text(
+            'Shop by Category',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
+        );
+      case 2: // Brands
+        return AppBar(
+          title: const Text(
+            'Our Brands',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
+        );
+      case 3: // About
+        return AppBar(
+          title: const Text(
+            'About Us',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
+        );
+      case 4: // Contact
+        return AppBar(
+          title: const Text(
+            'Contact Us',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
+        );
+      default:
+        return null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _currentPageIndex == 0
-          ? AppBar(
-              title: Row(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF00C853),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.eco, color: Colors.white, size: 24),
-                  ),
-                  const SizedBox(width: 8),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'GoNaturoFoods',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'பசுமை அங்காடி',
-                        style: TextStyle(fontSize: 10, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              actions: [
-                Stack(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.shopping_cart),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartPage(),
-                          ),
-                        );
-                      },
-                    ),
-                    if (_cartManager.itemCount > 0)
-                      Positioned(
-                        right: 8,
-                        top: 8,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Text(
-                            '${_cartManager.itemCount}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-                IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const WishlistPage(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            )
-          : null,
+      appBar: _buildAppBar(),
       drawer: _currentPageIndex == 0
           ? Drawer(
               child: ListView(
@@ -404,72 +437,6 @@ class _MyHomePageState extends State<MyHomePage>
 
           // Hero Slideshow Section
           const HeroSlideshow(),
-
-          // Categories Section
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Shop by Category',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    if (selectedCategory != 'All Category')
-                      TextButton(
-                        onPressed: () => _onCategorySelected('All Category'),
-                        child: const Text('Clear Filter'),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  height: 100,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      _buildCategoryCard(
-                        'Soaps',
-                        Icons.soap,
-                        Colors.blue.shade100,
-                      ),
-                      _buildCategoryCard(
-                        'Oils',
-                        Icons.water_drop,
-                        Colors.green.shade100,
-                      ),
-                      _buildCategoryCard(
-                        'Cosmetics',
-                        Icons.face,
-                        Colors.pink.shade100,
-                      ),
-                      _buildCategoryCard(
-                        'Shampoos',
-                        Icons.local_drink,
-                        Colors.purple.shade100,
-                      ),
-                      _buildCategoryCard(
-                        'Cleaners',
-                        Icons.cleaning_services,
-                        Colors.orange.shade100,
-                      ),
-                      _buildCategoryCard(
-                        'Health Products',
-                        Icons.health_and_safety,
-                        Colors.teal.shade100,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
 
           // Products Grid
           Padding(
@@ -692,50 +659,6 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 
-  Widget _buildCategoryCard(String name, IconData icon, Color color) {
-    final bool isSelected = selectedCategory == name;
-    return GestureDetector(
-      onTap: () => _onCategorySelected(name),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 120,
-        margin: const EdgeInsets.only(right: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF4CAF50) : color,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: const Color(0xFF4CAF50).withValues(alpha: 0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 32,
-              color: isSelected ? Colors.white : Colors.black87,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-                color: isSelected ? Colors.white : Colors.black87,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildProductCard(Product product, int index) {
     return GestureDetector(
       onTap: () {
@@ -848,14 +771,17 @@ class _MyHomePageState extends State<MyHomePage>
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        product.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                      Flexible(
+                        child: Text(
+                          product.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -870,12 +796,14 @@ class _MyHomePageState extends State<MyHomePage>
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '₹${product.price.toStringAsFixed(0)}',
-                            style: const TextStyle(
-                              color: Color(0xFF4CAF50),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                          Flexible(
+                            child: Text(
+                              '₹${product.price.toStringAsFixed(0)}',
+                              style: const TextStyle(
+                                color: Color(0xFF4CAF50),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           InkWell(
