@@ -1554,7 +1554,7 @@ class ProductData {
       tamilName: 'விபூதி',
       category: 'Health Products',
       price: 10.00,
-      image: 'assets/images/health/turmeric_powder.jpg',
+      image: 'assets/images/health/vibhoothi.jpg',
       description: 'Sacred ash (vibhuti) - pure and traditional',
       benefits: ['Pure', 'Traditional', 'Sacred', 'Spiritual'],
       weight: '100g',
