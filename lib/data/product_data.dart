@@ -346,7 +346,7 @@ class ProductData {
       tamilName: 'பூசணி விதை எண்ணெய்',
       category: 'Oils',
       price: 480.00,
-      image: 'assets/images/oils/corn_oil.jpg',
+      image: 'assets/images/oils/pumpkinSeed_oil.jpg',
       description:
           'Nutrient-dense pumpkin seed oil - rich in zinc and essential fatty acids',
       benefits: ['Zinc rich', 'Hair health', 'Antioxidant', 'Prostate health'],
