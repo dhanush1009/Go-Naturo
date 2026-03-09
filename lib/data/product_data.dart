@@ -342,20 +342,20 @@ class ProductData {
     ),
     Product(
       id: 15,
-      name: 'Pumpkin Seed Oil / பூசணி விதை எண்ணெய்',
-      tamilName: 'பூசணி விதை எண்ணெய்',
+      name: 'Lamp Oil / தீப எண்ணெய்',
+      tamilName: 'தீப எண்ணெய்',
       category: 'Oils',
-      price: 480.00,
-      image: 'assets/images/oils/pumpkinSeed_oil.jpg',
+      price: 215.00,
+      image: 'assets/images/oils/lamp_oil.jpg',
       description:
-          'Nutrient-dense pumpkin seed oil - rich in zinc and essential fatty acids',
-      benefits: ['Zinc rich', 'Hair health', 'Antioxidant', 'Prostate health'],
+          'Lamp oil provides a clean-burning, odorless, and smokeless light source for both indoor and outdoor use, offering better air quality than kerosene.',
+      benefits: ['Clean Burning', 'Safety and Convenience', 'Long-Lasting', 'Versatility'],
       weight: '200ml',
       howToUse:
-          'Use cold in salads and smoothies, or take 1 tablespoon daily for nutritional benefits.',
+          'Lamp oil is primarily used in traditional lamps (diyas) for spiritual rituals and to enhance home atmosphere, offering benefits like removing negative energy, fostering peace, and purifying the air.',
       ingredients: '100% Cold-Pressed Pumpkin Seeds Oil',
       expiryDate: '18 months from manufacture',
-      suitableFor: 'Salads, Smoothies, Prostate Health',
+      suitableFor: 'Mental & Emotional Well-being, Purification & Vastu, Aromatherapy & Ambiance',
       sizeOptions: [
         {'size': '100ml', 'price': 255.00, 'mrp': 340.00},
         {'size': '200ml', 'price': 480.00, 'mrp': 640.00},
