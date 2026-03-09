@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
+import '../services/cart_manager.dart';
 import '../product_details_page.dart';
 import '../data/product_data.dart';
 
@@ -18,6 +19,7 @@ class _ShopsPageState extends State<ShopsPage> {
   List<Product> allProducts = [];
   final TextEditingController _searchController = TextEditingController();
   String searchQuery = '';
+  final CartManager _cartManager = CartManager();
 
   // Filter variables
   String sortBy =
@@ -421,16 +423,43 @@ class _ShopsPageState extends State<ShopsPage> {
                             fontSize: 14,
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF4CAF50),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: const Icon(
-                            Icons.add_shopping_cart,
-                            color: Colors.white,
-                            size: 16,
+                        InkWell(
+                          onTap: () {
+                            // Add to cart functionality
+                            String selectedSize = product.weight.isNotEmpty
+                                ? product.weight
+                                : (product.sizeOptions.isNotEmpty
+                                      ? product.sizeOptions[0]['size'] ?? ''
+                                      : 'Standard');
+                            double selectedPrice = product.price;
+
+                            _cartManager.addToCart(
+                              product,
+                              1, // quantity
+                              selectedSize,
+                              selectedPrice,
+                            );
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${product.name} added to cart'),
+                                duration: const Duration(seconds: 1),
+                                backgroundColor: const Color(0xFF4CAF50),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF4CAF50),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: const Icon(
+                              Icons.add_shopping_cart,
+                              color: Colors.white,
+                              size: 16,
+                            ),
                           ),
                         ),
                       ],

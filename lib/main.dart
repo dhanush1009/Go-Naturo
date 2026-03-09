@@ -809,6 +809,21 @@ class _MyHomePageState extends State<MyHomePage>
                           InkWell(
                             onTap: () {
                               // Add to cart functionality
+                              // Use default size and price from the product
+                              String selectedSize = product.weight.isNotEmpty
+                                  ? product.weight
+                                  : (product.sizeOptions.isNotEmpty
+                                        ? product.sizeOptions[0]['size'] ?? ''
+                                        : 'Standard');
+                              double selectedPrice = product.price;
+
+                              _cartManager.addToCart(
+                                product,
+                                1, // quantity
+                                selectedSize,
+                                selectedPrice,
+                              );
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(

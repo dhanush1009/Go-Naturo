@@ -24,6 +24,12 @@ CREATE TABLE IF NOT EXISTS products (
     description TEXT,
     weight VARCHAR(50),
     in_stock BOOLEAN DEFAULT TRUE,
+    tamil_name VARCHAR(200),
+    how_to_use TEXT,
+    ingredients TEXT,
+    expiry_date VARCHAR(100) DEFAULT '12 months from manufacture',
+    manufacture_date VARCHAR(100),
+    suitable_for VARCHAR(200),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
