@@ -603,7 +603,7 @@ class ProductData {
       tamilName: 'அரிசி மாவு',
       category: 'Flours',
       price: 49.00,
-      image: 'assets/images/flours/ragi_flour.jpg',
+      image: 'assets/images/flours/rice_flour.jpg',
       description:
           'Fine quality rice flour for dosas, idlis, and traditional recipes',
       benefits: ['Gluten-free', 'Pure', 'Fine texture', 'Easily digestible'],
