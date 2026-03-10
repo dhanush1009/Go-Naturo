@@ -691,7 +691,7 @@ class ProductData {
       tamilName: 'கடலை மாவு',
       category: 'Flours',
       price: 76.00,
-      image: 'assets/images/flours/quinoa_flour.jpg',
+      image: 'assets/images/flours/peanut_flour.jpg',
       description:
           'Roasted peanut flour - protein-packed with rich, nutty flavor',
       benefits: ['Protein rich', 'Flavorful', 'Pure', 'Energy boost'],
@@ -713,7 +713,7 @@ class ProductData {
       tamilName: 'ஆட்டா',
       category: 'Flours',
       price: 390.00,
-      image: 'assets/images/flours/bajra_flour.jpg',
+      image: 'assets/images/flours/atta_flour.jpg',
       description:
           'Premium whole wheat atta flour - fresh milled for maximum nutrition',
       benefits: ['Whole wheat', 'Fiber rich', 'Fresh', 'No additives'],
@@ -777,7 +777,7 @@ class ProductData {
       tamilName: 'சோளம் மாவு',
       category: 'Flours',
       price: 52.00,
-      image: 'assets/images/flours/bajra_flour.jpg',
+      image: 'assets/images/flours/jowar_flour.jpg',
       description:
           'Sorghum (jowar) flour for healthy living - gluten-free ancient grain',
       benefits: ['Gluten-free', 'Fiber', 'Protein', 'Diabetic friendly'],
