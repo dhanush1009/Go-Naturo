@@ -647,7 +647,7 @@ class ProductData {
       tamilName: 'பாசிப்பயிறு மாவு',
       category: 'Flours',
       price: 46.00,
-      image: 'assets/images/flours/bajra_flour.jpg',
+      image: 'assets/images/flours/greengram_flour.jpg',
       description:
           'Premium greengram (moong dal) flour - protein rich and easily digestible',
       benefits: ['Protein rich', 'Digestible', 'Fresh', 'Low GI'],
