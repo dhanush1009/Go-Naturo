@@ -1548,6 +1548,7 @@ class ProductData {
     ),
 
     // HEALTH PRODUCTS (20 products)
+
     Product(
       id: 71,
       name: 'Vibhoothi / விபூதி',
@@ -1571,11 +1572,11 @@ class ProductData {
     ),
     Product(
       id: 72,
-      name: 'Nalangu Powder / நலங்கு மாவு',
-      tamilName: 'நலங்கு மாவு',
+      name: 'Wet Dates Seeded / பேரீட்சை',
+      tamilName: 'பேரீட்சை',
       category: 'Health Products',
       price: 40.00,
-      image: 'assets/images/health/turmeric_powder.jpg',
+      image: 'assets/images/health/wet_dates_seeded.jpg',
       description:
           'Traditional herbal bath powder - wedding and ceremonial use',
       benefits: ['Herbal', 'Nourishing', 'Traditional', 'Skin glow'],
