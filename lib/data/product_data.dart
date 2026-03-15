@@ -166,24 +166,29 @@ class ProductData {
     ),
     Product(
       id: 7,
-      name: 'Sunflower Oil / சூரியகாந்தி எண்ணெய்',
-      tamilName: 'சூரியகாந்தி எண்ணெய்',
+      name: 'Coliyan Oil / முடக்கத்தான் ஆயில்',
+      tamilName: 'முடக்கத்தான் ஆயில்',
       category: 'Oils',
-      price: 180.00,
-      image: 'assets/images/oils/safflower_oil.jpg',
+      price: 50.00,
+      image: 'assets/images/oils/mudakatan_oil.jpg',
       description:
-          'Light and healthy sunflower oil - cold pressed for maximum nutrition',
-      benefits: ['Low cholesterol', 'Heart healthy', 'Light', 'Vitamin E'],
-      weight: '1000ml',
+          'Traditional Mudakathan (Coliyan) herbal oil prepared using natural medicinal leaves. Known for relieving joint pain, arthritis, and improving body flexibility.',
+      benefits: [
+        'Helps relieve joint and knee pain',
+        'Supports arthritis relief',
+        'Improves body flexibility',
+        'Natural herbal pain relief oil'
+      ],
+      weight: '50ml',
       howToUse:
-          'Use for everyday cooking, frying, and salad dressings. Ideal for high-heat cooking.',
-      ingredients: '100% Pure Sunflower Oil',
+          'Apply gently on joints, knees, and affected areas. Massage well for better absorption. Can be used regularly for joint pain and muscle stiffness relief.',
+      ingredients: 'Mudakathan Leaves Extract, Herbal Oil Base',
       expiryDate: '12 months from manufacture',
-      suitableFor: 'Daily Cooking, Frying, Salad Dressings',
+      suitableFor: 'Joint Pain Relief, Arthritis Care, Body Massage',
       sizeOptions: [
-        {'size': '500ml', 'price': 95.00, 'mrp': 130.00},
-        {'size': '1000ml', 'price': 180.00, 'mrp': 250.00},
-        {'size': '2x1000ml', 'price': 340.00, 'mrp': 500.00},
+        {'size': '50ml', 'price': 50.00, 'mrp': 60.00},
+        {'size': '100ml', 'price': 100.00, 'mrp': 120.00},
+        {'size': '250ml', 'price': 250.00, 'mrp': 300.00},
       ],
     ),
     Product(
