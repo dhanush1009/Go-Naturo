@@ -1549,7 +1549,7 @@ class ProductData {
 
     // HEALTH PRODUCTS (20 products)
 
-    Product(
+  Product(
       id: 71,
       name: 'Vibhoothi / விபூதி',
       tamilName: 'விபூதி',
@@ -1570,8 +1570,205 @@ class ProductData {
         {'size': '250g', 'price': 23.00, 'mrp': 32.00},
       ],
     ),
+
     Product(
       id: 72,
+      name: 'Almonds / பாதாம்',
+      tamilName: 'பாதாம்',
+      category: 'Health Products',
+      price: 45.00,
+      image: 'assets/images/health/almond.jpg',
+      description: 'Premium quality almonds that are crunchy, nutritious, and naturally rich in vitamins and healthy fats.',
+      benefits: [
+        'Rich in protein and healthy fats',
+        'Improves brain health',
+        'Good for heart health',
+        'High in Vitamin E and antioxidants'
+      ],
+      weight: '100g',
+      howToUse:
+          'Almonds can be eaten raw as a healthy snack. You can also soak them overnight and eat them in the morning for better digestion. They can be added to milk, sweets, desserts, or breakfast dishes.',
+      ingredients: '100% Natural Almonds',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'All Age Groups, Healthy Diet, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 25.00, 'mrp': 30.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 55.00},
+        {'size': '250g', 'price': 110.00, 'mrp': 130.00},
+      ],
+    ),
+
+    Product(
+      id: 73,
+      name: 'Cardamom / ஏலக்காய்',
+      tamilName: 'ஏலக்காய்',
+      category: 'Health Products',
+      price: 25.00,
+      image: 'assets/images/health/cardamom.jpg',
+      description: 'Premium quality green cardamom with a rich aroma and natural flavor. Widely used in cooking, sweets, and traditional drinks.',
+      benefits: [
+        'Improves digestion',
+        'Freshens breath naturally',
+        'Rich in antioxidants',
+        'Helps support heart health'
+      ],
+      weight: '50g',
+      howToUse:
+          'Cardamom can be added to tea, coffee, milk, sweets, and desserts for flavor. It is also used in biryani, curries, and traditional dishes. Crush the pods slightly to release the aroma.',
+      ingredients: '100% Natural Green Cardamom',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Cooking, Beverages, Sweets, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 25.00, 'mrp': 30.00},
+        {'size': '100g', 'price': 45.00, 'mrp': 55.00},
+        {'size': '250g', 'price': 110.00, 'mrp': 130.00},
+      ],
+    ),
+    Product(
+      id: 74,
+      name: 'Cashew / முந்திரி',
+      tamilName: 'முந்திரி',
+      category: 'Health Products',
+      price: 47.00,
+      image: 'assets/images/health/cashew.jpg',
+      description: 'Premium quality cashew nuts that are crunchy, delicious, and rich in essential nutrients. Perfect for snacks, sweets, and cooking.',
+      benefits: [
+        'Rich in healthy fats and protein',
+        'Supports heart health',
+        'Good source of vitamins and minerals',
+        'Helps boost energy'
+      ],
+      weight: '50g',
+      howToUse:
+          'Cashews can be eaten raw as a healthy snack. They can also be used in sweets, desserts, curries, and biryani. Cashews are commonly used in milkshakes, kheer, and traditional dishes.',
+      ingredients: '100% Natural Cashew Nuts',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacks, Cooking, Sweets, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 47.00, 'mrp': 55.00},
+        {'size': '100g', 'price': 90.00, 'mrp': 105.00},
+        {'size': '250g', 'price': 210.00, 'mrp': 240.00},
+      ],
+    ),
+    
+  Product(
+  id: 75,
+  name: 'Walnut / வால்நட்',
+  tamilName: 'வால்நட்',
+  category: 'Health Products',
+  price: 93.00,
+  image: 'assets/images/health/walnut.jpg',
+  description: 'Premium quality walnuts that are crunchy, nutritious, and rich in omega-3 fatty acids. Perfect for healthy snacks, desserts, and cooking.',
+  benefits: [
+    'Rich in Omega-3 fatty acids',
+    'Supports brain health',
+    'Improves heart health',
+    'High in antioxidants and nutrients'
+  ],
+  weight: '50g',
+  howToUse:
+      'Walnuts can be eaten raw as a healthy snack or soaked overnight. They can also be added to salads, desserts, cakes, milkshakes, and breakfast cereals.',
+  ingredients: '100% Natural Walnut Kernels',
+  expiryDate: '12 months from manufacture',
+  suitableFor: 'Snacks, Healthy Diet, Cooking, Daily Nutrition',
+  sizeOptions: [
+    {'size': '50g', 'price': 93.00, 'mrp': 110.00},
+    {'size': '100g', 'price': 180.00, 'mrp': 210.00},
+    {'size': '250g', 'price': 420.00, 'mrp': 480.00},
+  ],
+),
+
+
+
+Product(
+  id: 76,
+  name: 'Pista / பிஸ்தா',
+  tamilName: 'பிஸ்தா',
+  category: 'Health Products',
+  price: 83.00,
+  image: 'assets/images/health/pista.jpg',
+  description: 'Premium quality pistachios that are crunchy, flavorful, and packed with essential nutrients. A perfect healthy snack enjoyed by all age groups.',
+  benefits: [
+    'Rich in protein and fiber',
+    'Supports heart health',
+    'Helps improve digestion',
+    'High in antioxidants and vitamins'
+  ],
+  weight: '50g',
+  howToUse:
+      'Pistachios can be eaten as a healthy snack. They can also be added to sweets, desserts, ice cream, milkshakes, and traditional dishes for extra flavor and nutrition.',
+  ingredients: '100% Natural Pistachio Nuts',
+  expiryDate: '12 months from manufacture',
+  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+  sizeOptions: [
+    {'size': '50g', 'price': 83.00, 'mrp': 95.00},
+    {'size': '100g', 'price': 160.00, 'mrp': 185.00},
+    {'size': '250g', 'price': 390.00, 'mrp': 430.00},
+  ],
+),
+
+
+Product(
+  id: 77,
+  name: 'Dry Fig Fruit / அத்தி பழம்',
+  tamilName: 'அத்தி பழம்',
+  category: 'Health Products',
+  price: 63.00,
+  image: 'assets/images/health/dry_fig_fruit.jpg',
+  description: 'Premium quality dried figs that are naturally sweet, soft, and rich in essential nutrients. A healthy snack that supports overall wellness.',
+  benefits: [
+    'Rich in fiber for better digestion',
+    'Supports bone health',
+    'Helps maintain healthy blood pressure',
+    'Packed with vitamins and minerals'
+  ],
+  weight: '50g',
+  howToUse:
+      'Dry figs can be eaten directly as a healthy snack or soaked overnight for better digestion. They can also be added to milk, desserts, cereals, and sweets.',
+  ingredients: '100% Natural Dried Fig Fruit',
+  expiryDate: '12 months from manufacture',
+  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+  sizeOptions: [
+    {'size': '50g', 'price': 63.00, 'mrp': 75.00},
+    {'size': '100g', 'price': 120.00, 'mrp': 140.00},
+    {'size': '250g', 'price': 290.00, 'mrp': 330.00},
+  ],
+),
+
+
+Product(
+  id: 78,
+  name: 'Dry Black Grapes / கருப்பு திராட்சை',
+  tamilName: 'கருப்பு திராட்சை',
+  category: 'Health Products',
+  price: 49.00,
+  image: 'assets/images/health/dry-balck-grapes.jpg',
+  description: 'Premium quality dried black grapes (black raisins) that are naturally sweet, soft, and rich in essential nutrients. A healthy snack for daily nutrition.',
+  benefits: [
+    'Improves digestion',
+    'Rich in iron and helps boost energy',
+    'Supports healthy skin and hair',
+    'Packed with natural antioxidants'
+  ],
+  weight: '50g',
+  howToUse:
+      'Dry black grapes can be eaten directly as a snack or soaked overnight and consumed in the morning. They can also be added to sweets, desserts, cereals, and traditional dishes.',
+  ingredients: '100% Natural Dried Black Grapes (Black Raisins)',
+  expiryDate: '12 months from manufacture',
+  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+  sizeOptions: [
+    {'size': '50g', 'price': 49.00, 'mrp': 75.00},
+    {'size': '100g', 'price': 120.00, 'mrp': 140.00},
+    {'size': '250g', 'price': 290.00, 'mrp': 330.00},
+  ],
+),
+
+
+
+
+
+    Product(
+      id: 79,
       name: 'Wet Dates Seeded / பேரீட்சை',
       tamilName: 'பேரீட்சை',
       category: 'Health Products',
@@ -1593,7 +1790,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 73,
+      id: 80,
       name: 'Turmeric Powder / மஞ்சள் பவுடர்',
       tamilName: 'மஞ்சள் பவுடர்',
       category: 'Health Products',
@@ -1614,7 +1811,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 74,
+      id: 81,
       name: 'Ginger Powder / இஞ்சி பவுடர்',
       tamilName: 'இஞ்சி பவுடர்',
       category: 'Health Products',
@@ -1635,7 +1832,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 75,
+      id: 82,
       name: 'Ashwagandha Powder / அஸ்வகந்தா பவுடர்',
       tamilName: 'அஸ்வகந்தா பவுடர்',
       category: 'Health Products',
@@ -1656,7 +1853,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 76,
+      id: 83,
       name: 'Moringa Powder / முருங்கை இலை பவுடர்',
       tamilName: 'முருங்கை இலை பவுடர்',
       category: 'Health Products',
@@ -1677,7 +1874,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 77,
+      id: 84,
       name: 'Spirulina Powder / ஸ்பிருலினா பவுடர்',
       tamilName: 'ஸ்பிருலினா பவுடர்',
       category: 'Health Products',
@@ -1698,7 +1895,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 78,
+      id: 85,
       name: 'Wheatgrass Powder / கோதுமை புல் பவுடர்',
       tamilName: 'கோதுமை புல் பவுடர்',
       category: 'Health Products',
@@ -1719,7 +1916,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 79,
+      id: 86,
       name: 'Giloy Powder / சீந்தில் பவுடர்',
       tamilName: 'சீந்தில் பவுடர்',
       category: 'Health Products',
@@ -1740,7 +1937,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 80,
+      id: 87,
       name: 'Tulsi Powder / துளசி பவுடர்',
       tamilName: 'துளசி பவுடர்',
       category: 'Health Products',
@@ -1762,7 +1959,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 81,
+      id: 88,
       name: 'Triphala Powder / திரிபலா பவுடர்',
       tamilName: 'திரிபலா பவுடர்',
       category: 'Health Products',
@@ -1783,7 +1980,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 82,
+      id: 89,
       name: 'Neem Powder / வேப்ப இலை பவுடர்',
       tamilName: 'வேப்ப இலை பவுடர்',
       category: 'Health Products',
@@ -1804,7 +2001,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 83,
+      id: 90,
       name: 'Brahmi Powder / பிரம்மி பவுடர்',
       tamilName: 'பிரம்மி பவுடர்',
       category: 'Health Products',
@@ -1825,7 +2022,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 84,
+      id: 91,
       name: 'Shatavari Powder / சதாவரி பவுடர்',
       tamilName: 'சதாவரி பவுடர்',
       category: 'Health Products',
@@ -1846,7 +2043,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 85,
+      id: 92,
       name: 'Guggul Powder / குக்குல் பவுடர்',
       tamilName: 'குக்குல் பவுடர்',
       category: 'Health Products',
@@ -1867,7 +2064,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 86,
+      id: 93,
       name: 'Arjuna Powder / அர்ஜுன பவுடர்',
       tamilName: 'அர்ஜுன பவுடர்',
       category: 'Health Products',
@@ -1888,7 +2085,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 87,
+      id: 94,
       name: 'Punarnava Powder / முகுட்கீரை பவுடர்',
       tamilName: 'முகுட்கீரை பவுடர்',
       category: 'Health Products',
@@ -1909,7 +2106,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 88,
+      id: 95,
       name: 'Manjistha Powder / மஞ்சிஷ்டா பவுடர்',
       tamilName: 'மஞ்சிஷ்டா பவுடர்',
       category: 'Health Products',
@@ -1930,7 +2127,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 89,
+      id: 96,
       name: 'Bhringraj Powder / பிருங்கராஜ் பவுடர்',
       tamilName: 'பிருங்கராஜ் பவுடர்',
       category: 'Health Products',
@@ -1951,7 +2148,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 90,
+      id: 97,
       name: 'Haritaki Powder / கடுக்காய் பவுடர்',
       tamilName: 'கடுக்காய் பவுடர்',
       category: 'Health Products',
@@ -1974,7 +2171,7 @@ class ProductData {
 
     // SNACKS (20 products)
     Product(
-      id: 91,
+      id: 98,
       name: 'Navathaaniya Dosai Mix / நவதானிய தோசை மிக்ஸ்',
       tamilName: 'நவதானிய தோசை மிக்ஸ்',
       category: 'Snacks',
@@ -1995,7 +2192,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 92,
+      id: 99,
       name: 'Millet Bajji Mix / சிறுதானிய பஜ்ஜி மிக்ஸ்',
       tamilName: 'சிறுதானிய பஜ்ஜி மிக்ஸ்',
       category: 'Snacks',
@@ -2017,7 +2214,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 93,
+      id: 100,
       name: 'Urad Mush Mix / உளுத்தங்கஞ்சி மிக்ஸ்',
       tamilName: 'உளுத்தங்கஞ்சி மிக்ஸ்',
       category: 'Snacks',
@@ -2038,7 +2235,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 94,
+      id: 101,
       name: 'Ragi Malt / கேழ்வரகு மால்ட்',
       tamilName: 'கேழ்வரகு மால்ட்',
       category: 'Snacks',
@@ -2059,7 +2256,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 95,
+      id: 102,
       name: 'Health Mix / ஹெல்த் மிக்ஸ்',
       tamilName: 'ஹெல்த் மிக்ஸ்',
       category: 'Snacks',
@@ -2080,7 +2277,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 96,
+      id: 103,
       name: 'Sathu Maavu / சத்து மாவு',
       tamilName: 'சத்து மாவு',
       category: 'Snacks',
@@ -2101,7 +2298,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 97,
+      id: 104,
       name: 'Puttu Podi / புட்டு பொடி',
       tamilName: 'புட்டு பொடி',
       category: 'Snacks',
@@ -2122,7 +2319,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 98,
+      id: 105,
       name: 'Idli Dosa Batter / இட்லி தோசை மாவு',
       tamilName: 'இட்லி தோசை மாவு',
       category: 'Snacks',
@@ -2143,7 +2340,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 99,
+      id: 106,
       name: 'Adai Mix / அடை மிக்ஸ்',
       tamilName: 'அடை மிக்ஸ்',
       category: 'Snacks',
@@ -2164,7 +2361,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 100,
+      id: 107,
       name: 'Rava Upma Mix / ரவா உப்புமா மிக்ஸ்',
       tamilName: 'ரவா உப்புமா மிக்ஸ்',
       category: 'Snacks',
@@ -2185,7 +2382,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 101,
+      id: 108,
       name: 'Pongal Mix / பொங்கல் மிக்ஸ்',
       tamilName: 'பொங்கல் மிக்ஸ்',
       category: 'Snacks',
@@ -2206,7 +2403,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 102,
+      id: 109,
       name: 'Payasam Mix / பாயசம் மிக்ஸ்',
       tamilName: 'பாயசம் மிக்ஸ்',
       category: 'Snacks',
@@ -2227,7 +2424,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 103,
+      id: 110,
       name: 'Halwa Mix / ஹல்வா மிக்ஸ்',
       tamilName: 'ஹல்வா மிக்ஸ்',
       category: 'Snacks',
@@ -2248,7 +2445,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 104,
+      id: 111,
       name: 'Murukku Mix / முறுக்கு மாவு',
       tamilName: 'முறுக்கு மாவு',
       category: 'Snacks',
@@ -2269,7 +2466,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 105,
+      id: 112,
       name: 'Seedai Mix / சீடை மாவு',
       tamilName: 'சீடை மாவு',
       category: 'Snacks',
@@ -2290,7 +2487,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 106,
+      id: 113,
       name: 'Laddu Mix / லட்டு மிக்ஸ்',
       tamilName: 'லட்டு மிக்ஸ்',
       category: 'Snacks',
@@ -2311,7 +2508,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 107,
+      id: 114,
       name: 'Appalam / அப்பளம்',
       tamilName: 'அப்பளம்',
       category: 'Snacks',
@@ -2332,7 +2529,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 108,
+      id: 115,
       name: 'Vadam / வடகம்',
       tamilName: 'வடகம்',
       category: 'Snacks',
@@ -2353,7 +2550,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 109,
+      id: 116,
       name: 'Vadagam / வத்தல்',
       tamilName: 'வத்தல்',
       category: 'Snacks',
@@ -2374,7 +2571,7 @@ class ProductData {
       ],
     ),
     Product(
-      id: 110,
+      id: 117,
       name: 'Pickle Powder / ஊறுகாய் பவுடர்',
       tamilName: 'ஊறுகாய் பவுடர்',
       category: 'Snacks',
@@ -2395,6 +2592,7 @@ class ProductData {
       ],
     ),
   ];
+    
 
   static List<Product> getProductsByCategory(String category) {
     if (category == 'All Products') return allProducts;
