@@ -321,24 +321,30 @@ class ProductData {
     ),
     Product(
       id: 14,
-      name: 'Avocado Oil / வெண்ணெய் பழம் எண்ணெய்',
-      tamilName: 'வெண்ணெய் பழம் எண்ணெய்',
+      name: 'Ilupai Oil / இலுப்பை எண்ணெய்',
+      tamilName: 'இலுப்பை எண்ணெய்',
       category: 'Oils',
-      price: 720.00,
-      image: 'assets/images/oils/avocado_oil.jpg',
-      description: 'Nutritious avocado oil',
-      benefits: ['Nutrient rich', 'Healthy fats', 'Premium'],
-      weight: '250ml',
-      howToUse:
-          'Use for sautéing, grilling, or drizzle over salads. Great for high-heat cooking and skin application.',
-      ingredients: '100% Pure Avocado Oil',
-      expiryDate: '18 months from manufacture',
-      suitableFor: 'High-heat Cooking, Salads, Skin Care',
-      sizeOptions: [
-        {'size': '100ml', 'price': 310.00, 'mrp': 410.00},
-        {'size': '250ml', 'price': 720.00, 'mrp': 960.00},
-        {'size': '500ml', 'price': 1380.00, 'mrp': 1850.00},
+      price: 180.00,
+      image: 'assets/images/oils/ilupai_oil.jpg',
+      description:
+          'Traditional cold-pressed Ilupai Oil (Mahua Oil) extracted from Iluppai seeds. Known for its nourishing properties, it is widely used for skin care, hair care, body massage, and lighting lamps for pooja.',
+      benefits: [
+        'Deeply moisturizes skin',
+        'Strengthens hair roots and scalp',
+        'Helps relieve joint and muscle pain',
+        'Used for lighting lamps in spiritual rituals'
       ],
+      weight: '100ml',
+      howToUse:
+          'Apply gently on skin for moisturization or massage. It can also be applied to the scalp for hair nourishment. Traditionally used for lighting lamps during pooja and spiritual practices.',
+      ingredients: '100% Pure Cold Pressed Ilupai (Mahua) Oil',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Skin Care, Hair Care, Body Massage, Pooja Lamps',
+      sizeOptions: [
+          {'size': '100ml', 'price': 30.00, 'mrp': 40.00},
+          {'size': '250ml', 'price': 75.00, 'mrp': 95.00},
+          {'size': '500ml', 'price': 150.00, 'mrp': 180.00},
+        ],
     ),
     Product(
       id: 15,
