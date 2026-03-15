@@ -2419,7 +2419,7 @@ Product(
       tamilName: 'பாயசம் மிக்ஸ்',
       category: 'Snacks',
       price: 68.00,
-      image: 'assets/images/snacks/laddu_mix.jpg',
+      image: 'assets/images/snacks/payasam_mix.jpg',
       description: 'Sweet payasam mix - festive dessert made easy',
       benefits: ['Festive', 'Sweet', 'Traditional', 'Easy'],
       weight: '200g',
