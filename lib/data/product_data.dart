@@ -2208,7 +2208,7 @@ Product(
       tamilName: 'சிறுதானிய பஜ்ஜி மிக்ஸ்',
       category: 'Snacks',
       price: 60.00,
-      image: 'assets/images/snacks/murukku_mix.jpg',
+      image: 'assets/images/snacks/milletbaji_mix.jpg',
       description:
           'Millet bajji mix - healthy alternative to regular pakoda mix',
       benefits: ['Healthy', 'Easy', 'Millet', 'Instant'],
@@ -2296,7 +2296,7 @@ Product(
       tamilName: 'சத்து மாவு',
       category: 'Snacks',
       price: 88.00,
-      image: 'assets/images/snacks/halwa_mix.jpg',
+      image: 'assets/images/snacks/sathumavu_mix.jpg',
       description: 'Traditional sathu maavu - energy-packed multi-grain mix',
       benefits: ['Protein', 'Energy', 'Traditional', 'Baby food'],
       weight: '500g',
