@@ -1953,7 +1953,7 @@ Product(
       tamilName: 'துளசி பவுடர்',
       category: 'Health Products',
       price: 68.00,
-      image: 'assets/images/health/moringa_powder.jpg',
+      image: 'assets/images/health/thulsi_powder.jpg',
       description:
           'Holy basil powder - immunity booster and respiratory support',
       benefits: ['Immunity', 'Respiratory', 'Sacred', 'Adaptogen'],
