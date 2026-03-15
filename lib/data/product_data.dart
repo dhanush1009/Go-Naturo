@@ -2513,7 +2513,7 @@ Product(
       tamilName: 'அப்பளம்',
       category: 'Snacks',
       price: 38.00,
-      image: 'assets/images/snacks/vadam.jpg',
+      image: 'assets/images/snacks/appalam.jpg',
       description: 'Handmade pappad - traditional sun-dried crisp',
       benefits: ['Traditional', 'Crispy', 'Handmade', 'Side dish'],
       weight: '200g',
