@@ -2187,7 +2187,7 @@ Product(
       tamilName: 'நவதானிய தோசை மிக்ஸ்',
       category: 'Snacks',
       price: 85.00,
-      image: 'assets/images/snacks/idli_dosa_batter.jpg',
+      image: 'assets/images/snacks/navadhanyadosa_mix',
       description: 'Nine millet dosai mix - healthy and nutritious instant mix',
       benefits: ['Healthy', 'Instant', 'Nutritious', 'Multi-grain'],
       weight: '500g',
