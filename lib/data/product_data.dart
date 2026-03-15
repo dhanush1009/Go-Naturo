@@ -2477,7 +2477,7 @@ Product(
       tamilName: 'சீடை மாவு',
       category: 'Snacks',
       price: 52.00,
-      image: 'assets/images/snacks/murukku_mix.jpg',
+      image: 'assets/images/snacks/seedai_mix.jpg',
       description: 'Traditional seedai flour - festive crunchy snack',
       benefits: ['Festive', 'Traditional', 'Crispy', 'Diwali special'],
       weight: '500g',
