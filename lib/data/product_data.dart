@@ -2544,11 +2544,11 @@ Product(
     ),
     Product(
       id: 115,
-      name: 'Vadam / வடகம்',
+      name: 'Vadagam / வடகம்',
       tamilName: 'வடகம்',
       category: 'Snacks',
       price: 42.00,
-      image: 'assets/images/snacks/vadagam.jpg',
+      image: 'assets/images/snacks/vadam.jpg',
       description: 'Sun-dried vadam',
       benefits: ['Traditional', 'Crunchy', 'Natural'],
       weight: '200g',
