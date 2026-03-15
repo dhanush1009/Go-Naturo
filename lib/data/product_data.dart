@@ -2272,7 +2272,7 @@ Product(
       tamilName: 'ஹெல்த் மிக்ஸ்',
       category: 'Snacks',
       price: 95.00,
-      image: 'assets/images/snacks/ragi_malt.jpg',
+      image: 'assets/images/snacks/health_mix.jpg',
       description: 'Multi grain health mix - complete nutrition in one mix',
       benefits: ['Nutritious', 'Balanced', 'Energy', 'All ages'],
       weight: '500g',
