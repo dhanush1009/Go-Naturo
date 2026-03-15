@@ -2359,7 +2359,7 @@ Product(
       tamilName: 'அடை மிக்ஸ்',
       category: 'Snacks',
       price: 65.00,
-      image: 'assets/images/snacks/idli_dosa_batter.jpg',
+      image: 'assets/images/snacks/adai_mix.jpg',
       description: 'Protein-rich adai mix - healthy lentil pancake',
       benefits: ['Protein', 'Healthy', 'Traditional', 'Filling'],
       weight: '500g',
