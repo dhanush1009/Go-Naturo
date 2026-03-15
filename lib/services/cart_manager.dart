@@ -98,8 +98,17 @@ class CartManager extends ChangeNotifier {
     }
   }
 
-  void clearCart() {
-    _items.clear();
+  void replaceItems(List<CartItem> items) {
+    _items
+      ..clear()
+      ..addAll(items);
     notifyListeners();
+  }
+
+  void clearCart({bool notify = true}) {
+    _items.clear();
+    if (notify) {
+      notifyListeners();
+    }
   }
 }

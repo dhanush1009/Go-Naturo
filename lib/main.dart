@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'product_details_page.dart';
 import 'models/product.dart';
 import 'services/api_service.dart';
+import 'services/auth_manager.dart';
 import 'services/cart_manager.dart';
 import 'services/wishlist_manager.dart';
+import 'services/user_state_service.dart';
 import 'data/product_data.dart';
 import 'pages/shops_page.dart';
 import 'pages/brands_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/cart_page.dart';
+import 'pages/profile_page.dart';
 import 'pages/wishlist_page.dart';
+import 'login_page.dart';
+import 'theme/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:video_player/video_player.dart';
 
@@ -27,13 +33,36 @@ class MyApp extends StatelessWidget {
       title: 'GoNaturoFoods',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4CAF50)),
+        colorScheme: ColorScheme.fromSeed(seedColor: kBrandGreen),
         useMaterial3: true,
-        primaryColor: const Color(0xFF4CAF50),
+        primaryColor: kBrandGreen,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black87,
           elevation: 1,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kBrandGreen,
+            foregroundColor: Colors.white,
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: kBrandGreen,
+            side: const BorderSide(color: kBrandGreen),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(foregroundColor: kBrandGreen),
+        ),
+        chipTheme: ChipThemeData.fromDefaults(
+          secondaryColor: kBrandGreen,
+          brightness: Brightness.light,
+          labelStyle: const TextStyle(color: Colors.black87),
+        ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: kBrandGreen,
         ),
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
@@ -64,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage>
   bool isLoading = true;
   late AnimationController _animationController;
   int _currentPageIndex = 0;
+  final AuthManager _authManager = AuthManager();
   final CartManager _cartManager = CartManager();
   final WishlistManager _wishlistManager = WishlistManager();
   final TextEditingController _searchController = TextEditingController();
@@ -113,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
+    _authManager.addListener(_updateCartState);
     _cartManager.addListener(_updateCartState);
     _wishlistManager.addListener(_updateCartState);
     _loadProducts();
@@ -125,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void dispose() {
     _animationController.dispose();
+    _authManager.removeListener(_updateCartState);
     _cartManager.removeListener(_updateCartState);
     _wishlistManager.removeListener(_updateCartState);
     _searchController.dispose();
@@ -167,6 +199,290 @@ class _MyHomePageState extends State<MyHomePage>
     } catch (e) {
       // Drawer not available in this context
     }
+  }
+
+  /// Shows login page if user is not logged in. After login, calls [action].
+  void _requireLogin(VoidCallback action) {
+    if (AuthManager().isLoggedIn) {
+      action();
+      return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => LoginPage(onLoginSuccess: action)),
+    );
+  }
+
+  double? _getOriginalPrice(Product product) {
+    if (product.sizeOptions.isEmpty) {
+      return null;
+    }
+
+    Map<String, dynamic>? matchedOption;
+    for (final option in product.sizeOptions) {
+      final optionSize = (option['size'] ?? '').toString();
+      if (optionSize == product.weight) {
+        matchedOption = option;
+        break;
+      }
+    }
+
+    matchedOption ??= product.sizeOptions.first;
+    final mrpValue = matchedOption['mrp'];
+    if (mrpValue is num) {
+      final mrp = mrpValue.toDouble();
+      if (mrp > product.price) {
+        return mrp;
+      }
+    }
+    return null;
+  }
+
+  int _getDiscountPercent(double originalPrice, double salePrice) {
+    if (originalPrice <= 0 || originalPrice <= salePrice) {
+      return 0;
+    }
+    final discount = ((originalPrice - salePrice) / originalPrice) * 100;
+    return discount.round();
+  }
+
+  Widget _buildCenteredStrikethroughPrice(String text, TextStyle style) {
+    final lineColor = style.color ?? Colors.black54;
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        Text(text, style: style.copyWith(decoration: TextDecoration.none)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(height: 1, color: lineColor),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Product> get _bestDeals {
+    final sorted = [...ProductData.allProducts]
+      ..sort((a, b) {
+        final da = _getOriginalPrice(a);
+        final db = _getOriginalPrice(b);
+        final pa = da != null ? _getDiscountPercent(da, a.price) : 0;
+        final pb = db != null ? _getDiscountPercent(db, b.price) : 0;
+        return pb.compareTo(pa);
+      });
+    return sorted.take(8).toList();
+  }
+
+  List<Product> _categoryPicks(String category) => ProductData.allProducts
+      .where((p) => p.category == category)
+      .take(8)
+      .toList();
+
+  Widget _buildRecommendationRow(
+    String title,
+    String subtitle,
+    List<Product> products,
+    Color accentColor,
+  ) {
+    if (products.isEmpty) return const SizedBox.shrink();
+    return Container(
+      color: Colors.white,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(top: 16, bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Container(
+                  width: 4,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: accentColor,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      if (subtitle.isNotEmpty)
+                        Text(
+                          subtitle,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _searchQuery = '';
+                      selectedCategory = 'All Products';
+                    });
+                  },
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                      color: accentColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                final originalPrice = _getOriginalPrice(product);
+                final discount = originalPrice != null
+                    ? _getDiscountPercent(originalPrice, product.price)
+                    : 0;
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProductDetailsPage(product: product),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 140,
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey.shade200),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.05),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(10),
+                              ),
+                              child: Image.asset(
+                                product.image,
+                                width: 140,
+                                height: 120,
+                                fit: BoxFit.cover,
+                                errorBuilder: (ctx, err, st) => Container(
+                                  width: 140,
+                                  height: 120,
+                                  color: Colors.grey.shade100,
+                                  child: Icon(
+                                    Icons.image_not_supported,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (discount > 0)
+                              Positioned(
+                                top: 6,
+                                left: 6,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: accentColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    '$discount% OFF',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  '₹${product.price.toStringAsFixed(0)}',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: accentColor,
+                                  ),
+                                ),
+                                if (originalPrice != null)
+                                  _buildCenteredStrikethroughPrice(
+                                    '₹${originalPrice.toStringAsFixed(0)}',
+                                    TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.grey.shade500,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   AppBar? _buildAppBar() {
@@ -278,6 +594,14 @@ class _MyHomePageState extends State<MyHomePage>
           ),
           elevation: 0,
         );
+      case 5: // Profile
+        return AppBar(
+          title: const Text(
+            'My Profile',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
+        );
       default:
         return null;
     }
@@ -289,37 +613,100 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: _buildAppBar(),
       drawer: _currentPageIndex == 0
           ? Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  DrawerHeader(
-                    decoration: const BoxDecoration(color: Color(0xFF4CAF50)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                  SizedBox(
+                    width: double.infinity,
+                    child: DrawerHeader(
+                      decoration: const BoxDecoration(color: Color(0xFF4CAF50)),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.eco,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              _authManager.isLoggedIn
+                                  ? _authManager.userName
+                                  : 'Category',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            if (_authManager.isLoggedIn)
+                              Text(
+                                _authManager.userEmail,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                ),
+                              )
+                            else
+                              const Text(
+                                'Explore organic products',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
                       children: [
-                        const Icon(Icons.eco, color: Colors.white, size: 48),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Category',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                        ...categories.map(
+                          (category) => ListTile(
+                            leading: const Icon(Icons.category),
+                            title: Text(category),
+                            selected: selectedCategory == category,
+                            selectedTileColor: Colors.green.shade50,
+                            onTap: () => _onCategorySelected(category),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  ...categories.map(
-                    (category) => ListTile(
-                      leading: const Icon(Icons.category),
-                      title: Text(category),
-                      selected: selectedCategory == category,
-                      selectedTileColor: Colors.green.shade50,
-                      onTap: () => _onCategorySelected(category),
+                  if (!_authManager.isLoggedIn)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const LoginPage(),
+                              ),
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color(0xFF2E7D32),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 8,
+                            ),
+                          ),
+                          child: const Text('Login'),
+                        ),
+                      ),
                     ),
-                  ),
                 ],
               ),
             )
@@ -332,6 +719,7 @@ class _MyHomePageState extends State<MyHomePage>
           const BrandsPage(),
           const AboutPage(),
           const ContactPage(),
+          const ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -352,6 +740,10 @@ class _MyHomePageState extends State<MyHomePage>
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_mail),
             label: 'Contact',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
           ),
         ],
       ),
@@ -437,6 +829,54 @@ class _MyHomePageState extends State<MyHomePage>
 
           // Hero Slideshow Section
           const HeroSlideshow(),
+
+          // Recommendation: Best Deals
+          if (_searchQuery.isEmpty && selectedCategory == 'All Products')
+            _buildRecommendationRow(
+              'Best Deals for You',
+              'Top discounts on organic products',
+              _bestDeals,
+              const Color(0xFFFF6F00),
+            ),
+
+          // Recommendation: Oils
+          if (_searchQuery.isEmpty && selectedCategory == 'All Products')
+            _buildRecommendationRow(
+              'Our Top Picks — Oils',
+              'Pure & cold-pressed varieties',
+              _categoryPicks('Oils'),
+              const Color(0xFF2E7D32),
+            ),
+
+          // Recommendation: Flours
+          if (_searchQuery.isEmpty && selectedCategory == 'All Products')
+            _buildRecommendationRow(
+              'Wholesome Flours',
+              'Stone-ground & natural varieties',
+              _categoryPicks('Flours'),
+              const Color(0xFF6D4C41),
+            ),
+
+          // Recommendation: Health & Beauty
+          if (_searchQuery.isEmpty && selectedCategory == 'All Products')
+            _buildRecommendationRow(
+              'Trending in Health & Beauty',
+              'Top picks for your wellness',
+              [
+                ..._categoryPicks('Health Products'),
+                ..._categoryPicks('Beauty Products'),
+              ].take(8).toList(),
+              const Color(0xFF7B1FA2),
+            ),
+
+          // Recommendation: Snacks
+          if (_searchQuery.isEmpty && selectedCategory == 'All Products')
+            _buildRecommendationRow(
+              'Guilt-Free Snacks',
+              'Healthy snacking made delicious',
+              _categoryPicks('Snacks'),
+              const Color(0xFFE53935),
+            ),
 
           // Products Grid
           Padding(
@@ -567,7 +1007,7 @@ class _MyHomePageState extends State<MyHomePage>
                             crossAxisCount: 2,
                             crossAxisSpacing: 16,
                             mainAxisSpacing: 16,
-                            childAspectRatio: 0.7,
+                            childAspectRatio: 0.66,
                           ),
                       itemCount: filteredProducts.length,
                       itemBuilder: (context, index) {
@@ -660,6 +1100,11 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   Widget _buildProductCard(Product product, int index) {
+    final originalPrice = _getOriginalPrice(product);
+    final discountPercent = originalPrice != null
+        ? _getDiscountPercent(originalPrice, product.price)
+        : 0;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -794,46 +1239,109 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                       const Spacer(),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Flexible(
-                            child: Text(
-                              '₹${product.price.toStringAsFixed(0)}',
-                              style: const TextStyle(
-                                color: Color(0xFF4CAF50),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '₹${product.price.toStringAsFixed(0)}',
+                                  style: const TextStyle(
+                                    color: Color(0xFF4CAF50),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                if (originalPrice != null)
+                                  const SizedBox(height: 3),
+                                if (originalPrice != null)
+                                  Wrap(
+                                    spacing: 6,
+                                    runSpacing: 4,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.center,
+                                    children: [
+                                      _buildCenteredStrikethroughPrice(
+                                        '₹${originalPrice.toStringAsFixed(0)}',
+                                        TextStyle(
+                                          fontSize: 11,
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        '$discountPercent% OFF',
+                                        style: const TextStyle(
+                                          fontSize: 11,
+                                          color: Color(0xFFE53935),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 6,
+                                          vertical: 3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFE8F5E9),
+                                          borderRadius: BorderRadius.circular(
+                                            4,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'SAVE ₹${(originalPrice - product.price).toStringAsFixed(0)}',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF2E7D32),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                              ],
                             ),
                           ),
+                          const SizedBox(width: 8),
                           InkWell(
                             onTap: () {
-                              // Add to cart functionality
-                              // Use default size and price from the product
-                              String selectedSize = product.weight.isNotEmpty
-                                  ? product.weight
-                                  : (product.sizeOptions.isNotEmpty
-                                        ? product.sizeOptions[0]['size'] ?? ''
-                                        : 'Standard');
-                              double selectedPrice = product.price;
+                              _requireLogin(() {
+                                // Add to cart functionality
+                                String selectedSize = product.weight.isNotEmpty
+                                    ? product.weight
+                                    : (product.sizeOptions.isNotEmpty
+                                          ? product.sizeOptions[0]['size'] ?? ''
+                                          : 'Standard');
+                                double selectedPrice = product.price;
 
-                              _cartManager.addToCart(
-                                product,
-                                1, // quantity
-                                selectedSize,
-                                selectedPrice,
-                              );
+                                _cartManager.addToCart(
+                                  product,
+                                  1, // quantity
+                                  selectedSize,
+                                  selectedPrice,
+                                );
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    '${product.name} added to cart',
+                                final userId = _authManager.userId;
+                                if (userId != null) {
+                                  UserStateService.persistCart(
+                                    userId,
+                                    _cartManager.items,
+                                  ).catchError((_) {});
+                                }
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '${product.name} added to cart',
+                                    ),
+                                    duration: const Duration(seconds: 1),
+                                    backgroundColor: const Color(0xFF4CAF50),
+                                    behavior: SnackBarBehavior.floating,
                                   ),
-                                  duration: const Duration(seconds: 1),
-                                  backgroundColor: const Color(0xFF4CAF50),
-                                  behavior: SnackBarBehavior.floating,
-                                ),
-                              );
+                                );
+                              });
                             },
                             child: Container(
                               padding: const EdgeInsets.all(6),
@@ -872,44 +1380,58 @@ class HeroSlideshow extends StatefulWidget {
 
 class _HeroSlideshowState extends State<HeroSlideshow> {
   int _currentIndex = 0;
+  static const Duration _videoPlayBeforeSlide = Duration(seconds: 8);
+  Timer? _slideTimer;
   final CarouselSliderController _carouselController =
       CarouselSliderController();
 
-  // List of slide items with images and videos
+  // List of slide items (video-only)
   final List<SlideItem> slideItems = [
     SlideItem(
-      type: SlideType.image,
-      url:
-          'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-      title: 'Why you Purchase',
-      subtitle: 'in GoNaturo Foods?',
-      description: 'Natural • Organic • Traditional',
-    ),
-    SlideItem(
-      type: SlideType.image,
-      url:
-          'https://images.unsplash.com/photo-1498579809087-ef1e558fd1da?w=800&q=80',
-      title: '100% Organic',
-      subtitle: 'Farm Fresh Products',
-      description: 'Direct from Farm to Your Home',
-    ),
-    SlideItem(
-      type: SlideType.image,
-      url:
-          'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80',
-      title: 'Traditional Foods',
-      subtitle: 'Authentic Taste',
-      description: 'Preserving Heritage Recipes',
+      type: SlideType.video,
+      url: 'assets/videos/video1.mp4',
+      title: 'Fresh From Source',
+      subtitle: 'Watch Quality Process',
+      description: 'Trusted sourcing for every product',
     ),
     SlideItem(
       type: SlideType.video,
-      url:
-          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-      title: 'Our Story',
-      subtitle: 'Discover GoNaturo',
-      description: 'Quality You Can Trust',
+      url: 'assets/videos/video2.mp4',
+      title: 'Packed With Care',
+      subtitle: 'Hygiene First',
+      description: 'Safe and clean handling from start to finish',
+    ),
+    SlideItem(
+      type: SlideType.video,
+      url: 'assets/videos/video3.mp4',
+      title: 'Delivered To Home',
+      subtitle: 'Fast And Fresh',
+      description: 'Natural products at your doorstep',
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _startSlideTimer();
+  }
+
+  void _startSlideTimer() {
+    _slideTimer?.cancel();
+    _slideTimer = Timer(_videoPlayBeforeSlide, () {
+      if (!mounted || slideItems.isEmpty) {
+        return;
+      }
+      final nextIndex = (_currentIndex + 1) % slideItems.length;
+      _carouselController.animateToPage(nextIndex);
+    });
+  }
+
+  @override
+  void dispose() {
+    _slideTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -921,19 +1443,22 @@ class _HeroSlideshowState extends State<HeroSlideshow> {
           options: CarouselOptions(
             height: 300,
             viewportFraction: 1.0,
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 5),
+            autoPlay: false,
             autoPlayAnimationDuration: const Duration(milliseconds: 800),
             enlargeCenterPage: false,
             onPageChanged: (index, reason) {
               setState(() {
                 _currentIndex = index;
               });
+              _startSlideTimer();
             },
           ),
           itemBuilder: (context, index, realIndex) {
             final item = slideItems[index];
-            return SlideItemWidget(item: item);
+            return SlideItemWidget(
+              item: item,
+              isActive: index == _currentIndex,
+            );
           },
         ),
         const SizedBox(height: 12),
@@ -985,8 +1510,13 @@ class SlideItem {
 // Slide Item Widget
 class SlideItemWidget extends StatefulWidget {
   final SlideItem item;
+  final bool isActive;
 
-  const SlideItemWidget({super.key, required this.item});
+  const SlideItemWidget({
+    super.key,
+    required this.item,
+    required this.isActive,
+  });
 
   @override
   State<SlideItemWidget> createState() => _SlideItemWidgetState();
@@ -1005,16 +1535,37 @@ class _SlideItemWidgetState extends State<SlideItemWidget> {
   }
 
   void _initializeVideo() async {
-    _videoController = VideoPlayerController.networkUrl(
-      Uri.parse(widget.item.url),
-    );
+    _videoController = widget.item.url.startsWith('http')
+        ? VideoPlayerController.networkUrl(Uri.parse(widget.item.url))
+        : VideoPlayerController.asset(widget.item.url);
     await _videoController!.initialize();
     await _videoController!.setLooping(true);
-    await _videoController!.play();
     if (mounted) {
       setState(() {
         _isVideoInitialized = true;
       });
+      _syncVideoPlayback();
+    }
+  }
+
+  void _syncVideoPlayback() {
+    if (_videoController == null || !_isVideoInitialized) {
+      return;
+    }
+
+    if (widget.isActive) {
+      _videoController!.play();
+    } else {
+      _videoController!.pause();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant SlideItemWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.item.type == SlideType.video &&
+        oldWidget.isActive != widget.isActive) {
+      _syncVideoPlayback();
     }
   }
 
@@ -1064,98 +1615,6 @@ class _SlideItemWidgetState extends State<SlideItemWidget> {
               ),
             ),
 
-          // Dark overlay for better text visibility
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.black.withOpacity(0.6),
-                  Colors.black.withOpacity(0.3),
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
-            ),
-          ),
-
-          // Text Content
-          Positioned(
-            left: 24,
-            bottom: 24,
-            right: 24,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.item.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    height: 1.2,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(0, 2),
-                        blurRadius: 4,
-                        color: Colors.black45,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  widget.item.subtitle,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    height: 1.2,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(0, 2),
-                        blurRadius: 4,
-                        color: Colors.black45,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  widget.item.description,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(0, 1),
-                        blurRadius: 3,
-                        color: Colors.black45,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4CAF50),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  child: const Text(
-                    'SHOP NOW',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
           // Video play/pause button
           if (widget.item.type == SlideType.video && _isVideoInitialized)
             Positioned(
@@ -1174,7 +1633,7 @@ class _SlideItemWidgetState extends State<SlideItemWidget> {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha: 0.5),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(

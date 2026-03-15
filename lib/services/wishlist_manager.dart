@@ -40,8 +40,17 @@ class WishlistManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearWishlist() {
-    _items.clear();
+  void replaceItems(List<Product> items) {
+    _items
+      ..clear()
+      ..addAll(items);
     notifyListeners();
+  }
+
+  void clearWishlist({bool notify = true}) {
+    _items.clear();
+    if (notify) {
+      notifyListeners();
+    }
   }
 }

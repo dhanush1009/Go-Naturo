@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
+import '../services/auth_manager.dart';
 import '../services/cart_manager.dart';
+import '../services/user_state_service.dart';
 import '../product_details_page.dart';
 import '../data/product_data.dart';
 
@@ -439,6 +441,14 @@ class _ShopsPageState extends State<ShopsPage> {
                               selectedSize,
                               selectedPrice,
                             );
+
+                            final userId = AuthManager().userId;
+                            if (userId != null) {
+                              UserStateService.persistCart(
+                                userId,
+                                _cartManager.items,
+                              ).catchError((_) {});
+                            }
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

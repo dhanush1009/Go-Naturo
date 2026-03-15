@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import '../services/auth_manager.dart';
 import '../services/cart_manager.dart';
+import '../services/user_state_service.dart';
 import '../product_details_page.dart';
+import 'checkout_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -11,6 +14,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   final CartManager _cartManager = CartManager();
+  final AuthManager _authManager = AuthManager();
 
   @override
   void initState() {
@@ -58,6 +62,13 @@ class _CartPageState extends State<CartPage> {
                       TextButton(
                         onPressed: () {
                           _cartManager.clearCart();
+                          final userId = _authManager.userId;
+                          if (userId != null) {
+                            UserStateService.persistCart(
+                              userId,
+                              _cartManager.items,
+                            ).catchError((_) {});
+                          }
                           Navigator.pop(context);
                         },
                         child: const Text(
@@ -219,6 +230,13 @@ class _CartPageState extends State<CartPage> {
                     color: Colors.red,
                     onPressed: () {
                       _cartManager.removeItem(index);
+                      final userId = _authManager.userId;
+                      if (userId != null) {
+                        UserStateService.persistCart(
+                          userId,
+                          _cartManager.items,
+                        ).catchError((_) {});
+                      }
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -247,6 +265,13 @@ class _CartPageState extends State<CartPage> {
                                 index,
                                 item.quantity - 1,
                               );
+                              final userId = _authManager.userId;
+                              if (userId != null) {
+                                UserStateService.persistCart(
+                                  userId,
+                                  _cartManager.items,
+                                ).catchError((_) {});
+                              }
                             }
                           },
                           child: Container(
@@ -270,6 +295,13 @@ class _CartPageState extends State<CartPage> {
                               index,
                               item.quantity + 1,
                             );
+                            final userId = _authManager.userId;
+                            if (userId != null) {
+                              UserStateService.persistCart(
+                                userId,
+                                _cartManager.items,
+                              ).catchError((_) {});
+                            }
                           },
                           child: Container(
                             padding: const EdgeInsets.all(8),
@@ -340,11 +372,23 @@ class _CartPageState extends State<CartPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Proceeding to checkout...'),
-                      backgroundColor: Color(0xFF4CAF50),
-                      behavior: SnackBarBehavior.floating,
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CheckoutPage(
+                        items: _cartManager.items
+                            .map(
+                              (item) => CheckoutItem(
+                                productId: item.product.id.toString(),
+                                name: item.product.name,
+                                image: item.product.image,
+                                size: item.selectedSize,
+                                quantity: item.quantity,
+                                unitPrice: item.selectedPrice,
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                   );
                 },

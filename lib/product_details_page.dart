@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'models/product.dart';
+import 'services/auth_manager.dart';
 import 'services/cart_manager.dart';
 import 'services/wishlist_manager.dart';
+import 'services/user_state_service.dart';
+import 'theme/app_colors.dart';
+import 'login_page.dart';
+import 'pages/checkout_page.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
@@ -19,6 +24,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
   late TabController _tabController;
   final CartManager _cartManager = CartManager();
   final WishlistManager _wishlistManager = WishlistManager();
+  Map<String, dynamic>? _savedAddress;
+  bool _addressLoading = false;
 
   @override
   void initState() {
@@ -26,6 +33,59 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     _tabController = TabController(length: 4, vsync: this);
     _cartManager.addListener(_updateState);
     _wishlistManager.addListener(_updateState);
+    _loadSavedAddress();
+  }
+
+  Future<void> _loadSavedAddress() async {
+    final userId = AuthManager().userId;
+    if (userId == null) {
+      if (mounted) {
+        setState(() {
+          _savedAddress = null;
+        });
+      }
+      return;
+    }
+
+    setState(() => _addressLoading = true);
+    try {
+      final address = await UserStateService.fetchSavedAddress(userId);
+      if (!mounted) return;
+      setState(() {
+        _savedAddress = address;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _savedAddress = null;
+      });
+    } finally {
+      if (mounted) {
+        setState(() => _addressLoading = false);
+      }
+    }
+  }
+
+  String _addressPreview() {
+    if (_savedAddress == null) {
+      return 'Location not set';
+    }
+
+    final house = (_savedAddress!['house'] ?? '').toString().trim();
+    final area = (_savedAddress!['area'] ?? '').toString().trim();
+    final city = (_savedAddress!['city'] ?? '').toString().trim();
+    final pincode = (_savedAddress!['pincode'] ?? '').toString().trim();
+
+    final segments = <String>[];
+    if (house.isNotEmpty) segments.add(house);
+    if (area.isNotEmpty) segments.add(area);
+    if (city.isNotEmpty) segments.add(city);
+    if (pincode.isNotEmpty) segments.add(pincode);
+
+    if (segments.isEmpty) {
+      return 'Location not set';
+    }
+    return segments.join(', ');
   }
 
   void _updateState() {
@@ -59,6 +119,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     return (((selectedMrp - selectedPrice) / selectedMrp) * 100).round();
   }
 
+  void _requireLogin(VoidCallback action) {
+    if (AuthManager().isLoggedIn) {
+      action();
+      return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => LoginPage(onLoginSuccess: action)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,23 +156,33 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                   : Colors.black,
             ),
             onPressed: () {
-              setState(() {
-                _wishlistManager.toggleWishlist(widget.product);
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    _wishlistManager.isInWishlist(widget.product)
-                        ? 'Added to wishlist'
-                        : 'Removed from wishlist',
+              _requireLogin(() {
+                setState(() {
+                  _wishlistManager.toggleWishlist(widget.product);
+                });
+                final userId = AuthManager().userId;
+                if (userId != null) {
+                  UserStateService.persistWishlist(
+                    userId,
+                    _wishlistManager.items,
+                  ).catchError((_) {});
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      _wishlistManager.isInWishlist(widget.product)
+                          ? 'Added to wishlist'
+                          : 'Removed from wishlist',
+                    ),
+                    backgroundColor:
+                        _wishlistManager.isInWishlist(widget.product)
+                        ? const Color(0xFF4CAF50)
+                        : Colors.grey[700],
+                    behavior: SnackBarBehavior.floating,
+                    duration: const Duration(seconds: 2),
                   ),
-                  backgroundColor: _wishlistManager.isInWishlist(widget.product)
-                      ? const Color(0xFF4CAF50)
-                      : Colors.grey[700],
-                  behavior: SnackBarBehavior.floating,
-                  duration: const Duration(seconds: 2),
-                ),
-              );
+                );
+              });
             },
           ),
         ],
@@ -328,6 +409,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
   }
 
   Widget _buildDeliveryDetails() {
+    final hasAddress = _savedAddress != null;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -346,13 +428,19 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
             children: [
               const Icon(Icons.location_on_outlined, size: 20),
               const SizedBox(width: 8),
-              Text(
-                'Location not set',
-                style: TextStyle(color: Colors.grey[700]),
+              Expanded(
+                child: Text(
+                  _addressLoading ? 'Loading address...' : _addressPreview(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontWeight: hasAddress ? FontWeight.w500 : FontWeight.w400,
+                  ),
+                ),
               ),
-              const Spacer(),
               Text(
-                'Select delivery location',
+                hasAddress ? 'Saved address' : 'Select delivery location',
                 style: TextStyle(
                   color: Colors.blue[700],
                   fontWeight: FontWeight.w500,
@@ -612,35 +700,45 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
             child: OutlinedButton(
               onPressed: widget.product.inStock
                   ? () {
-                      final sizeLabel = widget.product.sizeOptions.isNotEmpty
-                          ? widget
-                                .product
-                                .sizeOptions[selectedSizeIndex]['size']
-                          : widget.product.weight;
+                      _requireLogin(() {
+                        final sizeLabel = widget.product.sizeOptions.isNotEmpty
+                            ? widget
+                                  .product
+                                  .sizeOptions[selectedSizeIndex]['size']
+                            : widget.product.weight;
 
-                      _cartManager.addToCart(
-                        widget.product,
-                        quantity,
-                        sizeLabel,
-                        selectedPrice,
-                      );
+                        _cartManager.addToCart(
+                          widget.product,
+                          quantity,
+                          sizeLabel,
+                          selectedPrice,
+                        );
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Added ${widget.product.name} ($sizeLabel) to cart',
+                        final userId = AuthManager().userId;
+                        if (userId != null) {
+                          UserStateService.persistCart(
+                            userId,
+                            _cartManager.items,
+                          ).catchError((_) {});
+                        }
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Added ${widget.product.name} ($sizeLabel) to cart',
+                            ),
+                            backgroundColor: const Color(0xFF4CAF50),
+                            behavior: SnackBarBehavior.floating,
+                            action: SnackBarAction(
+                              label: 'VIEW CART',
+                              textColor: Colors.white,
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/cart');
+                              },
+                            ),
                           ),
-                          backgroundColor: const Color(0xFF4CAF50),
-                          behavior: SnackBarBehavior.floating,
-                          action: SnackBarAction(
-                            label: 'VIEW CART',
-                            textColor: Colors.white,
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/cart');
-                            },
-                          ),
-                        ),
-                      );
+                        );
+                      });
                     }
                   : null,
               style: OutlinedButton.styleFrom(
@@ -663,9 +761,40 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
           const SizedBox(width: 12),
           Expanded(
             child: ElevatedButton(
-              onPressed: widget.product.inStock ? () {} : null,
+              onPressed: widget.product.inStock
+                  ? () {
+                      _requireLogin(() {
+                        final sizeLabel = widget.product.sizeOptions.isNotEmpty
+                            ? widget
+                                  .product
+                                  .sizeOptions[selectedSizeIndex]['size']
+                            : widget.product.weight;
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => CheckoutPage(
+                              saveOrderedItemsToCart: true,
+                              items: [
+                                CheckoutItem(
+                                  productId: widget.product.id.toString(),
+                                  name: widget.product.name,
+                                  image: widget.product.image,
+                                  size: sizeLabel,
+                                  quantity: quantity,
+                                  unitPrice: selectedPrice,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ).then((_) {
+                          _loadSavedAddress();
+                        });
+                      });
+                    }
+                  : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFD700),
+                backgroundColor: kBrandGreen,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
@@ -674,7 +803,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
               child: Text(
                 'Buy at ₹${selectedPrice.toStringAsFixed(0)}',
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),

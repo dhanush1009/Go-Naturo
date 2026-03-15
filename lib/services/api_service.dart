@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/product.dart';
+import '../config/app_config.dart';
 
 class ApiService {
   // Update this URL to match your backend server
   // For Android emulator, use 10.0.2.2 instead of localhost
-  static const String baseUrl = 'http://10.0.2.2:3000/api';
+  static const String baseUrl = '${AppConfig.apiBaseUrl}/api';
 
   // Fetch all products
   static Future<List<Product>> getProducts() async {

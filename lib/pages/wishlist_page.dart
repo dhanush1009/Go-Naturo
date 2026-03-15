@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/auth_manager.dart';
+import '../services/user_state_service.dart';
 import '../services/wishlist_manager.dart';
 import '../product_details_page.dart';
 
@@ -11,6 +13,7 @@ class WishlistPage extends StatefulWidget {
 
 class _WishlistPageState extends State<WishlistPage> {
   final WishlistManager _wishlistManager = WishlistManager();
+  final AuthManager _authManager = AuthManager();
 
   @override
   void initState() {
@@ -58,6 +61,13 @@ class _WishlistPageState extends State<WishlistPage> {
                       TextButton(
                         onPressed: () {
                           _wishlistManager.clearWishlist();
+                          final userId = _authManager.userId;
+                          if (userId != null) {
+                            UserStateService.persistWishlist(
+                              userId,
+                              _wishlistManager.items,
+                            ).catchError((_) {});
+                          }
                           Navigator.pop(context);
                         },
                         child: const Text(
@@ -93,37 +103,48 @@ class _WishlistPageState extends State<WishlistPage> {
 
   Widget _buildEmptyWishlist() {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.favorite_border, size: 100, color: Colors.grey[400]),
-          const SizedBox(height: 16),
-          Text(
-            'Your wishlist is empty',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-            ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 44),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 320),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.favorite_border, size: 72, color: Colors.grey[400]),
+              const SizedBox(height: 16),
+              Text(
+                'Your wishlist is empty',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[700],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Save your favorite items here',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF4CAF50),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 12,
+                  ),
+                ),
+                child: const Text(
+                  'Explore Products',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Save your favorite items here',
-            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF4CAF50),
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-            ),
-            child: const Text(
-              'Explore Products',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -194,6 +215,13 @@ class _WishlistPageState extends State<WishlistPage> {
                       constraints: const BoxConstraints(),
                       onPressed: () {
                         _wishlistManager.removeFromWishlist(product);
+                        final userId = _authManager.userId;
+                        if (userId != null) {
+                          UserStateService.persistWishlist(
+                            userId,
+                            _wishlistManager.items,
+                          ).catchError((_) {});
+                        }
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(

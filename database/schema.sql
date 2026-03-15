@@ -43,6 +43,18 @@ CREATE TABLE IF NOT EXISTS product_benefits (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    password_hash VARCHAR(255) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 -- Cart Table
 CREATE TABLE IF NOT EXISTS cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,6 +63,78 @@ CREATE TABLE IF NOT EXISTS cart (
     quantity INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Persistent User Addresses
+CREATE TABLE IF NOT EXISTS user_addresses (
+    user_id INT PRIMARY KEY,
+    full_name VARCHAR(200) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    pincode VARCHAR(10) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    house VARCHAR(255) NOT NULL,
+    area VARCHAR(255) NOT NULL,
+    landmark VARCHAR(255),
+    address_type VARCHAR(20) DEFAULT 'Home',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Persistent User Wishlist
+CREATE TABLE IF NOT EXISTS user_wishlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_wishlist (user_id, product_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Persistent User Cart
+CREATE TABLE IF NOT EXISTS user_cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    size_label VARCHAR(100),
+    selected_price DECIMAL(10, 2),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_cart_item (user_id, product_id, size_label),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Persistent User Orders
+CREATE TABLE IF NOT EXISTS user_orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    order_code VARCHAR(50) NOT NULL,
+    customer_name VARCHAR(200) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address TEXT NOT NULL,
+    address_type VARCHAR(20) DEFAULT 'Home',
+    delivery_option VARCHAR(100),
+    payment_method VARCHAR(100),
+    items_total DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    delivery_charge DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    total_payable DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS user_order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT,
+    product_name VARCHAR(255) NOT NULL,
+    image VARCHAR(500),
+    size_label VARCHAR(100),
+    quantity INT NOT NULL DEFAULT 1,
+    unit_price DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (order_id) REFERENCES user_orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
 );
 
 -- Insert Categories
