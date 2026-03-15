@@ -2377,7 +2377,7 @@ Product(
       tamilName: 'ரவா உப்புமா மிக்ஸ்',
       category: 'Snacks',
       price: 55.00,
-      image: 'assets/images/snacks/puttu_podi.jpg',
+      image: 'assets/images/snacks/ravaupma_mix.jpg',
       description: 'Instant upma mix - quick breakfast solution',
       benefits: ['Quick', 'Easy', 'Tasty', 'Ready in minutes'],
       weight: '200g',
