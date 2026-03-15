@@ -675,7 +675,7 @@ class ProductData {
       tamilName: 'சோள மாவு',
       category: 'Flours',
       price: 40.00,
-      image: 'assets/images/flours/kodo_millet_flour.jpg',
+      image: 'assets/images/flours/corn_flour.jpg',
       description:
           'Fine corn flour - gluten-free and versatile for cooking and baking',
       benefits: ['Gluten-free', 'Versatile', 'Natural', 'Light texture'],
