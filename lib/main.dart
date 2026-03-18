@@ -353,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage>
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 220,
+            height: 248,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -454,7 +454,7 @@ class _MyHomePageState extends State<MyHomePage>
                                     color: Colors.black87,
                                   ),
                                 ),
-                                const Spacer(),
+                                const SizedBox(height: 6),
                                 Text(
                                   '₹${product.price.toStringAsFixed(0)}',
                                   style: TextStyle(
@@ -471,6 +471,90 @@ class _MyHomePageState extends State<MyHomePage>
                                       color: Colors.grey.shade500,
                                     ),
                                   ),
+                                if (originalPrice != null)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 5,
+                                        vertical: 2,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE8F5E9),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        'SAVE ₹${(originalPrice - product.price).toStringAsFixed(0)}',
+                                        style: const TextStyle(
+                                          fontSize: 9,
+                                          color: Color(0xFF2E7D32),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                const Spacer(),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      _requireLogin(() {
+                                        final selectedSize =
+                                            product.weight.isNotEmpty
+                                            ? product.weight
+                                            : (product.sizeOptions.isNotEmpty
+                                                  ? product.sizeOptions[0]['size'] ??
+                                                        ''
+                                                  : 'Standard');
+                                        final selectedPrice = product.price;
+
+                                        _cartManager.addToCart(
+                                          product,
+                                          1,
+                                          selectedSize,
+                                          selectedPrice,
+                                        );
+
+                                        final userId = _authManager.userId;
+                                        if (userId != null) {
+                                          UserStateService.persistCart(
+                                            userId,
+                                            _cartManager.items,
+                                          ).catchError((_) {});
+                                        }
+
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              '${product.name} added to cart',
+                                            ),
+                                            duration: const Duration(
+                                              seconds: 1,
+                                            ),
+                                            backgroundColor: const Color(
+                                              0xFF4CAF50,
+                                            ),
+                                            behavior: SnackBarBehavior.floating,
+                                          ),
+                                        );
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: accentColor,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Icon(
+                                        Icons.add_shopping_cart,
+                                        color: Colors.white,
+                                        size: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

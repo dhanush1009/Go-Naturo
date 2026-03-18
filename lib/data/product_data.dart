@@ -177,7 +177,7 @@ class ProductData {
         'Helps relieve joint and knee pain',
         'Supports arthritis relief',
         'Improves body flexibility',
-        'Natural herbal pain relief oil'
+        'Natural herbal pain relief oil',
       ],
       weight: '50ml',
       howToUse:
@@ -337,7 +337,7 @@ class ProductData {
         'Deeply moisturizes skin',
         'Strengthens hair roots and scalp',
         'Helps relieve joint and muscle pain',
-        'Used for lighting lamps in spiritual rituals'
+        'Used for lighting lamps in spiritual rituals',
       ],
       weight: '100ml',
       howToUse:
@@ -346,10 +346,10 @@ class ProductData {
       expiryDate: '12 months from manufacture',
       suitableFor: 'Skin Care, Hair Care, Body Massage, Pooja Lamps',
       sizeOptions: [
-          {'size': '100ml', 'price': 30.00, 'mrp': 40.00},
-          {'size': '250ml', 'price': 75.00, 'mrp': 95.00},
-          {'size': '500ml', 'price': 150.00, 'mrp': 180.00},
-        ],
+        {'size': '100ml', 'price': 30.00, 'mrp': 40.00},
+        {'size': '250ml', 'price': 75.00, 'mrp': 95.00},
+        {'size': '500ml', 'price': 150.00, 'mrp': 180.00},
+      ],
     ),
     Product(
       id: 15,
@@ -360,13 +360,19 @@ class ProductData {
       image: 'assets/images/oils/lamp_oil.jpg',
       description:
           'Lamp oil provides a clean-burning, odorless, and smokeless light source for both indoor and outdoor use, offering better air quality than kerosene.',
-      benefits: ['Clean Burning', 'Safety and Convenience', 'Long-Lasting', 'Versatility'],
+      benefits: [
+        'Clean Burning',
+        'Safety and Convenience',
+        'Long-Lasting',
+        'Versatility',
+      ],
       weight: '200ml',
       howToUse:
           'Lamp oil is primarily used in traditional lamps (diyas) for spiritual rituals and to enhance home atmosphere, offering benefits like removing negative energy, fostering peace, and purifying the air.',
       ingredients: '100% Cold-Pressed Pumpkin Seeds Oil',
       expiryDate: '18 months from manufacture',
-      suitableFor: 'Mental & Emotional Well-being, Purification & Vastu, Aromatherapy & Ambiance',
+      suitableFor:
+          'Mental & Emotional Well-being, Purification & Vastu, Aromatherapy & Ambiance',
       sizeOptions: [
         {'size': '100ml', 'price': 255.00, 'mrp': 340.00},
         {'size': '200ml', 'price': 480.00, 'mrp': 640.00},
@@ -804,23 +810,27 @@ class ProductData {
         {'size': '1000g', 'price': 99.00, 'mrp': 135.00},
       ],
     ),
-   Product( id: 36,
-           name: 'Urad Mush Mix / உளுத்தங்கஞ்சி மிக்ஸ்',
-           tamilName: 'உளுத்தங்கஞ்சி மிக்ஸ்', 
-           category: 'Flours', price: 60.00, 
-           image: 'assets/images/flours/uradmush_mix.jpg', 
-           description: 'Urad kanji mix - traditional South Indian porridge',
-           benefits: ['Nutritious', 'Traditional', 'Easy', 'Protein rich'], 
-           weight: '200g',
-           howToUse: 'Boil with water. Add salt, pepper, cumin. Cook until thick porridge consistency. Serve hot for breakfast.', 
-           ingredients: 'Urad Dal (Black Gram), Rice, Spices', 
-           expiryDate: '6 months from manufacture', 
-           suitableFor: 'Breakfast, Light Dinner, Comfort Food', 
-           sizeOptions: [ {'size': '200g', 'price': 60.00, 'mrp': 80.00}, 
-                         {'size': '500g', 'price': 143.00, 'mrp': 192.00}, 
-                         {'size': '1000g', 'price': 270.00, 'mrp': 365.00},
-                        ],
-          ),
+    Product(
+      id: 36,
+      name: 'Urad Mush Mix / உளுத்தங்கஞ்சி மிக்ஸ்',
+      tamilName: 'உளுத்தங்கஞ்சி மிக்ஸ்',
+      category: 'Flours',
+      price: 60.00,
+      image: 'assets/images/flours/uradmush_mix.jpg',
+      description: 'Urad kanji mix - traditional South Indian porridge',
+      benefits: ['Nutritious', 'Traditional', 'Easy', 'Protein rich'],
+      weight: '200g',
+      howToUse:
+          'Boil with water. Add salt, pepper, cumin. Cook until thick porridge consistency. Serve hot for breakfast.',
+      ingredients: 'Urad Dal (Black Gram), Rice, Spices',
+      expiryDate: '6 months from manufacture',
+      suitableFor: 'Breakfast, Light Dinner, Comfort Food',
+      sizeOptions: [
+        {'size': '200g', 'price': 60.00, 'mrp': 80.00},
+        {'size': '500g', 'price': 143.00, 'mrp': 192.00},
+        {'size': '1000g', 'price': 270.00, 'mrp': 365.00},
+      ],
+    ),
     Product(
       id: 37,
       name: 'Gram Flour / கடலை மாவு',
@@ -1554,8 +1564,7 @@ class ProductData {
     ),
 
     // HEALTH PRODUCTS (20 products)
-
-  Product(
+    Product(
       id: 71,
       name: 'Vibhoothi / விபூதி',
       tamilName: 'விபூதி',
@@ -1584,12 +1593,13 @@ class ProductData {
       category: 'Health Products',
       price: 45.00,
       image: 'assets/images/health/almond.jpg',
-      description: 'Premium quality almonds that are crunchy, nutritious, and naturally rich in vitamins and healthy fats.',
+      description:
+          'Premium quality almonds that are crunchy, nutritious, and naturally rich in vitamins and healthy fats.',
       benefits: [
         'Rich in protein and healthy fats',
         'Improves brain health',
         'Good for heart health',
-        'High in Vitamin E and antioxidants'
+        'High in Vitamin E and antioxidants',
       ],
       weight: '100g',
       howToUse:
@@ -1611,12 +1621,13 @@ class ProductData {
       category: 'Health Products',
       price: 25.00,
       image: 'assets/images/health/cardamom.jpg',
-      description: 'Premium quality green cardamom with a rich aroma and natural flavor. Widely used in cooking, sweets, and traditional drinks.',
+      description:
+          'Premium quality green cardamom with a rich aroma and natural flavor. Widely used in cooking, sweets, and traditional drinks.',
       benefits: [
         'Improves digestion',
         'Freshens breath naturally',
         'Rich in antioxidants',
-        'Helps support heart health'
+        'Helps support heart health',
       ],
       weight: '50g',
       howToUse:
@@ -1637,12 +1648,13 @@ class ProductData {
       category: 'Health Products',
       price: 47.00,
       image: 'assets/images/health/cashew.jpg',
-      description: 'Premium quality cashew nuts that are crunchy, delicious, and rich in essential nutrients. Perfect for snacks, sweets, and cooking.',
+      description:
+          'Premium quality cashew nuts that are crunchy, delicious, and rich in essential nutrients. Perfect for snacks, sweets, and cooking.',
       benefits: [
         'Rich in healthy fats and protein',
         'Supports heart health',
         'Good source of vitamins and minerals',
-        'Helps boost energy'
+        'Helps boost energy',
       ],
       weight: '50g',
       howToUse:
@@ -1656,122 +1668,118 @@ class ProductData {
         {'size': '250g', 'price': 210.00, 'mrp': 240.00},
       ],
     ),
-    
-  Product(
-  id: 75,
-  name: 'Walnut / வால்நட்',
-  tamilName: 'வால்நட்',
-  category: 'Health Products',
-  price: 93.00,
-  image: 'assets/images/health/walnut.jpg',
-  description: 'Premium quality walnuts that are crunchy, nutritious, and rich in omega-3 fatty acids. Perfect for healthy snacks, desserts, and cooking.',
-  benefits: [
-    'Rich in Omega-3 fatty acids',
-    'Supports brain health',
-    'Improves heart health',
-    'High in antioxidants and nutrients'
-  ],
-  weight: '50g',
-  howToUse:
-      'Walnuts can be eaten raw as a healthy snack or soaked overnight. They can also be added to salads, desserts, cakes, milkshakes, and breakfast cereals.',
-  ingredients: '100% Natural Walnut Kernels',
-  expiryDate: '12 months from manufacture',
-  suitableFor: 'Snacks, Healthy Diet, Cooking, Daily Nutrition',
-  sizeOptions: [
-    {'size': '50g', 'price': 93.00, 'mrp': 110.00},
-    {'size': '100g', 'price': 180.00, 'mrp': 210.00},
-    {'size': '250g', 'price': 420.00, 'mrp': 480.00},
-  ],
-),
 
+    Product(
+      id: 75,
+      name: 'Walnut / வால்நட்',
+      tamilName: 'வால்நட்',
+      category: 'Health Products',
+      price: 93.00,
+      image: 'assets/images/health/walnut.jpg',
+      description:
+          'Premium quality walnuts that are crunchy, nutritious, and rich in omega-3 fatty acids. Perfect for healthy snacks, desserts, and cooking.',
+      benefits: [
+        'Rich in Omega-3 fatty acids',
+        'Supports brain health',
+        'Improves heart health',
+        'High in antioxidants and nutrients',
+      ],
+      weight: '50g',
+      howToUse:
+          'Walnuts can be eaten raw as a healthy snack or soaked overnight. They can also be added to salads, desserts, cakes, milkshakes, and breakfast cereals.',
+      ingredients: '100% Natural Walnut Kernels',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacks, Healthy Diet, Cooking, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 93.00, 'mrp': 110.00},
+        {'size': '100g', 'price': 180.00, 'mrp': 210.00},
+        {'size': '250g', 'price': 420.00, 'mrp': 480.00},
+      ],
+    ),
 
+    Product(
+      id: 76,
+      name: 'Pista / பிஸ்தா',
+      tamilName: 'பிஸ்தா',
+      category: 'Health Products',
+      price: 83.00,
+      image: 'assets/images/health/pista.jpg',
+      description:
+          'Premium quality pistachios that are crunchy, flavorful, and packed with essential nutrients. A perfect healthy snack enjoyed by all age groups.',
+      benefits: [
+        'Rich in protein and fiber',
+        'Supports heart health',
+        'Helps improve digestion',
+        'High in antioxidants and vitamins',
+      ],
+      weight: '50g',
+      howToUse:
+          'Pistachios can be eaten as a healthy snack. They can also be added to sweets, desserts, ice cream, milkshakes, and traditional dishes for extra flavor and nutrition.',
+      ingredients: '100% Natural Pistachio Nuts',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 83.00, 'mrp': 95.00},
+        {'size': '100g', 'price': 160.00, 'mrp': 185.00},
+        {'size': '250g', 'price': 390.00, 'mrp': 430.00},
+      ],
+    ),
 
-Product(
-  id: 76,
-  name: 'Pista / பிஸ்தா',
-  tamilName: 'பிஸ்தா',
-  category: 'Health Products',
-  price: 83.00,
-  image: 'assets/images/health/pista.jpg',
-  description: 'Premium quality pistachios that are crunchy, flavorful, and packed with essential nutrients. A perfect healthy snack enjoyed by all age groups.',
-  benefits: [
-    'Rich in protein and fiber',
-    'Supports heart health',
-    'Helps improve digestion',
-    'High in antioxidants and vitamins'
-  ],
-  weight: '50g',
-  howToUse:
-      'Pistachios can be eaten as a healthy snack. They can also be added to sweets, desserts, ice cream, milkshakes, and traditional dishes for extra flavor and nutrition.',
-  ingredients: '100% Natural Pistachio Nuts',
-  expiryDate: '12 months from manufacture',
-  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
-  sizeOptions: [
-    {'size': '50g', 'price': 83.00, 'mrp': 95.00},
-    {'size': '100g', 'price': 160.00, 'mrp': 185.00},
-    {'size': '250g', 'price': 390.00, 'mrp': 430.00},
-  ],
-),
+    Product(
+      id: 77,
+      name: 'Dry Fig Fruit / அத்தி பழம்',
+      tamilName: 'அத்தி பழம்',
+      category: 'Health Products',
+      price: 63.00,
+      image: 'assets/images/health/dry_fig_fruit.jpg',
+      description:
+          'Premium quality dried figs that are naturally sweet, soft, and rich in essential nutrients. A healthy snack that supports overall wellness.',
+      benefits: [
+        'Rich in fiber for better digestion',
+        'Supports bone health',
+        'Helps maintain healthy blood pressure',
+        'Packed with vitamins and minerals',
+      ],
+      weight: '50g',
+      howToUse:
+          'Dry figs can be eaten directly as a healthy snack or soaked overnight for better digestion. They can also be added to milk, desserts, cereals, and sweets.',
+      ingredients: '100% Natural Dried Fig Fruit',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 63.00, 'mrp': 75.00},
+        {'size': '100g', 'price': 120.00, 'mrp': 140.00},
+        {'size': '250g', 'price': 290.00, 'mrp': 330.00},
+      ],
+    ),
 
-
-Product(
-  id: 77,
-  name: 'Dry Fig Fruit / அத்தி பழம்',
-  tamilName: 'அத்தி பழம்',
-  category: 'Health Products',
-  price: 63.00,
-  image: 'assets/images/health/dry_fig_fruit.jpg',
-  description: 'Premium quality dried figs that are naturally sweet, soft, and rich in essential nutrients. A healthy snack that supports overall wellness.',
-  benefits: [
-    'Rich in fiber for better digestion',
-    'Supports bone health',
-    'Helps maintain healthy blood pressure',
-    'Packed with vitamins and minerals'
-  ],
-  weight: '50g',
-  howToUse:
-      'Dry figs can be eaten directly as a healthy snack or soaked overnight for better digestion. They can also be added to milk, desserts, cereals, and sweets.',
-  ingredients: '100% Natural Dried Fig Fruit',
-  expiryDate: '12 months from manufacture',
-  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
-  sizeOptions: [
-    {'size': '50g', 'price': 63.00, 'mrp': 75.00},
-    {'size': '100g', 'price': 120.00, 'mrp': 140.00},
-    {'size': '250g', 'price': 290.00, 'mrp': 330.00},
-  ],
-),
-
-
-Product(
-  id: 78,
-  name: 'Dry Black Grapes / கருப்பு திராட்சை',
-  tamilName: 'கருப்பு திராட்சை',
-  category: 'Health Products',
-  price: 49.00,
-  image: 'assets/images/health/dry-balck-grapes.jpg',
-  description: 'Premium quality dried black grapes (black raisins) that are naturally sweet, soft, and rich in essential nutrients. A healthy snack for daily nutrition.',
-  benefits: [
-    'Improves digestion',
-    'Rich in iron and helps boost energy',
-    'Supports healthy skin and hair',
-    'Packed with natural antioxidants'
-  ],
-  weight: '50g',
-  howToUse:
-      'Dry black grapes can be eaten directly as a snack or soaked overnight and consumed in the morning. They can also be added to sweets, desserts, cereals, and traditional dishes.',
-  ingredients: '100% Natural Dried Black Grapes (Black Raisins)',
-  expiryDate: '12 months from manufacture',
-  suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
-  sizeOptions: [
-    {'size': '50g', 'price': 49.00, 'mrp': 75.00},
-    {'size': '100g', 'price': 120.00, 'mrp': 140.00},
-    {'size': '250g', 'price': 290.00, 'mrp': 330.00},
-  ],
-),
-
-
-
-
+    Product(
+      id: 78,
+      name: 'Dry Black Grapes / கருப்பு திராட்சை',
+      tamilName: 'கருப்பு திராட்சை',
+      category: 'Health Products',
+      price: 49.00,
+      image: 'assets/images/health/dry-balck-grapes.jpg',
+      description:
+          'Premium quality dried black grapes (black raisins) that are naturally sweet, soft, and rich in essential nutrients. A healthy snack for daily nutrition.',
+      benefits: [
+        'Improves digestion',
+        'Rich in iron and helps boost energy',
+        'Supports healthy skin and hair',
+        'Packed with natural antioxidants',
+      ],
+      weight: '50g',
+      howToUse:
+          'Dry black grapes can be eaten directly as a snack or soaked overnight and consumed in the morning. They can also be added to sweets, desserts, cereals, and traditional dishes.',
+      ingredients: '100% Natural Dried Black Grapes (Black Raisins)',
+      expiryDate: '12 months from manufacture',
+      suitableFor: 'Snacks, Healthy Diet, Desserts, Daily Nutrition',
+      sizeOptions: [
+        {'size': '50g', 'price': 49.00, 'mrp': 75.00},
+        {'size': '100g', 'price': 120.00, 'mrp': 140.00},
+        {'size': '250g', 'price': 290.00, 'mrp': 330.00},
+      ],
+    ),
 
     Product(
       id: 79,
@@ -2182,7 +2190,7 @@ Product(
       tamilName: 'நவதானிய தோசை மிக்ஸ்',
       category: 'Snacks',
       price: 85.00,
-      image: 'assets/images/snacks/navadhanyadosa_mix',
+      image: 'assets/images/snacks/navadhanyadosa_mix.png',
       description: 'Nine millet dosai mix - healthy and nutritious instant mix',
       benefits: ['Healthy', 'Instant', 'Nutritious', 'Multi-grain'],
       weight: '500g',
@@ -2225,15 +2233,18 @@ Product(
       tamilName: 'குல்கந்த்',
       category: 'Snacks',
       price: 60.00,
-      image: 'assets/images/snacks/gulkand.jpg',
-      description:  'Gulkand is a traditional sweet preserve made from rose petals and sugar.',
-      benefits: [ 'Body cooling',
-    'Improves digestion',
-    'Reduces acidity',
-    'Natural energy booster'],
+      image: 'assets/images/snacks/honey.jpg',
+      description:
+          'Gulkand is a traditional sweet preserve made from rose petals and sugar.',
+      benefits: [
+        'Body cooling',
+        'Improves digestion',
+        'Reduces acidity',
+        'Natural energy booster',
+      ],
       weight: '200g',
       howToUse:
-         'Consume 1–2 teaspoons daily after meals. Can also be added to milk, desserts.',
+          'Consume 1–2 teaspoons daily after meals. Can also be added to milk, desserts.',
       ingredients: 'Rose Petals, Sugar, Honey, Cardamom',
       expiryDate: '6 months from manufacture',
       suitableFor: 'All age groups, especially useful during summer',
@@ -2565,14 +2576,17 @@ Product(
       category: 'Snacks',
       price: 45.00,
       image: 'assets/images/snacks/honey.jpg',
-      description: 'Pure natural honey collected from honey bees, known for its sweetness and medicinal benefits.',
-      benefits: [ 'Boosts immunity',
-    'Natural sweetener',
-    'Improves digestion',
-    'Rich in antioxidants'],
+      description:
+          'Pure natural honey collected from honey bees, known for its sweetness and medicinal benefits.',
+      benefits: [
+        'Boosts immunity',
+        'Natural sweetener',
+        'Improves digestion',
+        'Rich in antioxidants',
+      ],
       weight: '100g',
       howToUse:
-         'Consume 1–2 teaspoons daily. Can be added to warm water, milk, tea, or used as a natural sweetener in desserts.',
+          'Consume 1–2 teaspoons daily. Can be added to warm water, milk, tea, or used as a natural sweetener in desserts.',
       ingredients: '100% Pure Natural Honey',
       expiryDate: '12 months from manufacture',
       suitableFor: 'All age groups, daily health consumption',
@@ -2604,7 +2618,6 @@ Product(
       ],
     ),
   ];
-    
 
   static List<Product> getProductsByCategory(String category) {
     if (category == 'All Products') return allProducts;

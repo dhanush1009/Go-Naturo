@@ -200,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 // Phone (optional)
                 _buildField(
                   controller: _phoneCtrl,
-                  label: 'Phone Number (optional)',
+                  label: 'Phone Number',
                   hint: '9XXXXXXXXX',
                   icon: Icons.phone_outlined,
                   keyboardType: TextInputType.phone,

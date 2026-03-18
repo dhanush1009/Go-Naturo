@@ -119,6 +119,24 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     return (((selectedMrp - selectedPrice) / selectedMrp) * 100).round();
   }
 
+  Widget _buildCenteredStrikethroughPrice(String text, TextStyle style) {
+    final lineColor = style.color ?? Colors.black54;
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        Text(text, style: style.copyWith(decoration: TextDecoration.none)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(height: 1, color: lineColor),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   void _requireLogin(VoidCallback action) {
     if (AuthManager().isLoggedIn) {
       action();
@@ -269,13 +287,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Text(
+                            _buildCenteredStrikethroughPrice(
                               '₹${selectedMrp.toStringAsFixed(0)}',
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 16,
-                                decoration: TextDecoration.lineThrough,
-                              ),
+                              TextStyle(color: Colors.grey[600], fontSize: 16),
                             ),
                             const SizedBox(width: 8),
                             Text(

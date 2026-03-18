@@ -44,6 +44,57 @@ class _ShopsPageState extends State<ShopsPage> {
     {'name': 'Snacks', 'icon': Icons.fastfood, 'color': Colors.orange},
   ];
 
+  double? _getOriginalPrice(Product product) {
+    if (product.sizeOptions.isEmpty) {
+      return null;
+    }
+
+    Map<String, dynamic>? matchedOption;
+    for (final option in product.sizeOptions) {
+      final optionSize = (option['size'] ?? '').toString();
+      if (optionSize == product.weight) {
+        matchedOption = option;
+        break;
+      }
+    }
+
+    matchedOption ??= product.sizeOptions.first;
+    final mrpValue = matchedOption['mrp'];
+    if (mrpValue is num) {
+      final mrp = mrpValue.toDouble();
+      if (mrp > product.price) {
+        return mrp;
+      }
+    }
+    return null;
+  }
+
+  int _getDiscountPercent(double originalPrice, double salePrice) {
+    if (originalPrice <= 0 || originalPrice <= salePrice) {
+      return 0;
+    }
+    final discount = ((originalPrice - salePrice) / originalPrice) * 100;
+    return discount.round();
+  }
+
+  Widget _buildCenteredStrikethroughPrice(String text, TextStyle style) {
+    final lineColor = style.color ?? Colors.black54;
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        Text(text, style: style.copyWith(decoration: TextDecoration.none)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(height: 1, color: lineColor),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   List<Product> get filteredProducts {
     var products = selectedCategory == 'All Products'
         ? allProducts
@@ -285,7 +336,7 @@ class _ShopsPageState extends State<ShopsPage> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.62,
                   ),
                   itemCount: filteredProducts.length,
                   itemBuilder: (context, index) {
@@ -298,6 +349,11 @@ class _ShopsPageState extends State<ShopsPage> {
   }
 
   Widget _buildProductCard(Product product) {
+    final originalPrice = _getOriginalPrice(product);
+    final discountPercent = originalPrice != null
+        ? _getDiscountPercent(originalPrice, product.price)
+        : 0;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -337,54 +393,90 @@ class _ShopsPageState extends State<ShopsPage> {
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(12),
                     ),
-                    child: product.imageUrl.startsWith('assets/')
-                        ? Image.asset(
-                            product.imageUrl,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey.shade200,
-                                child: Center(
-                                  child: Icon(
-                                    Icons.shopping_basket,
-                                    size: 50,
-                                    color: Colors.grey.shade400,
-                                  ),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: product.imageUrl.startsWith('assets/')
+                              ? Image.asset(
+                                  product.imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.grey.shade200,
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.shopping_basket,
+                                          size: 50,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              : Image.network(
+                                  product.imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.grey.shade200,
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.shopping_basket,
+                                          size: 50,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value:
+                                                loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                          .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                : null,
+                                            strokeWidth: 2,
+                                          ),
+                                        );
+                                      },
                                 ),
-                              );
-                            },
-                          )
-                        : Image.network(
-                            product.imageUrl,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey.shade200,
-                                child: Center(
-                                  child: Icon(
-                                    Icons.shopping_basket,
-                                    size: 50,
-                                    color: Colors.grey.shade400,
-                                  ),
+                        ),
+                        if (discountPercent > 0)
+                          Positioned(
+                            top: 6,
+                            left: 6,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFE53935),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                '$discountPercent% OFF',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              );
-                            },
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Center(
-                                child: CircularProgressIndicator(
-                                  value:
-                                      loadingProgress.expectedTotalBytes != null
-                                      ? loadingProgress.cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                      : null,
-                                  strokeWidth: 2,
-                                ),
-                              );
-                            },
+                              ),
+                            ),
                           ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -416,15 +508,72 @@ class _ShopsPageState extends State<ShopsPage> {
                     const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          '₹${product.price.toStringAsFixed(0)}',
-                          style: const TextStyle(
-                            color: Color(0xFF4CAF50),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '₹${product.price.toStringAsFixed(0)}',
+                                style: const TextStyle(
+                                  color: Color(0xFF4CAF50),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              if (originalPrice != null)
+                                const SizedBox(height: 2),
+                              if (originalPrice != null)
+                                Wrap(
+                                  spacing: 4,
+                                  runSpacing: 2,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    _buildCenteredStrikethroughPrice(
+                                      '₹${originalPrice.toStringAsFixed(0)}',
+                                      TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                    ),
+                                    Text(
+                                      '$discountPercent% OFF',
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        color: Color(0xFFE53935),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              if (originalPrice != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFE8F5E9),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      'SAVE ₹${(originalPrice - product.price).toStringAsFixed(0)}',
+                                      style: const TextStyle(
+                                        fontSize: 9,
+                                        color: Color(0xFF2E7D32),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
+                        const SizedBox(width: 6),
                         InkWell(
                           onTap: () {
                             // Add to cart functionality
