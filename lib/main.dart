@@ -20,7 +20,9 @@ import 'theme/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:video_player/video_player.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AuthManager.initialize();
   runApp(const MyApp());
 }
 
