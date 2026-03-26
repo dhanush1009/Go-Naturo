@@ -1,0 +1,17 @@
+# Keep Docker build context small
+.git
+.github
+.vscode
+build
+android
+ios
+linux
+macos
+web
+windows
+assets
+test
+backend/node_modules
+node_modules
+*.log
+.env
